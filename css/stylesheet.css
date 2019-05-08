@@ -14,7 +14,12 @@ body {
     flex-direction: column;
 }
 
+header, footer {
+    padding: 1em;
+}
+
 main {
+    position: relative;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -29,10 +34,65 @@ footer {
 
 /* Element **********************************************/
 
+.copyright {
+    text-align: right;
+}
+
+.copyright::before {
+    content: "\00a9" "\00a0";
+}
+
+.ui-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 64px);
+    grid-template-rows: repeat(7, 50px);
+    grid-gap: 32px;
+    /* align-items: center; */
+    /* justify-items: center; */
+}
+
 .game-viewport {
     position: relative;
-    width: 1280px;
-    height: 720px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1024px;
+    height: 600px;
+    overflow: hidden;
+}
+
+.notification {
+    position: absolute;
+    display: none;
+}
+
+.player {
+    position: absolute;
+}
+
+.inventory {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 128px; 
+    height: 128px; 
+    background: rgba(255, 255, 255, 0.3); 
+    border-radius: 50%
+}
+
+.blanket-avatar {
+    position: absolute;
+    width: 96px;
+    height: 8px;
+    background-color: #ffeb3b;
+}
+
+.ui-blanket {
+    width: 96px; 
+    height: 64px; 
+    transform: rotate(-60deg);
+    background-color: #ffeb3b;
+    display: none;
 }
 
 /* Modifier *********************************************/
@@ -43,6 +103,49 @@ header, footer, main {
     color: #212121;
     background-color: #e0e0e0;
 }
+
+.game-viewport {
+    background-color: #616161;
+}
+
+.player {
+    border-left: 40px solid transparent; 
+    border-right: 40px solid transparent; 
+    border-bottom: 80px solid #64b5f6; 
+}
+
+.hint {
+    grid-column: 7 / 9;
+}
+
+.hambutger-menu {
+    grid-column: 9 / 11;
+}
+
+.timer-bar {
+    grid-column: 1 / 4;
+}
+
+.inventory {
+    grid-column: 9 / 11;
+    grid-row: 6 / 8;
+}
+
+
+/* reference: https://google.github.io/material-design-icons/ */
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 
 /* Responsive Layout ************************************/
 

@@ -8,21 +8,39 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/stylesheet.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/bulma.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
 </head>
 <body>
     <header>
-        <p>header</p>
+        <p>Logo</p>
     </header>
     <main>
         <section class="game-viewport">
-            <p>Stuffs go here</p>
+            <!-- <div class="player"></div> -->
+            <!-- <div class="blanket-avatar"></div> -->
+            <div class="ui-grid">
+                <p class="timer-bar">Timer Bar</p>
+                <a class="hint button are-small is-link is-inverted is-outlined">Hint</a>
+                <a class="hambutger-menu button are-small is-link is-inverted is-outlined">
+                    <i class="material-icons md-24">menu</i>
+                    Menu                   
+                </a>
+                    <div class="inventory">
+                        <div class="ui-blanket"></div>
+                    </div>            
+            </div>
         </section>
+        <div class="notification" id="--overlay">
+            <button class="delete"></button>
+            Instruction
+        </div>
     </main>
     <footer>
-        <p>footer</p>
+        <p class="copyright">2018 Chinh Do</p>
     </footer>
-
-    <script src="js/script.js"></script>
+    
     <script src="js/jquery-3.4.1.js"></script>
+    <script src=""></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

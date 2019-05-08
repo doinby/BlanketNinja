@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Blanket Ninja</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/stylesheet.css">
     <link rel="stylesheet" type="text/css" media="screen" href="css/bulma.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/stylesheet.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/jquery-ui.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
 </head>
@@ -16,31 +17,29 @@
     </header>
     <main>
         <section class="game-viewport">
-            <!-- <div class="player"></div> -->
-            <!-- <div class="blanket-avatar"></div> -->
             <div class="ui-grid">
-                <p class="timer-bar">Timer Bar</p>
-                <a class="hint button are-small is-link is-inverted is-outlined">Hint</a>
-                <a class="hambutger-menu button are-small is-link is-inverted is-outlined">
-                    <i class="material-icons md-24">menu</i>
-                    Menu                   
-                </a>
-                    <div class="inventory">
-                        <div class="ui-blanket"></div>
-                    </div>            
+                <a class="hint-btn button are-small is-link is-inverted is-outlined"></a>
+                <a class="hamburger button are-small is-link is-inverted is-outlined"></a>
+                <div class="inventory">
+                    <div class="ui-blanket"></div>
+                </div>            
             </div>
         </section>
-        <div class="notification" id="--overlay">
+        <ul class="menu notification">
             <button class="delete"></button>
-            Instruction
-        </div>
+            <p>To complete the puzzle, gather the blanket on the floor and return it to the nearby person</p>
+            <li>Sound:<a class="button is-rounded is-danger">On</a></li>
+            <li><a class="button is-link">Main Menu</a></li>
+            <li><a class="button is-link">About</a></li>
+        </ul>
+        <div class="hint-msg notification"></div>
     </main>
     <footer>
         <p class="copyright">2018 Chinh Do</p>
     </footer>
     
     <script src="js/jquery-3.4.1.js"></script>
-    <script src=""></script>
+    <script src="js/jquery-ui.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

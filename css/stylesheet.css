@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+/* This stylesheet is organized using BEM methology *****/
+/* Basic Theme ******************************************/
+
+/* Block ************************************************/
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex: 1 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+
+footer {
+    flex-shrink: 0;
+}
+
+/* Element **********************************************/
+
+.game-viewport {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+}
+
+/* Modifier *********************************************/
+
+header, footer, main {
+    /* padding: 2em; */
+    font-family: 'Montserrat', sans-serif;
+    color: #212121;
+    background-color: #e0e0e0;
+}
+
+/* Responsive Layout ************************************/
+
+@media (max-width: 800px) {}

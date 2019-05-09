@@ -11,9 +11,12 @@ $(document).ready(function() {
     var $hintBtn = $('.hint-btn');
     var $hintMsg = $('.hint-msg');
     var $instructionMsg = $('.instruction-msg');
+    var $gameOverMsg = $('.gameover-msg');
     var $hamburgerBtn = $('.hamburger');
     
     var instruction = "Pick a destination";
+    var winMsg = ":) Good Job!";
+    var loseMsg = ":( Try Again!";
     var tip = "Tip: none";
     var isGameOver = false;
     
@@ -30,30 +33,31 @@ $(document).ready(function() {
         $("<i>menu</i>")
         .appendTo($hamburgerBtn)
         .addClass("material-icons md-24");
-
-        $('.menu').hide();
+        
+        $('ul.menu').hide();
         $hintMsg.hide();
         $hintMsg.append(tip);
         $instructionMsg.hide();
         $instructionMsg.append(instruction);
-
+        $gameOverMsg.hide();
+        
         $hamburgerBtn.mousedown(function() {
             $('.menu')
-                .toggle();
+            .toggle();
         });
         $hintBtn.mousedown(function() {
             $hintMsg
-                .toggle();
+            .toggle();
         });
     };
-
+    
     function initializeMap() {
         $instructionMsg
         .show()
         .css({
             top: '30%',
         });
-
+        
         $('.ui-house2').mousedown(function() {
             // console.log('clicked');
             $('.house').hide();
@@ -81,7 +85,7 @@ $(document).ready(function() {
             left: 800,
             bottom: 100
         });        
-
+        
         $player.appendTo($gameViewport);
         $blanket.appendTo($gameViewport);
         $bed.appendTo($gameViewport);
@@ -92,11 +96,8 @@ $(document).ready(function() {
         if(isGameOver == false) {            
             $timerFill.animate({width: '-=1'}, 100);
             if($timerFill.width() < 1) {
-                gameOver();
+                gameOver(false);
             }
-        }
-        else {
-            gameOver();
         }
     }, 24);
     
@@ -106,29 +107,27 @@ $(document).ready(function() {
         // $('.notification').toggle();
     });
     
-    function gameOver() {        
-        clearInterval(update);
+    function gameOver(result) {        
+        // clearInterval(update);
+        // $gameViewport.attr('disabled', true);
         // stopAnimation = true;
-        // $gameOverMessage.show();
+        var isWinning = result;
+        console.log(isWinning);
         
-        $("<div></div>")
-        .appendTo($('main'))
-        .addClass("notification winning-msg")
-        .css({
-            position: 'absolute',
-            display: 'flex',
-            'flex-direction': 'column',
-            'z-index': 2
-        });
+        if(result == true) {
+            $gameOverMsg.append(winMsg);
+            $gameOverMsg.show();
+            clearInterval(update);
+        }
         
-        $("<p>Good Job!</p>")
-        .appendTo($('.winning-msg'))
-        .css({
-            'padding-bottom': '1em',
-        });
+        else {
+            $gameOverMsg.append(loseMsg);
+            $gameOverMsg.show();
+            clearInterval(update);
+        }        
         
         $confirmBtn
-        .appendTo($('.winning-msg'))
+        .appendTo($gameOverMsg)
         .mousedown(function() {
             location.reload();
         });
@@ -174,14 +173,15 @@ $(document).ready(function() {
                 $blanketUI.show();
             }
             if(collision($player, $bed)) {
-                gameOver();
+                // console.log('collide');
+                gameOver(true);
             }
             break;
             default: return; // exit this handler for other keys
         }
         // e.preventDefault(); // prevent the default action(scroll / move caret)
     });    
-
+    
     drawMenu();
     initializeMap();
     // initializeMinigame();

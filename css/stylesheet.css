@@ -67,7 +67,7 @@ footer {
     background-color: white;
 }
 
-.game-viewport {
+.game-viewport, .dialog-viewport {
     width: 1024px;
     height: 600px;
     position: relative;
@@ -136,7 +136,7 @@ header, footer, main {
     background-color: #e0e0e0;
 }
 
-.game-viewport {
+.game-viewport, .dialog-viewport {
     background-color: #616161;
 }
 

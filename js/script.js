@@ -10,8 +10,8 @@ $(document).ready(function() {
     var $confirmBtn = $("<a>Ok</a>").addClass("button is-link is-success");
     var $hintBtn = $('.hint-btn');
     var $hintMsg = $('.hint-msg');
-    var $instructionMsg = $('.instruction-msg');
-    var $gameOverMsg = $('.gameover-msg');
+    var $instructionMsg = $('<div>').addClass('instruction-msg notification');
+    var $gameOverMsg = $('<div>').addClass('gameover-msg notification');
     var $hamburgerBtn = $('.hamburger');
     
     var instruction = "Pick a destination";
@@ -24,7 +24,9 @@ $(document).ready(function() {
     var $blanket = $('<div>').addClass('blanket-avatar');
     var $bed = $('<div>').addClass('bed-avatar');
     var $floor = $('<div>').addClass('floor');
-    
+
+    $('.notification').hide();
+
     // Menu Display
     function drawMenu() {        
         $timerBar.appendTo($('.ui-grid'));
@@ -37,9 +39,6 @@ $(document).ready(function() {
         $('ul.menu').hide();
         $hintMsg.hide();
         $hintMsg.append(tip);
-        $instructionMsg.hide();
-        $instructionMsg.append(instruction);
-        $gameOverMsg.hide();
         
         $hamburgerBtn.mousedown(function() {
             $('.menu')
@@ -64,6 +63,10 @@ $(document).ready(function() {
             $instructionMsg.hide();
             initializeMinigame();
         });
+        
+        $instructionMsg
+        .append(instruction)
+        .appendTo('main');
     };
     
     function initializeMinigame() {
@@ -84,22 +87,22 @@ $(document).ready(function() {
             position: 'absolute',
             left: 800,
             bottom: 100
-        });        
+        });       
+
+        var update = setInterval(function () {
+            if (isGameOver == false) {
+                $timerFill.animate({ width: '-=1' }, 100);
+                if ($timerFill.width() < 1) {
+                    gameOver(false);
+                }
+            }
+        }, 24);
         
         $player.appendTo($gameViewport);
         $blanket.appendTo($gameViewport);
         $bed.appendTo($gameViewport);
         $floor.appendTo($gameViewport);
     };
-    
-    var update = setInterval(function() {
-        if(isGameOver == false) {            
-            $timerFill.animate({width: '-=1'}, 100);
-            if($timerFill.width() < 1) {
-                gameOver(false);
-            }
-        }
-    }, 24);
     
     $('.delete').mousedown(function() {
         var tagName = $(this).parent(".notification").tagName;
@@ -111,18 +114,22 @@ $(document).ready(function() {
         // clearInterval(update);
         // $gameViewport.attr('disabled', true);
         // stopAnimation = true;
-        var isWinning = result;
-        console.log(isWinning);
+        // var isWinning = result;
+        // console.log(isWinning);
         
         if(result == true) {
-            $gameOverMsg.append(winMsg);
-            $gameOverMsg.show();
+            $gameOverMsg
+            .append(winMsg)
+            .appendTo('main')
+            .show();
             clearInterval(update);
         }
         
         else {
-            $gameOverMsg.append(loseMsg);
-            $gameOverMsg.show();
+            $gameOverMsg
+            .append(loseMsg)
+            .appendTo('main')
+            .show();
             clearInterval(update);
         }        
         

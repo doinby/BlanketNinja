@@ -10,8 +10,10 @@ $(document).ready(function() {
     var $confirmBtn = $("<a>Ok</a>").addClass("button is-link is-success");
     var $hintBtn = $('.hint-btn');
     var $hintMsg = $('.hint-msg');
+    var $instructionMsg = $('.instruction-msg');
     var $hamburgerBtn = $('.hamburger');
     
+    var instruction = "Pick a destination";
     var tip = "Tip: none";
     var isGameOver = false;
     
@@ -20,12 +22,47 @@ $(document).ready(function() {
     var $bed = $('<div>').addClass('bed-avatar');
     var $floor = $('<div>').addClass('floor');
     
-    $('.menu').hide();
-    $hintMsg.hide();
-    $hintMsg.append(tip);
+    // Menu Display
+    function drawMenu() {        
+        $timerBar.appendTo($('.ui-grid'));
+        $timerFill.appendTo($timerBar);
+        $hintBtn.append("Hint");
+        $("<i>menu</i>")
+        .appendTo($hamburgerBtn)
+        .addClass("material-icons md-24");
+
+        $('.menu').hide();
+        $hintMsg.hide();
+        $hintMsg.append(tip);
+        $instructionMsg.hide();
+        $instructionMsg.append(instruction);
+
+        $hamburgerBtn.mousedown(function() {
+            $('.menu')
+                .toggle();
+        });
+        $hintBtn.mousedown(function() {
+            $hintMsg
+                .toggle();
+        });
+    };
+
+    function initializeMap() {
+        $instructionMsg
+        .show()
+        .css({
+            top: '30%',
+        });
+
+        $('.ui-house2').mousedown(function() {
+            // console.log('clicked');
+            $('.house').hide();
+            $instructionMsg.hide();
+            initializeMinigame();
+        });
+    };
     
-    // Draw initial scene
-    function initialize() {
+    function initializeMinigame() {
         $player.css({
             position: 'absolute',
             left: 50,
@@ -43,15 +80,8 @@ $(document).ready(function() {
             position: 'absolute',
             left: 800,
             bottom: 100
-        });
-        
-        $timerBar.appendTo($('.ui-grid'));
-        $timerFill.appendTo($timerBar);
-        $hintBtn.append("Hint");
-        $("<i>menu</i>")
-        .appendTo($hamburgerBtn)
-        .addClass("material-icons md-24");
-        
+        });        
+
         $player.appendTo($gameViewport);
         $blanket.appendTo($gameViewport);
         $bed.appendTo($gameViewport);
@@ -60,29 +90,27 @@ $(document).ready(function() {
     
     var update = setInterval(function() {
         if(isGameOver == false) {            
-            $timerFill.animate({width: '-=1'}, 1000);
+            $timerFill.animate({width: '-=1'}, 100);
+            if($timerFill.width() < 1) {
+                gameOver();
+            }
         }
         else {
             gameOver();
         }
     }, 24);
     
-    $hamburgerBtn.mousedown(function () {
-        $('.menu')
-        .toggle()
-        .css({ 'z-index': 2});
-    });
-    $hintBtn.mousedown(function () {
-        $hintMsg
-            .toggle()
-            .css({ 'z-index': 2 });
-    });
-    
-    $('.delete').mousedown(function () {
-        $('.notification').toggle();
+    $('.delete').mousedown(function() {
+        var tagName = $(this).parent(".notification").tagName;
+        console.log(tagName);
+        // $('.notification').toggle();
     });
     
     function gameOver() {        
+        clearInterval(update);
+        // stopAnimation = true;
+        // $gameOverMessage.show();
+        
         $("<div></div>")
         .appendTo($('main'))
         .addClass("notification winning-msg")
@@ -104,6 +132,7 @@ $(document).ready(function() {
         .mousedown(function() {
             location.reload();
         });
+        // location.reload();
     }
     
     // Check collision between 2 objects
@@ -151,9 +180,11 @@ $(document).ready(function() {
             default: return; // exit this handler for other keys
         }
         // e.preventDefault(); // prevent the default action(scroll / move caret)
-    });
-    
-    initialize();
+    });    
+
+    drawMenu();
+    initializeMap();
+    // initializeMinigame();
 });
 
 //Bulma notification

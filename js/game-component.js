@@ -19,14 +19,13 @@ $(document).ready(function() {
     var loseMsg = ":( Try Again!";
     var tip = "Tip: none";
     var isGameOver = false;
+    var stopAnimation = false;
     
     var $player = $('<div>').addClass('player');
     var $blanket = $('<div>').addClass('blanket-avatar');
     var $bed = $('<div>').addClass('bed-avatar');
     var $floor = $('<div>').addClass('floor');
-
-    $('.notification').hide();
-
+    
     // Menu Display
     function drawMenu() {        
         $timerBar.appendTo($('.ui-grid'));
@@ -36,9 +35,9 @@ $(document).ready(function() {
         .appendTo($hamburgerBtn)
         .addClass("material-icons md-24");
         
-        $('ul.menu').hide();
-        $hintMsg.hide();
-        $hintMsg.append(tip);
+        $instructionMsg
+        .appendTo($gameViewport)
+        .show();
         
         $hamburgerBtn.mousedown(function() {
             $('.menu')
@@ -88,9 +87,9 @@ $(document).ready(function() {
             left: 800,
             bottom: 100
         });       
-
+        
         var update = setInterval(function () {
-            if (isGameOver == false) {
+            if (isGameOver == false && stopAnimation == false) {
                 $timerFill.animate({ width: '-=1' }, 100);
                 if ($timerFill.width() < 1) {
                     gameOver(false);
@@ -116,15 +115,15 @@ $(document).ready(function() {
         // stopAnimation = true;
         // var isWinning = result;
         // console.log(isWinning);
+        stopAnimation = true;
+        // clearInterval(update);
         
         if(result == true) {
             $gameOverMsg
             .append(winMsg)
             .appendTo('main')
             .show();
-            clearInterval(update);
-        }
-        
+        }        
         else {
             $gameOverMsg
             .append(loseMsg)
@@ -166,22 +165,30 @@ $(document).ready(function() {
         console.log(e.keyCode);
         switch(e.which) {
             case 37: // left
-            $player.animate({left: '-=16'}, 30);
-            break;
+            if(stopAnimation == false) {
+                $player.animate({left: '-=16'}, 30);
+                break;
+            }
             case 39: // right
-            $player.animate({left: '+=16'}, 30);
-            break;
+            if(stopAnimation == false) {
+                $player.animate({left: '+=16'}, 30);
+                break;
+            }
             case 32: // jump
-            $player.effect("bounce", 200, 50);
+                if(stopAnimation == false) {
+                    $player.effect("bounce", 200, 50);
+                }
             break;
             case 69: // interact
-            if(collision($player, $blanket)) {
-                $blanket.hide();
-                $blanketUI.show();
-            }
-            if(collision($player, $bed)) {
-                // console.log('collide');
-                gameOver(true);
+            if(stopAnimation == false) {
+                if(collision($player, $blanket)) {
+                    $blanket.hide();
+                    $blanketUI.show();
+                }
+                if(collision($player, $bed)) {
+                    // console.log('collide');
+                    gameOver(true);
+                }
             }
             break;
             default: return; // exit this handler for other keys
@@ -189,8 +196,8 @@ $(document).ready(function() {
         // e.preventDefault(); // prevent the default action(scroll / move caret)
     });    
     
-    drawMenu();
-    initializeMap();
+    // drawMenu();
+    // initializeMap();
     // initializeMinigame();
 });
 

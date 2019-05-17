@@ -34,6 +34,34 @@ footer {
 
 /* Element **********************************************/
 
+.dialog-container {
+    position: relative;
+    width: inherit;
+    height: inherit;
+}
+.character-container {
+    /* width: 100%; */
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+
+
+.character-container:nth-child(even) {
+    left: 0;
+}
+
+.character-container:nth-child(odd) {
+    right: 0;
+    /* background-color: black; */
+}
+
+.portrait {
+    padding-top: 128px;
+}
+
 .copyright {
     text-align: right;
 }
@@ -75,7 +103,7 @@ footer {
     flex-direction: column;
     align-items: center;
     /* justify-content: center; */
-    padding: 32px;
+    /* padding: 32px; */
     overflow: hidden;
 }
 
@@ -135,10 +163,6 @@ header, footer, main {
     font-family: 'Montserrat', sans-serif;
     color: #212121;
     background-color: #e0e0e0;
-}
-
-.game-viewport {
-    background-color: #616161;
 }
 
 .player {

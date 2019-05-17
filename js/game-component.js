@@ -27,7 +27,10 @@ $(document).ready(function() {
     var $floor = $('<div>').addClass('floor');
     
     // Menu Display
-    function drawMenu() {        
+    function drawMenu() {       
+        $gameViewport.css({
+            "background-color": '#616161',
+        });
         $timerBar.appendTo($('.ui-grid'));
         $timerFill.appendTo($timerBar);
         $hintBtn.append("Hint");

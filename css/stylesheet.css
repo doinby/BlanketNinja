@@ -34,32 +34,60 @@ footer {
 
 /* Element **********************************************/
 
-.dialog-container {
-    position: relative;
-    width: inherit;
-    height: inherit;
-}
-.character-container {
-    /* width: 100%; */
+article {
     position: absolute;
+    width: inherit;
+}
+
+/* article div {
+    justify-content: flex-end;
+} */
+
+article div:nth-child(even) {
+    flex-direction: row-reverse;
+    /* justify-content: flex-end; */
+}
+
+.dialog-container {
+    /* position: absolute; */
     display: flex;
-    flex-wrap: wrap;
     flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    width: inherit;
 }
 
-
-
-.character-container:nth-child(even) {
-    left: 0;
+.character-portrait-container {
+    margin: 32px;
 }
 
-.character-container:nth-child(odd) {
-    right: 0;
-    /* background-color: black; */
+.dialog-bubble {
+    padding: 16px;
+    margin: 32px;
+    border-radius: 100px;
+    background-color: beige;
 }
 
-.portrait {
-    padding-top: 128px;
+.dialog-bubble:after { 
+    content: ''; 
+    position: absolute; 
+    right: 50%; 
+    border: 34px solid transparent; 
+    border-top-color: #00aabb; 
+    border-bottom: 0; 
+    border-left: 0; 
+    margin-left: -17px; 
+    margin-bottom: -34px; 
+}
+
+.regtangle {
+    width: 64px;
+    height: 64px;
+    background-color: salmon;
+}
+
+.character-name {
+    text-align: center;
 }
 
 .copyright {
@@ -104,7 +132,12 @@ footer {
     align-items: center;
     /* justify-content: center; */
     /* padding: 32px; */
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.game-viewport::-webkit-scrollbar {
+    display: none;
 }
 
 .inventory {

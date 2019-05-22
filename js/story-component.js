@@ -4,59 +4,65 @@
 
 $(document).ready(function () {
     var $gameViewport = $('.game-viewport');
+    var $storyComponent = $('.story-component');
     var $dialogContainer = $('<li>').addClass('dialog-container');
     var $characterPortraitContainer = $('<div>').addClass('character-portrait-container');
     var $characterPortrait = $('<img>').addClass('character-portrait');
     var $dialogBubble = $('<div>').addClass('dialog-bubble');
     
-    function appendDialogContainer() {  
-        for (i = 0; i < 10; i++) {
+    function appendDialogContainer () {  
+        for (i = 0; i <= 3; i++) {
             var $makeDialogContainer = $('<li>')
             .addClass('dialogContainer');
             var $makeCharacterPortraitContainer = $('<div>')
-            .addClass('character-portrait');
+            .addClass('character-portrait-container');
             var $makeCharacterPortrait = $('<img>')
-            .addClass('character-portrait');
+            .addClass('character-portrait')
+            .css({
+                width: 256,
+                height: 256,
+                // 'background-color': "salmon"
+            });
             var $makeDialogBubble = $('<div>')
             .addClass('dialog-bubble');
             switch (i) {
+                //assuming there are establish scene
                 case 0:
-                name = "YT"
-                txt = "This is dialog number 1";
+                name = "Oliver";
+                imageFile = name;
+                txt = "Woah! this roof is super slippery!";
                 break;
                 case 1:
-                name = "OT"
-                txt = "This is dialog number 2";
+                name = "Remy";
+                imageFile = name;
+                txt = "Careful not to wake up the kitten!";
                 break;
                 case 2:
-                name = ""
-                txt = "This is dialog number 2";
+                name = "Oliver";
+                imageFile = name;
+                txt = "Where are we going, big brother?";
                 break;
                 case 3:
-                name = ""
-                txt = "";
-                break;
-                case 4:
-                name = ""
-                txt = "";
-                break;
-                case 5:
-                name = ""
-                txt = "";
-                break;
-                case 6:
-                name = ""
-                txt = "";
+                name = "Remy";
+                imageFile = name;
+                txt = "We should start with Otter's house at the corner left.";
                 break;
             }            
-            
-            $makeDialogContainer.appendTo($('.story-component'));
-            $makeDialogContainer.append($makeCharacterPortraitContainer);
-            $makeDialogContainer.append($makeDialogBubble);
-            $makeCharacterPortraitContainer.append(name);
-            $makeDialogBubble.append(txt);
+            $makeDialogContainer.appendTo ($storyComponent);
+            $makeDialogContainer.append ($makeCharacterPortraitContainer);
+            $makeDialogContainer.append ($makeDialogBubble);
+            $makeCharacterPortraitContainer
+            .append($makeCharacterPortrait.attr ('src', "images/" + imageFile + ".png"));
+            $makeCharacterPortraitContainer.append (name);
+            $makeDialogBubble.append (txt);
         }
     }
+
+    $gameViewport.scroll(function () {
+        if ($gameViewport.height () == $storyComponent.height ()) {
+            console.log("scroll to bottom");
+        }
+    });
     
-    appendDialogContainer();
+    appendDialogContainer ();
 });

@@ -286,23 +286,23 @@ header, footer, main {
     grid-area: inventory;
 }
 
-.ui-house1 {
+.ui-house0 {
     grid-column: 4 / 5;
+    grid-row: 4 / 5;
+}
+.ui-house1 {
+    grid-column: 5 / 6;
     grid-row: 4 / 5;
 }
 .ui-house2 {
-    grid-column: 5 / 6;
-    grid-row: 4 / 5;
-}
-.ui-house3 {
     grid-column: 4 / 5;
     grid-row: 5 / 6;
 }
-.ui-house4 {
+.ui-house3 {
     grid-column: 5 / 6;
     grid-row: 5 / 6;
 }
-.ui-house5 {
+.ui-house4 {
     grid-column: 6 / 7;
     grid-row: 5 / 6;
 }

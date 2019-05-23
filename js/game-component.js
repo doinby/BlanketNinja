@@ -1,17 +1,88 @@
 // $(document).ready(function() {
 //     console.log("ready!");
 // });
-$(document).ready(function() {
-    // Player parameter
+$(document).ready(function () {
+    
+    //START OF STORY COMPONENT
     var $gameViewport = $('.game-viewport');
+    var $storyComponent = $('.story-component');
+    var $dialogContainer = $('<li>').addClass('dialog-container');
+    var $characterPortraitContainer = $('<div>').addClass('character-portrait-container');
+    var $characterPortrait = $('<img>').addClass('character-portrait');
+    var $dialogBubble = $('<div>').addClass('dialog-bubble');
+    
+    function appendDialogContainer() {
+        for (i = 0; i <= 3; i++) {
+            var $makeDialogContainer = $('<li>')
+            .addClass ('dialogContainer');
+            var $makeCharacterPortraitContainer = $('<div>')
+            .addClass ('character-portrait-container');
+            var $makeCharacterPortrait = $('<img>')
+            .addClass ('character-portrait')
+            .css({
+                width: 256,
+                height: 256,
+                // 'background-color': "salmon"
+            });
+            var $makeDialogBubble = $('<div>')
+            .addClass ('dialog-bubble');
+            switch (i) {
+                //assuming there are establish scene
+                case 0:
+                name = "Oliver";
+                imageFile = name;
+                txt = "Woah! this roof is super slippery!";
+                break;
+                case 1:
+                name = "Remy";
+                imageFile = name;
+                txt = "Careful not to wake up the kitten!";
+                break;
+                case 2:
+                name = "Oliver";
+                imageFile = name;
+                txt = "Where are we going, big brother?";
+                break;
+                case 3:
+                name = "Remy";
+                imageFile = name;
+                txt = "We should start with Otter's house at the corner left.";
+                break;
+            }
+            $makeDialogContainer.appendTo ($storyComponent);
+            $makeDialogContainer.append ($makeCharacterPortraitContainer);
+            $makeDialogContainer.append ($makeDialogBubble);
+            $makeCharacterPortraitContainer
+            .append ($makeCharacterPortrait.attr ('src', "images/" + imageFile + ".png"));
+            $makeCharacterPortraitContainer.append (name);
+            $makeDialogBubble.append (txt);
+        }
+    }
+    
+    appendDialogContainer ();
+
+    $gameViewport.bind('scroll', function () {
+        if ($(this).scrollTop () + $(this).innerHeight () >= $(this)[0].scrollHeight) {
+            // console.log("reaches the bottom!");
+            $storyComponent.remove ();
+            drawMenu ();
+            initializeMap ();
+            // initializeMinigame ();
+        }
+    });
+    
+    //END OF STORY COMPONENT
+    
+    //START OF GAME COMPONENT
+    var $uiGrid = $('.ui-grid');
     var $blanketUI = $('.ui-blanket');
-    var $timerBar = $('<div>').addClass('timer-bar');
-    var $timerFill = $('<div>').addClass('timer-fill');
-    var $confirmBtn = $("<a>Ok</a>").addClass("button is-link is-success");
-    var $hintBtn = $('.hint-btn');
-    var $hintMsg = $('.hint-msg');
-    var $instructionMsg = $('<div>').addClass('instruction-msg notification');
-    var $gameOverMsg = $('<div>').addClass('gameover-msg notification');
+    var $timerBar = $('<div>').addClass ('timer-bar');
+    var $timerFill = $('<div>').addClass ('timer-fill');
+    var $confirmBtn = $("<a>Ok</a>").addClass ("button is-link is-success");
+    var $hintBtn = $('<div>').addClass('hint-btn button are-small is-link is-inverted is-outlined');
+    var $hintMsg = $('<div>').addClass('hint-msg');
+    var $instructionMsg = $('<div>').addClass ('instruction-msg notification');
+    var $gameOverMsg = $('<div>').addClass ('gameover-msg notification');
     var $hamburgerBtn = $('.hamburger');
     
     var instruction = "Pick a destination";
@@ -21,19 +92,20 @@ $(document).ready(function() {
     var isGameOver = false;
     var stopAnimation = false;
     
-    var $player = $('<div>').addClass('player');
-    var $blanket = $('<div>').addClass('blanket-avatar');
-    var $bed = $('<div>').addClass('bed-avatar');
-    var $floor = $('<div>').addClass('floor');
+    var $player = $('<div>').addClass ('player');
+    var $blanket = $('<div>').addClass ('blanket-avatar');
+    var $bed = $('<div>').addClass ('bed-avatar');
+    var $floor = $('<div>').addClass ('floor');
     
     // Menu Display
     function drawMenu() {       
-        $gameViewport.css({
-            "background-color": '#616161',
-        });
-        $timerBar.appendTo($('.ui-grid'));
-        $timerFill.appendTo($timerBar);
-        $hintBtn.append("Hint");
+        // $gameViewport.css({
+        //     "background-color": '#616161',
+        // });
+        // $uiGrid.append ($hintBtn);
+        $hintBtn.append ("Hint");
+        $timerBar.appendTo ($uiGrid);
+        $timerFill.appendTo ($timerBar);
         $("<i>menu</i>")
         .appendTo($hamburgerBtn)
         .addClass("material-icons md-24");
@@ -53,11 +125,20 @@ $(document).ready(function() {
     };
     
     function initializeMap() {
+        $gameViewport.css ({
+            'overflow-y': "hidden",
+        });
         $instructionMsg
         .show()
         .css({
             top: '30%',
         });
+
+        for (i = 0; i <= 4; i++) {
+            $makeButton = $('<a>')
+            .addClass ("house button is-link is-rounded ui-house" + i);
+            $makeButton.appendTo ($uiGrid);
+        }
         
         $('.ui-house2').mousedown(function() {
             // console.log('clicked');
@@ -178,9 +259,9 @@ $(document).ready(function() {
                 break;
             }
             case 32: // jump
-                if(stopAnimation == false) {
-                    $player.effect("bounce", 200, 50);
-                }
+            if(stopAnimation == false) {
+                $player.effect("bounce", 200, 50);
+            }
             break;
             case 69: // interact
             if(stopAnimation == false) {
@@ -203,14 +284,3 @@ $(document).ready(function() {
     // initializeMap();
     // initializeMinigame();
 });
-
-//Bulma notification
-// document.addEventListener('DOMContentLoaded',() => {
-//     (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
-//         $notification = $delete.parentNode;
-//         $delete.addEventListener('click',() => {
-//             $notification.parentNode.removeChild($notification);
-//             console.log("clicked");
-//         });
-//     });
-// });

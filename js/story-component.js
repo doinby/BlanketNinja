@@ -57,10 +57,10 @@ $(document).ready(function () {
             $makeDialogBubble.append (txt);
         }
     }
-
-    $gameViewport.scroll(function () {
-        if ($gameViewport.height () == $storyComponent.height ()) {
-            console.log("scroll to bottom");
+    
+    $gameViewport.bind('scroll', function () {
+        if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+            console.log("reaches the bottom!")
         }
     });
     

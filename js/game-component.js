@@ -75,7 +75,6 @@ $(document).ready(function () {
     
     //START OF GAME COMPONENT
     var $uiGrid = $('.ui-grid');
-    var $blanketUI = $('.ui-blanket');
     var $timerBar = $('<div>').addClass ('timer-bar');
     var $timerFill = $('<div>').addClass ('timer-fill');
     var $confirmBtn = $("<a>Ok</a>").addClass ("button is-link is-success");
@@ -94,8 +93,10 @@ $(document).ready(function () {
     
     var $player = $('<div>').addClass ('player');
     var $blanket = $('<div>').addClass ('blanket-avatar');
+    var $blanketUI = $('<div>').addClass('blanket-ui');
     var $bed = $('<div>').addClass ('bed-avatar');
     var $floor = $('<div>').addClass ('floor');
+    var $inventory = $('<div>').addClass('inventory');
     
     // Menu Display
     function drawMenu() {       
@@ -153,6 +154,8 @@ $(document).ready(function () {
     };
     
     function initializeMinigame() {
+        $inventory.appendTo($uiGrid);
+        $inventory.append($blanketUI);
         $player.css({
             position: 'absolute',
             left: 50,

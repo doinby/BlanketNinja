@@ -1,16 +1,21 @@
-// $(document).ready(function() {
-//     console.log("ready!");
-// });
-
 $(document).ready(function () {
     var $gameViewport = $('.game-viewport');
-    var $storyComponent = $('.story-component');
+    var $backgroundImage = $('.background-image');
     var $dialogContainer = $('<li>').addClass('dialog-container');
     var $characterPortraitContainer = $('<div>').addClass('character-portrait-container');
     var $characterPortrait = $('<img>').addClass('character-portrait');
     var $dialogBubble = $('<div>').addClass('dialog-bubble');
-    
-    function appendDialogContainer () {  
+
+    var currentPage;
+
+    $backgroundImage.fadeIn("slow");
+
+    function updateCurrentPage(pageNumber) {
+        currentPage = pageNumber;
+        console.log(currentPage);
+    }
+
+    function appendDialog () {  
         for (i = 0; i <= 3; i++) {
             var $makeDialogContainer = $('<li>')
             .addClass('dialogContainer');
@@ -48,7 +53,7 @@ $(document).ready(function () {
                 txt = "We should start with Otter's house at the corner left.";
                 break;
             }            
-            $makeDialogContainer.appendTo ($storyComponent);
+            // $makeDialogContainer.appendTo ($storyComponent);
             $makeDialogContainer.append ($makeCharacterPortraitContainer);
             $makeDialogContainer.append ($makeDialogBubble);
             $makeCharacterPortraitContainer
@@ -64,5 +69,6 @@ $(document).ready(function () {
         }
     });
     
-    appendDialogContainer ();
+    // appendDialogContainer();
+    updateCurrentPage(0);
 });

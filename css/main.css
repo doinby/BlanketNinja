@@ -42,10 +42,13 @@ footer {
     width: 1024px;
     height: 600px;
     position: relative;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; */
+    /* overflow-x: hidden;
+    overflow-y: scroll; */
     overflow: hidden;
+    background-color: black;
 }
 
 .copyright {
@@ -54,6 +57,18 @@ footer {
 
 .copyright::before {
     content: "\00a9" "\00a0";
+}
+
+.scene-container {
+    width: 1024px;
+    height: 600px;
+    align-items: center;
+    justify-content: center;
+}
+
+.scene-images {
+    width: auto;
+    height: auto;
 }
 
 .ui-grid {
@@ -134,8 +149,8 @@ main {
 } */
 
 .--flex {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .--PGrid {

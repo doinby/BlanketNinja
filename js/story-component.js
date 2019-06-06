@@ -8,49 +8,63 @@ $(document).ready(function () {
     var $characterPortraitContainer = $('<div>').addClass('character-portrait-container');
     var $characterPortrait = $('<img>').addClass('character-portrait');
     var $dialogBubble = $('<div>').addClass('dialog-bubble');
+    var $sceneContainer;
+    var $sceneImages;
+    
+    // var $currentScene = $('<img>').addClass('scene-image');
     
     // Declare JS Variables /////////////////////////////
     
     var currentPage = 0;
     var currentDialog;
     
-    // Setup Story Component ////////////////////////////
-    function StorySetup() {
-        switch (progress) {
+    // Setup Story Component ////////////////////////////    
+    function spawnSceneData (currentPage) {
+        var sceneProgress = 0;
+        switch (sceneProgress) {
             case 0:
-            updateCurrentBackgroundImage(currentPage);
-            break;
+            sceneCount = 5;
+            // spawnSceneImages(currentPage, sceneCount);
             case 1:
-            
-            break;
+            sceneCount = 4;
             case 2:
-            
-            break;
-            case 3:            
-            
-            break;
-            case 4:            
-            
-            break;
-            case 5:
-            
-            break;
+            sceneCount = 3;
         }
-        progress++;
+        sceneProgress++;
     }
     
-    function updateCurrentBackgroundImage (i) {
-        i = currentPage;
-        $gameViewport.css({
-            'background-image': "url(../images/background-" + i + ".png)",
-        });
-    }
+    // function spawnSceneImages(currentPage, sceneCount) {
+    //     for (i = 0; i <= sceneCount; i++) {      
+    //         $sceneContainer = $('<div>')
+    //         .addClass('scene-container --flex')
+    //         .appendTo($('.more-container'));
     
-    function currentDialog() { 
+    //         $sceneImages = $('<img>')
+    //         .addClass('scene-images')
+    //         .attr('src', "../images/scenes/scene" + currentPage + "-" + i + ".png")
+    //         .appendTo($sceneContainer);
+    //     }
+    // }
+    
+    function spawnSceneImages() {
+        var i = 0;
         
+        $sceneContainer = $('<div>')
+        .addClass('scene-container --flex')
+        .appendTo($('.more-container'));
+        
+        $sceneImages = $('<img>')
+        .addClass('scene-images')
+        .attr('src', "../images/scenes/scene0-" + i + ".png")
+        .appendTo($sceneContainer);
+        
+        i++;
+        console.log(i);
     }
-
-    updateCurrentBackgroundImage();
-    // appendDialogContainer();
-    $backgroundImage.fadeIn("slow");
+    
+    // spawnSceneData(0);
+    // $gameViewport.mousedown (spawnSceneImages());
+    $gameViewport.mousedown( function() {
+        console.log("clicked");
+    });
 });

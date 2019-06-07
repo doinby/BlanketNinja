@@ -7,23 +7,11 @@ $(document).ready(function () {
     var $notification = $('.notification');
     var $notificationHeader = $('<h2>');
     var $notificationText = $('<p>');
-    var $hamburgerBtn = $('.hamburger');
     var $locationBtn;
-    
-    var $timerBar = $('<div>').addClass('timer-bar');
-    var $timerFill = $('<div>').addClass('timer-fill');
-    var $confirmBtn = $("<a>Ok</a>").addClass("button is-link is-success");
-    var $hintBtn;
-    
-    var $instructionMsg = $('.instruction-msg');
-    var $gameOverMsg = $('.gameover-msg');
-    
-    // var x = sessionStorage.locationBtn0;
-    // console.log(x);
     
     // Declare JS Variables /////////////////////////////
     
-    var currentBtn = 0;
+    
     
     // Setup Scene //////////////////////////////////////
     
@@ -32,9 +20,6 @@ $(document).ready(function () {
     .appendTo($gameViewport)
     .attr('disabled', 'disabled')
     .text("Hint");
-    // .click(function() {
-    //     spawnNotifications("hint");
-    // });
     
     function spawnNotifications(notificationType) {
         switch (notificationType) {
@@ -53,8 +38,6 @@ $(document).ready(function () {
             break;  
         }
     }
-    
-    // spawnNotifications('hint');
     
     function spawnMapLocations() {        
         for (i = 0; i < 4; i++) {
@@ -112,14 +95,13 @@ $(document).ready(function () {
         }
     }
     
-    function checkDisabledBtn (x) {
+    function checkDisabledBtn(x) {
         var isDisabled = [
             sessionStorage.btn0,
             sessionStorage.btn1,
             sessionStorage.btn2,
             sessionStorage.btn3
         ]
-        console.log(isDisabled[0]);
         
         if (isDisabled[x]) {
             $locationBtn
@@ -131,20 +113,5 @@ $(document).ready(function () {
         }
     }
     
-    // function checkDisabledBtn () {
-    //     if (sessionStorage.btn0 == "disabled") {
-    //         $('.locationBtn' + i)
-    //         .attr('disabled', 'disabled');
-    //     }
-    //     else {
-    //         $('.locationBtn' + i)
-    //         .removeAttr('disabled');
-    //     }
-    // }
-    
     spawnMapLocations();
-    
-    // $locationBtn.click(function() {
-    //     window.location = "../htmls/puzzle1.html";
-    // });
 });

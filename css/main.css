@@ -22,7 +22,7 @@ h4 {
 }
 
 p {
-    font-size: 16px;
+    font-size: 14px;
 }
 
 /* Block ************************************************/
@@ -38,7 +38,7 @@ header, footer, main {
 }
 
 header, footer {
-    padding: 1em;
+    /* padding: 1em; */
 }
 
 body {
@@ -67,7 +67,7 @@ footer {
 /* Element **********************************************/
 
 .game-viewport {
-    width: 1024px;
+    width: 960px;
     height: 600px;
     position: relative;
     overflow: hidden;
@@ -88,21 +88,20 @@ footer {
     top: 0;
     bottom: 0;
     margin: auto;
-    z-index: -1;
+    /* z-index: -1; */
 }
 
 .dialog-container {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 160px auto;
+    grid-template-rows: 120px 18px;
     grid-template-areas: 
     "portrait portrait text text text text"
     "name name text text text text";
     align-items: center;
     justify-items: center;
-    width: 1024px;
-    height: 250px;
-    padding: 32px;
+    width: 960px;
+    /* padding: 32px; */
 }
 
 .character-portrait {
@@ -150,7 +149,7 @@ footer {
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(8, 1fr);
     grid-gap: 16px;
-    padding: 32px;
+    /* padding: 32px; */
 }
 
 .--dcReversed {

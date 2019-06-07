@@ -4,7 +4,7 @@ $(document).ready(function () {
     
     var $gameViewport = $('.game-viewport');
     var $backgroundImage = $('.background-image');
-    var $dialogContainer = $('<li>').addClass('dialog-container');
+    var $dialogContainer = $('<div>').addClass('dialog-container --ZGrid');
     var $characterPortraitContainer = $('<div>').addClass('character-portrait-container');
     var $characterPortrait = $('<img>').addClass('character-portrait');
     var $dialogBubble = $('<div>').addClass('dialog-bubble');
@@ -18,9 +18,30 @@ $(document).ready(function () {
     var currentPage = 0;
     var currentDialog;
     
-    // Setup Story Component ////////////////////////////    
+    // Setup Scene //////////////////////////////////////
     
-    $gameViewport.mousedown( function() {
-        console.log("clicked");
-    });
+    function spawnDialogs() {
+        var $characterName = $('<p>').addClass('character-name');
+        $dialogContainer
+        .appendTo($gameViewport)
+        .append($characterPortrait)
+        .append($characterName)
+        .append($dialogBubble);
+    }
+    
+    function spawnCurrentScene() {
+        var sceneCount;
+        var i = 0;
+        
+        sceneCount = 5;
+        var $currentImage = $('<img>')
+        .attr('src', 'images/scenes/scene0-' + i + '.png')
+        .addClass('scene-image')
+        .appendTo($gameViewport);
+        i++;
+    }
+    
+    spawnDialogs();
+    
+    $gameViewport.mousedown(spawnCurrentScene);
 });

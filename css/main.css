@@ -42,12 +42,14 @@ footer {
     width: 1024px;
     height: 600px;
     position: relative;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
-    /* overflow-x: hidden;
-    overflow-y: scroll; */
     overflow: hidden;
+}
+
+.scene-image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: auto;
 }
 
 .copyright {
@@ -56,18 +58,6 @@ footer {
 
 .copyright::before {
     content: "\00a9" "\00a0";
-}
-
-.scene-container {
-    width: 1024px;
-    height: 600px;
-    align-items: center;
-    justify-content: center;
-}
-
-.scene-images {
-    width: auto;
-    height: auto;
 }
 
 .ui-grid {

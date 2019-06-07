@@ -1,0 +1,33 @@
+/* Element **********************************************/
+
+.locationBtn0 {
+    grid-column: 4 / 5;
+    grid-row: 4 / 5;
+}
+
+.locationBtn1 {
+    grid-column: 6 / 7;
+    grid-row: 5 / 6;
+}
+
+.locationBtn2 {
+    grid-column: 8 / 9;
+    grid-row: 6 / 7;
+}
+
+.locationBtn3 {
+    grid-column: 3 / 4;
+    grid-row: 7 / 8;
+}
+
+/* Modifier *********************************************/
+
+.--PGrid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-areas: 
+    "stat stat stat stat stat . . . menu menu"
+    "stat stat stat stat stat . . . menu menu";
+    align-items: center;
+}

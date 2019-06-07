@@ -90,10 +90,13 @@ $(document).ready(function () {
                 case 5:
                 chapterCount++;
                 console.log(chapterCount);
+                window.location = "../htmls/scene3.html";
                 break;
             }
             sceneCount++;
             spawnDialogs(character, dialogs);            
+            break;
+            case 1:
             break;
         }
     }

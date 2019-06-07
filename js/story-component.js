@@ -17,7 +17,8 @@ $(document).ready(function () {
     // Declare JS Variables /////////////////////////////
     
     var progress = 0;
-    var character;
+    var character = 0;
+    var sceneBackground = 0;
     var Oliver = {
         name: "Oliver",
         portrait: "../images/Oliver.png",
@@ -29,43 +30,38 @@ $(document).ready(function () {
     
     // Setup Scene //////////////////////////////////////
     
-    function spawnCurrentScene() {
+    function spawnCurrentScene() {      
         
         switch (progress) {
             case 0:
-            character = Oliver;
-            txt= "first";
-            spawmImage(progress);
-            spawnDialogs(character, txt);
+            dialogs = "";
             break;
             case 1:
-            character = Remy;
-            txt = "second";
-            spawmImage(progress);
-            spawnDialogs(character, txt);
+                sceneBackground++;
+            character = Oliver;
+            dialogs = "first";
             break;
             case 2:
             character = Oliver;
-            txt = "Third";
-            spawmImage(progress);
-            spawnDialogs(character, txt);
+            dialogs = "second";
             break;
             case 3:
-            txt = "";
+            $dialogContainer.toggleClass("--dcReversed");
+            character = Remy;
+            dialogs = "third";
             break;
             case 4:
-            txt = "";
-            break;
-            case 5:
-            txt = "";
-            break;
-            case 6:
+            $dialogContainer.toggleClass("--dcReversed");
+            character = Oliver;
+            dialogs = "fourth";
             break;
         }
+        spawnDialogs(character, dialogs);
+        spawmImage();
         progress++;
     }
     
-    function spawnDialogs(character, txt) {        
+    function spawnDialogs(character, dialogs) {        
         $characterPortrait
         .addClass('character-portrait')
         .attr('src', character["portrait"]);
@@ -76,19 +72,20 @@ $(document).ready(function () {
         
         $textBubble
         .addClass('text-bubble')
-        .html(txt);
+        .show()
+        .html(dialogs);
         
         $dialogContainer
         .append($characterPortrait)
         .append($characterName)
-        .append($textBubble)
-        .toggleClass("--dcReversed");
+        .append($textBubble);
+        // .toggleClass("--dcReversed");
     }
     
-    function spawmImage(i) {
+    function spawmImage() {
         $currentImage
-        .attr('src', '../images/scenes/scene0-' + i + '.png')
-        .addClass('scene-image scene0-' + i)
+        .attr('src', '../images/scenes/scene0-' + sceneBackground + '.png')
+        .addClass('scene-image scene0-' + sceneBackground)
         .appendTo($gameViewport)
         .fadeIn("slow");
     }
@@ -101,10 +98,10 @@ $(document).ready(function () {
     // });
     
     $(document).mousedown(function() {        
-        $currentImage.fadeOut("slow", function () {
-            spawnCurrentScene();
-        });
+        // $currentImage.fadeOut("slow", function () { 
+        //     spawnCurrentScene();
+        // });
+        spawnCurrentScene();
     });
-    // spawnDialogs();
     
 });

@@ -72,6 +72,13 @@ footer {
     margin: 32px;
 }
 
+.dialog-bubble {
+    width: 100px;
+    height: 100px;
+    padding: 32px;
+    background-color: beige;
+}
+
 .story-component li:nth-child(even) .dialog-bubble:before {
     content: "";
     width: 0px;
@@ -150,9 +157,9 @@ footer {
     width: 1024px;
     height: 600px;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: center; */
     /* justify-content: center; */
     /* padding: 32px; */
     overflow-x: hidden;

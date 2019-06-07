@@ -1,74 +1,107 @@
 $(document).ready(function () {
+    
+    // Declare CSS Variables ////////////////////////////
+    
     var $gameViewport = $('.game-viewport');
     var $backgroundImage = $('.background-image');
-    var $dialogContainer = $('<li>').addClass('dialog-container');
+    
     var $characterPortraitContainer = $('<div>').addClass('character-portrait-container');
-    var $characterPortrait = $('<img>').addClass('character-portrait');
-    var $dialogBubble = $('<div>').addClass('dialog-bubble');
-
-    var currentPage;
-
-    $backgroundImage.fadeIn("slow");
-
-    function updateCurrentPage(pageNumber) {
-        currentPage = pageNumber;
-        console.log(currentPage);
+    var $currentImage = $('<img>');
+    var $characterPortrait = $('<img>');
+    var $characterName = $('<p>');
+    var $textBubble = $('<p>');
+    var $dialogContainer = $('.dialog-container');
+    
+    // var $currentScene = $('<img>').addClass('scene-image');
+    
+    // Declare JS Variables /////////////////////////////
+    
+    var progress = 0;
+    var character = 0;
+    var sceneBackground = 0;
+    var Oliver = {
+        name: "Oliver",
+        portrait: "../images/Oliver.png",
     }
-
-    function appendDialog () {  
-        for (i = 0; i <= 3; i++) {
-            var $makeDialogContainer = $('<li>')
-            .addClass('dialogContainer');
-            var $makeCharacterPortraitContainer = $('<div>')
-            .addClass('character-portrait-container');
-            var $makeCharacterPortrait = $('<img>')
-            .addClass('character-portrait')
-            .css({
-                width: 256,
-                height: 256,
-                // 'background-color': "salmon"
-            });
-            var $makeDialogBubble = $('<div>')
-            .addClass('dialog-bubble');
-            switch (i) {
-                //assuming there are establish scene
-                case 0:
-                name = "Oliver";
-                imageFile = name;
-                txt = "Woah! this roof is super slippery!";
-                break;
-                case 1:
-                name = "Remy";
-                imageFile = name;
-                txt = "Careful not to wake up the kitten!";
-                break;
-                case 2:
-                name = "Oliver";
-                imageFile = name;
-                txt = "Where are we going, big brother?";
-                break;
-                case 3:
-                name = "Remy";
-                imageFile = name;
-                txt = "We should start with Otter's house at the corner left.";
-                break;
-            }            
-            // $makeDialogContainer.appendTo ($storyComponent);
-            $makeDialogContainer.append ($makeCharacterPortraitContainer);
-            $makeDialogContainer.append ($makeDialogBubble);
-            $makeCharacterPortraitContainer
-            .append($makeCharacterPortrait.attr ('src', "images/" + imageFile + ".png"));
-            $makeCharacterPortraitContainer.append (name);
-            $makeDialogBubble.append (txt);
-        }
+    var Remy = {
+        name: "Remy",
+        portrait: "../images/Remy.png",
     }
     
-    $gameViewport.bind('scroll', function () {
-        if ($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
-            console.log("reaches the bottom!")
+    // Setup Scene //////////////////////////////////////
+    
+    function spawnCurrentScene() {      
+        
+        switch (progress) {
+            case 0:
+            dialogs = "";
+            break;
+            case 1:
+                sceneBackground++;
+            character = Oliver;
+            dialogs = "first";
+            break;
+            case 2:
+            character = Oliver;
+            dialogs = "second";
+            break;
+            case 3:
+            $dialogContainer.toggleClass("--dcReversed");
+            character = Remy;
+            dialogs = "third";
+            break;
+            case 4:
+            $dialogContainer.toggleClass("--dcReversed");
+            character = Oliver;
+            dialogs = "fourth";
+            break;
         }
+        spawnDialogs(character, dialogs);
+        spawmImage();
+        progress++;
+    }
+    
+    function spawnDialogs(character, dialogs) {        
+        $characterPortrait
+        .addClass('character-portrait')
+        .attr('src', character["portrait"]);
+        
+        $characterName
+        .addClass('character-name')
+        .html(character["name"]);
+        
+        $textBubble
+        .addClass('text-bubble')
+        .show()
+        .html(dialogs);
+        
+        $dialogContainer
+        .append($characterPortrait)
+        .append($characterName)
+        .append($textBubble);
+        // .toggleClass("--dcReversed");
+    }
+    
+    function spawmImage() {
+        $currentImage
+        .attr('src', '../images/scenes/scene0-' + sceneBackground + '.png')
+        .addClass('scene-image scene0-' + sceneBackground)
+        .appendTo($gameViewport)
+        .fadeIn("slow");
+    }
+    
+    
+    // $(document).click(function () {
+    
+    //     spawnCurrentScene.fadeIn("slow");
+    
+    // });
+    
+    $(document).mousedown(function() {        
+        // $currentImage.fadeOut("slow", function () { 
+        //     spawnCurrentScene();
+        // });
+        spawnCurrentScene();
     });
     
-    // appendDialogContainer();
-    updateCurrentPage(0);
 });

@@ -42,10 +42,50 @@ footer {
     width: 1024px;
     height: 600px;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     overflow: hidden;
+}
+
+.scene-image {        
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: -1;
+}
+
+.dialog-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 160px auto;
+    grid-template-areas: 
+    "portrait portrait text text text text"
+    "name name text text text text";
+    align-items: center;
+    justify-items: center;
+    width: 1024px;
+    height: 250px;
+    padding: 32px;
+}
+
+.character-portrait {
+    grid-area: portrait;
+}
+
+.character-name {
+    grid-area: name;
+}
+
+.text-bubble {
+    grid-area: text;
+    text-align: left;
+    width: 100%;
+    max-height: 100%;
+    padding: 32px;
+    background-color: beige;
+    display: none;
 }
 
 .copyright {
@@ -124,64 +164,34 @@ main {
     z-index: -2;
 }
 
-.background-image {
+/* .background-image {
     position: absolute;
     display: none;
     width: 1024px;
     height: 600px;
     background-color: salmon;
     z-index: -1;
-}
+} */
 
 .--flex {
-  display: flex;
-  flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .--PGrid {
     display: grid;
     /* grid-template-columns: repeat(4, 217px); */
     /* grid-template-rows: repeat(4, 110px); */
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    grid-gap: 32px;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-gap: 16px;
     padding: 32px;
 }
 
-.--ZGrid {
-    grid-column: 1 / 9;
-    grid-row: 4 / 7;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 160px auto;
+.--dcReversed {
     grid-template-areas: 
-    "portrait portrait text text text text"
-    "name name text text text text";
-    width: 100%;
-    padding: 32px;
-    align-items: center;
-    justify-items: center;
-}
-
-.character-portrait {
-    grid-area: portrait;
-    justify-content: center;
-    width: 64px;
-    height: 64px;
-    background-color: pink;
-}
-
-.character-name {
-    grid-area: name;
-}
-
-.text-bubble {
-    grid-area: text;
-    text-align: left;
-    width: 100%;
-    max-height: 100%;
-    padding: 32px;
-    background-color: beige;
+    "text text text text portrait portrait"
+    "text text text text name name";
 }
 
 /* reference: https://google.github.io/material-design-icons/ */

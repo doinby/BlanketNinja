@@ -4,10 +4,8 @@ $(document).ready(function () {
     
     var $gameViewport = $('.game-viewport');
     var $backgroundImage = $('.background-image');
-    var $dialogContainer = $('<div>').addClass('dialog-container --ZGrid');
+    
     var $characterPortraitContainer = $('<div>').addClass('character-portrait-container');
-    var $characterPortrait = $('<img>').addClass('character-portrait');
-    var $dialogBubble = $('<div>').addClass('dialog-bubble');
     var $sceneContainer;
     var $sceneImages;
     
@@ -21,7 +19,10 @@ $(document).ready(function () {
     // Setup Scene //////////////////////////////////////
     
     function spawnDialogs() {
+        var $dialogContainer = $('<div>').addClass('dialog-container --ZGrid');
+        var $characterPortrait = $('<img>').addClass('character-portrait');
         var $characterName = $('<p>').addClass('character-name');
+        var $dialogBubble = $('<p>').addClass('text-bubble');
         $dialogContainer
         .appendTo($gameViewport)
         .append($characterPortrait)
@@ -37,11 +38,18 @@ $(document).ready(function () {
         var $currentImage = $('<img>')
         .attr('src', 'images/scenes/scene0-' + i + '.png')
         .addClass('scene-image')
-        .appendTo($gameViewport);
-        i++;
+        .appendTo($gameViewport)
+        .fadeIn("slow");
     }
+
+
+    // $(document).click(function () {
+        
+    //     spawnCurrentScene.fadeIn("slow");
+        
+    // });
     
+    spawnCurrentScene();
     spawnDialogs();
     
-    $gameViewport.mousedown(spawnCurrentScene);
 });

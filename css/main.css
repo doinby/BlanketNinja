@@ -53,14 +53,25 @@ footer {
     top: 0;
     bottom: 0;
     margin: auto;
+    z-index: -1;
+}
+
+.dialog-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 160px auto;
+    grid-template-areas: 
+    "portrait portrait text text text text"
+    "name name text text text text";
+    align-items: center;
+    justify-items: center;
+    width: 1024px;
+    max-height: 250px;
+    padding: 32px;
 }
 
 .character-portrait {
     grid-area: portrait;
-    justify-content: center;
-    width: 64px;
-    height: 64px;
-    background-color: pink;
 }
 
 .character-name {
@@ -170,25 +181,16 @@ main {
     display: grid;
     /* grid-template-columns: repeat(4, 217px); */
     /* grid-template-rows: repeat(4, 110px); */
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    grid-gap: 32px;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-gap: 16px;
     padding: 32px;
 }
 
-.--ZGrid {
-    grid-column: 1 / 9;
-    grid-row: 4 / 7;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 160px auto;
+.--dcReversed {
     grid-template-areas: 
-    "portrait portrait text text text text"
-    "name name text text text text";
-    width: 100%;
-    padding: 32px;
-    align-items: center;
-    justify-items: center;
+    "text text text text portrait portrait"
+    "text text text text name name";
 }
 
 /* reference: https://google.github.io/material-design-icons/ */

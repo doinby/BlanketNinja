@@ -6,50 +6,105 @@ $(document).ready(function () {
     var $backgroundImage = $('.background-image');
     
     var $characterPortraitContainer = $('<div>').addClass('character-portrait-container');
-    var $sceneContainer;
-    var $sceneImages;
+    var $currentImage = $('<img>');
+    var $characterPortrait = $('<img>');
+    var $characterName = $('<p>');
+    var $textBubble = $('<p>');
+    var $dialogContainer = $('.dialog-container');
     
     // var $currentScene = $('<img>').addClass('scene-image');
     
     // Declare JS Variables /////////////////////////////
     
-    var currentPage = 0;
-    var currentDialog;
+    var progress = 0;
+    var character;
+    var Oliver = {
+        name: "Oliver",
+        portrait: "../images/Oliver.png",
+    }
+    var Remy = {
+        name: "Remy",
+        portrait: "../images/Remy.png",
+    }
     
     // Setup Scene //////////////////////////////////////
     
-    function spawnDialogs() {
-        var $dialogContainer = $('<div>').addClass('dialog-container --ZGrid');
-        var $characterPortrait = $('<img>').addClass('character-portrait');
-        var $characterName = $('<p>').addClass('character-name');
-        var $dialogBubble = $('<p>').addClass('text-bubble');
-        $dialogContainer
-        .appendTo($gameViewport)
-        .append($characterPortrait)
-        .append($characterName)
-        .append($dialogBubble);
+    function spawnCurrentScene() {
+        
+        switch (progress) {
+            case 0:
+            character = Oliver;
+            txt= "first";
+            spawmImage(progress);
+            spawnDialogs(character, txt);
+            break;
+            case 1:
+            character = Remy;
+            txt = "second";
+            spawmImage(progress);
+            spawnDialogs(character, txt);
+            break;
+            case 2:
+            character = Oliver;
+            txt = "Third";
+            spawmImage(progress);
+            spawnDialogs(character, txt);
+            break;
+            case 3:
+            txt = "";
+            break;
+            case 4:
+            txt = "";
+            break;
+            case 5:
+            txt = "";
+            break;
+            case 6:
+            break;
+        }
+        progress++;
     }
     
-    function spawnCurrentScene() {
-        var sceneCount;
-        var i = 0;
+    function spawnDialogs(character, txt) {        
+        $characterPortrait
+        .addClass('character-portrait')
+        .attr('src', character["portrait"]);
         
-        sceneCount = 5;
-        var $currentImage = $('<img>')
-        .attr('src', 'images/scenes/scene0-' + i + '.png')
-        .addClass('scene-image')
+        $characterName
+        .addClass('character-name')
+        .html(character["name"]);
+        
+        $textBubble
+        .addClass('text-bubble')
+        .html(txt);
+        
+        $dialogContainer
+        .append($characterPortrait)
+        .append($characterName)
+        .append($textBubble)
+        .toggleClass("--dcReversed");
+    }
+    
+    function spawmImage(i) {
+        $currentImage
+        .attr('src', '../images/scenes/scene0-' + i + '.png')
+        .addClass('scene-image scene0-' + i)
         .appendTo($gameViewport)
         .fadeIn("slow");
     }
-
-
+    
+    
     // $(document).click(function () {
-        
+    
     //     spawnCurrentScene.fadeIn("slow");
-        
+    
     // });
     
-    spawnCurrentScene();
-    spawnDialogs();
+    $(document).mousedown(function() {        
+        $currentImage.fadeOut("slow", function () {
+            spawnCurrentScene();
+        });
+    });
+    // spawnDialogs();
     
 });

@@ -160,7 +160,7 @@ $(document).ready(function () {
             // }
         });
         if ($progressBar.width() < 1) {
-            // gameOver("Lose");
+            gameOver("Lose");
         }
     }, 24);
     

@@ -140,20 +140,28 @@ $(document).ready(function () {
         }
     }
     
-    switch (title) {
-        case "Blanket Ninja - Map":
+    if (title == "Blanket Ninja - Map") {
         spawnUI();
         spawnMapLocations();
-        break;
-        
-        case "Blanket Ninja - Puzzle X":
-        showHintBtn = true;
+    }    
+    else {
         spawnUI();
-        break;
-        
-        case "Blanket Ninja - Puzzle Y":
-        showHintBtn = true;
-        spawnUI();
-        break;
     }
+    
+    // switch (title) {
+    //     case "Blanket Ninja - Map":
+    //     spawnUI();
+    //     spawnMapLocations();
+    //     break;
+    
+    //     case "Blanket Ninja - Puzzle X":
+    //     showHintBtn = true;
+    //     spawnUI();
+    //     break;
+    
+    //     case "Blanket Ninja - Puzzle Y":
+    //     showHintBtn = true;
+    //     spawnUI();
+    //     break;
+    // }
 });

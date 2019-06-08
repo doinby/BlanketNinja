@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Blanket Ninja - Puzzle Y</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/bulma.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/puzzle-minigame.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/jquery-ui.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.iconmonstr.com/1.3.0/css/iconmonstr-iconic-font.min.css" rel="stylesheet">
+
+    <style>
+        .player {
+            grid-column: 3 / 4;
+            grid-row: 6 / 7;
+        }
+
+        .hook {
+            grid-column: 10 / 11;
+            grid-row: 3 / 4;
+        }
+
+        .blanket {
+            grid-column: 10 / 11;
+            grid-row: 3 / 4;
+        }
+
+        .bed {
+            grid-column: 1 / 3;
+            grid-row: 6 / 7;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section class="game-viewport --PGrid">
+            <div class="player"></div>
+            <div class="hook"></div>
+            <div class="blanket"></div>
+            <div class="bed"></div>
+        </section>
+        <div class="notification " id="notification"></div>
+        <div class="notification " id="result-message"></div>
+    </main>
+
+    <script src="../js/jquery-3.4.1.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <script src="../js/generic-ui.js"></script>
+    <script src="../js/puzzle-minigame.js"></script>
+</body>
+
+</html>

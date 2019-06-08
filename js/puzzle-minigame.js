@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     
     // Declare CSS Variables ////////////////////////////
@@ -51,18 +50,33 @@ $(document).ready(function () {
         $hintBtn = $('<a>')
         .addClass('button hint-btn is-primary is-invered is-outlined')
         .appendTo($gameViewport)
-        // .attr('disabled', 'disabled')
         .click(function () {
             spawnNotifications("Hint");
         })
         .text("Hint");
     }
     
+    spawnUI();
+    
+    // Game Controller //////////////////////////////////
+    
     function spawnNotifications(notificationType) {
         switch (notificationType) {
             case "Hint":
+            switch (title) {
+                case "Blanket Ninja - Puzzle X":
+                $notificationText.text("Retrieve the blanket and bring it to where the boy is sleeping");
+                break;
+                
+                case "Blanket Ninja - Puzzle Y":
+                $notidicationText.text("Where could the blanket possibly be...? Oh, I know! It's hang on the hook up there!'");
+                break;
+                
+                case "Blanket Ninja - Puzzle Z":
+                $notificationText.text("You are doing great. Just signal me and I will distract the dog for you!");
+                break;
+            }
             $notificationHeader.text(notificationType);
-            $notificationText.text("Here is a hint.");
             $notification
             .append($notificationHeader)
             .append($notificationText)
@@ -86,8 +100,8 @@ $(document).ready(function () {
             
             case "Lose":
             $notificationBtn
-            .click(function() {
-                location.reload(); 
+            .click(function () {
+                location.reload();
             })
             .text("Try Again");
             $notificationHeader
@@ -101,10 +115,6 @@ $(document).ready(function () {
             break;
         }
     }
-    // spawnNotifications("Win");
-    spawnUI();
-    
-    // Game Controller //////////////////////////////////
 
     $hook
     .click(function () {
@@ -166,33 +176,6 @@ $(document).ready(function () {
             break;
         }
     }
-    
-    // Player Controls //////////////////////////////////
-    // $(document).keydown(function(e) {
-    //     // console.log(e.keyCode);
-    //     switch (e.which) {
-    //         case 37: // left
-    //         $player.animate({ left: '-=16' }, 30);
-    //         break;
-    //         case 39: // right
-    //         $player.animate({ left: '+=16' }, 30);
-    //         break;
-    //         case 32: // jump
-    //         $player.effect("bounce", 200, 50);
-    //         break;
-    //         case 69: // interact
-    //         if (collision($player, $blanket)) {
-    //             $blanket.toggle();
-    //             $blanketUI.toggle();
-    //         }
-    //         if (collision($player, $bed)) {
-    //             // console.log('collide');
-    //             gameOver();
-    //         }
-    //         break;
-    //         default: return; // exit this handler for other keys
-    //     }
-    // }); 
     
     // Check collision between 2 objects ////////////////
     function collision($div1, $div2) {

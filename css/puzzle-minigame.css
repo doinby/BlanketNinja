@@ -49,6 +49,14 @@
     z-index: 3;
 }
 
+.hook {
+    position: absolute;
+    bottom : 0;
+    width: 16px;
+    height: 128px;
+    background-color: tomato;
+}
+
 .blanket {
     position: absolute;
     bottom : 0;
@@ -66,7 +74,7 @@
     background-color: gray;
 }
 
-.blanket:hover, .blanket:focus, .bed:hover, .bed:focus {
+.hook:hover, .hook:focus, .blanket:hover, .blanket:focus, .bed:hover, .bed:focus {
     box-shadow: 0 0 8px rgba(81, 203, 238, 1);
     padding: 2px;
     margin: 2px;

@@ -12,6 +12,7 @@ $(document).ready(function () {
     var $notificationBtn = $('<a>').addClass('button');
     var $blanketUI = $('<div>');
     var $player = $('.player');
+    var $hook = $('.hook');
     var $blanket = $('.blanket');
     var $bed = $('.bed');
     
@@ -21,6 +22,7 @@ $(document).ready(function () {
     var isGameOver = false;
     var hasBlanket = false;
     var currentPlayerPos = $player.position();
+    var currentHookPos = $hook.position();
     var currentBlanketPos = $blanket.position();
     var currentBedPos = $bed.position();
     var update;
@@ -103,6 +105,16 @@ $(document).ready(function () {
     spawnUI();
     
     // Game Controller //////////////////////////////////
+
+    $hook
+    .click(function () {
+        $(this).animate({
+            top: currentPlayerPos.top - currentHookPos.top - $hook.height()
+        }, 1000);
+        $blanket.animate({
+            top: currentPlayerPos.top - currentBlanketPos.top + $hook.height() - $blanket.height()
+        },1000);
+    });
     
     $blanket
     .click(function () {
@@ -115,7 +127,7 @@ $(document).ready(function () {
                 hasBlanket = true;
             }
         });
-    })
+    });
     
     $bed
     .click(function () {
@@ -126,7 +138,7 @@ $(document).ready(function () {
                 gameOver("Win");
             }
         });
-    })
+    });
     
     update = setInterval(function () {
         $progressBar.animate({
@@ -138,7 +150,7 @@ $(document).ready(function () {
             // }
         });
         if ($progressBar.width() < 1) {
-            gameOver("Lose");
+            // gameOver("Lose");
         }
     }, 24);
     

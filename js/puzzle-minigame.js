@@ -137,7 +137,7 @@ $(document).ready(function () {
         }
         else {
             $locationBtn
-            .attr('href', '../htmls/puzzle' + x + '.html');
+            .attr('href', '../htmls/chapter2-' + x + '.html');
         }
     }
     
@@ -148,6 +148,11 @@ $(document).ready(function () {
         break;
         
         case "Blanket Ninja - Puzzle X":
+        showHintBtn = true;
+        spawnUI();
+        break;
+        
+        case "Blanket Ninja - Puzzle Y":
         showHintBtn = true;
         spawnUI();
         break;

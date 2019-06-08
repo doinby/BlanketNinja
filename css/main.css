@@ -105,7 +105,7 @@ footer {
 .dialog-container {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: 120px 18px;
+    grid-template-rows: 120px 24px;
     grid-template-areas: 
     "portrait portrait text text text text"
     "name name text text text text";

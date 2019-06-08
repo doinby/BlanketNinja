@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Blanket Ninja - Puzzle X</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/bulma.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/puzzle-minigame.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/jquery-ui.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.iconmonstr.com/1.3.0/css/iconmonstr-iconic-font.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <section class="game-viewport --PGrid">
+        </section>
+        <div class="notification " id="notification"></div>
+        <ul class="notification --flex" id="menu">
+            <li>
+                <p>To solve puzzle:</p>
+                <h3>CLICK</h3>
+                <p>or</p>
+                <h3>DRAG</h3>
+                <p>on items</p>
+            </li>
+            <li><a class="button is-primary" id="muteBtn">
+                <i class="im im-volume"></i>
+                <i class="im im-volume-off" style="display: none;"></i>
+            </a></li>
+        </ul>
+    </main>
+    
+    <script src="../js/jquery-3.4.1.js"></script>
+    <script src="../js/jquery-ui.js"></script>
+    <script src="../js/puzzle-minigame.js"></script>
+</body>
+
+</html>

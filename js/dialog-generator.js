@@ -4,7 +4,7 @@ $(document).ready(function () {
     
     var $gameViewport = $('.game-viewport');
     var $characterPortrait = $('<img>');
-    var $characterName = $('<p>');
+    var $characterName = $('<h4>');
     var $textBubble = $('<p>');
     var $dialogContainer = $('.dialog-container');
     
@@ -90,7 +90,7 @@ $(document).ready(function () {
                 case 5:
                 chapterCount++;
                 console.log(chapterCount);
-                window.location = "../htmls/scene3.html";
+                    window.location = "../htmls/chapter" + chapterCount + ".html";
                 break;
             }
             sceneCount++;

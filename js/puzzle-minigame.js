@@ -3,46 +3,72 @@ $(document).ready(function () {
     
     // Declare CSS Variables ////////////////////////////
     
+    var title = document.getElementsByTagName("title")[0].innerHTML;
     var $gameViewport = $('.game-viewport');
-    var $notification = $('.notification');
-    var $notificationHeader = $('<h2>');
-    var $notificationText = $('<p>');
+    var $notification = $('#notification').addClass('--isHidden');
+    var $notificationHeader = $('<h2>').css('text-align', 'center');
+    var $notificationText = $('<p>').css('text-align', 'left');
     var $locationBtn;
     
     // Declare JS Variables /////////////////////////////
     
-    
+    var sceneCounter = 0;
+    var showHintBtn = false;
     
     // Setup Scene //////////////////////////////////////
-    
-    $hintBtn = $('<a>')
-    .addClass('button hint-btn')
-    .appendTo($gameViewport)
-    .attr('disabled', 'disabled')
-    .text("Hint");
+    function spawnUI() {
+        $menuIcon = $('<i>')
+        .addClass('im im-menu');   
+        $menuBtn = $('<a>')
+        .addClass('button menu-btn is-primary is-invered is-outlined')
+        .append($menuIcon)
+        .appendTo($gameViewport)
+        .click(function() {
+            $('#menu').toggle();
+        });
+        
+        $('#muteBtn').click(function() {
+            $(this)
+            .children()
+            .toggle();
+            $(this).toggleClass('is-danger')
+        });
+        
+        if (showHintBtn) {
+            $hintBtn = $('<a>')
+            .addClass('button hint-btn is-primary is-invered is-outlined')
+            .appendTo($gameViewport)
+            // .attr('disabled', 'disabled')
+            .click(function () {
+                spawnNotifications("Hint");
+            })
+            .text("Hint");
+        }
+    }
     
     function spawnNotifications(notificationType) {
         switch (notificationType) {
-            case "hint":
-            $notificationHeader.text("Hint").css('text-align', 'center');
+            case "Menu":
+            $notification
+            .appendTo($gameViewport)
+            .toggle();            
+            break;
+            
+            case "Hint":
+            $notificationHeader.text(notificationType);
             $notificationText.text("Here is a hint.");
             $notification
             .append($notificationHeader)
             .append($notificationText)
             .toggle();
             break;    
-            case "puzzle-instruction":
-            bigText = "Click";
-            smallText = "or";
-            bigText = "Drag"; 
-            break;  
         }
     }
     
     function spawnMapLocations() {        
         for (i = 0; i < 4; i++) {
             $locationBtn = $('<a>')
-            .addClass('button is-link is-rounded locationBtn' + i)
+            .addClass('button is-primary is-rounded locationBtn' + i)
             .append($('<i>').addClass('im im-location'))
             .appendTo($gameViewport);
             
@@ -105,7 +131,9 @@ $(document).ready(function () {
         
         if (isDisabled[x]) {
             $locationBtn
-            .attr('disabled', 'disabled');
+            .attr('disabled', 'disabled')
+            // .removeClass('is-primary')
+            .addClass('is-light');
         }
         else {
             $locationBtn
@@ -113,5 +141,15 @@ $(document).ready(function () {
         }
     }
     
-    spawnMapLocations();
+    switch (title) {
+        case "Blanket Ninja - Map":
+        spawnUI();
+        spawnMapLocations();
+        break;
+        
+        case "Blanket Ninja - Puzzle X":
+        showHintBtn = true;
+        spawnUI();
+        break;
+    }
 });

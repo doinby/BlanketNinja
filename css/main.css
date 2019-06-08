@@ -62,6 +62,20 @@ footer {
 
 /* Element **********************************************/
 
+#menu {
+    display: none;
+    flex-direction: column;
+    text-align: center;
+}
+
+#menu li {
+    padding: 16px;
+}
+
+#menu li a {    
+    width: 96px;
+}
+
 .game-viewport {
     width: 960px;
     height: 600px;
@@ -71,7 +85,8 @@ footer {
 
 .menu-btn {
     grid-area: menu;
-    padding: 0 32px 0 0;
+    /* padding: 0 32px 0 0; */
+    margin: 3.5em;
     color: #212121;
     text-align: right;
 }
@@ -119,7 +134,7 @@ footer {
 }
 
 .notification {
-    display: none;
+    /* display: none; */
     position: absolute;
     padding: 32px;
     z-index: 3;
@@ -152,6 +167,10 @@ footer {
     grid-template-areas: 
     "text text text text portrait portrait"
     "text text text text name name";
+}
+
+.--isHidden {
+    display: none;
 }
 
 /* reference: https://google.github.io/material-design-icons/ */

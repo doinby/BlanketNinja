@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Blanket Ninja</title>
+    <title>Blanket Ninja - Map</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="../css/bulma.css">
     <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css">
@@ -18,9 +18,21 @@
 <body>
     <main>
         <section class="game-viewport --PGrid">
-            <a class="menu-btn"><i class="im im-menu"></i></a>
         </section>
-        <div class="notification"></div>
+        <div class="notification " id="notification"></div>
+        <ul class="notification --flex" id="menu">
+            <li>
+                <p>To solve puzzle:</p>
+                <h3>CLICK</h3>
+                <p>or</p>
+                <h3>DRAG</h3>
+                <p>on items</p>
+            </li>
+            <li><a class="button is-primary" id="muteBtn">
+                <i class="im im-volume"></i>
+                <i class="im im-volume-off" style="display: none;"></i>
+            </a></li>
+        </ul>
     </main>
     
     <script src="../js/jquery-3.4.1.js"></script>

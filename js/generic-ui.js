@@ -52,18 +52,6 @@ $(document).ready(function () {
         .append($muteBtn)
         .appendTo($gameViewport)
         .attr('id', 'menu');
-
-        // Add Hint Button
-        if (showHintBtn) {
-            $hintBtn = $('<a>')
-            .addClass('button hint-btn is-primary is-invered is-outlined')
-            .appendTo($gameViewport)
-            // .attr('disabled', 'disabled')
-            .click(function () {
-                spawnNotifications("Hint");
-            })
-            .text("Hint");
-        }
     }
     
     function spawnNotifications(notificationType) {
@@ -73,15 +61,6 @@ $(document).ready(function () {
             .appendTo($gameViewport)
             .toggle();            
             break;
-            
-            case "Hint":
-            $notificationHeader.text(notificationType);
-            $notificationText.text("Here is a hint.");
-            $notification
-            .append($notificationHeader)
-            .append($notificationText)
-            .toggle();
-            break;    
         }
     }
     

@@ -16,12 +16,17 @@
 
     <style>
         .player {
-            grid-column: 2 / 3;
+            grid-column: 6 / 7;
             grid-row: 6 / 7;
         }
 
         .blanket {
-            grid-column: 7 / 8;
+            grid-column: 2 / 3;
+            grid-row: 6 / 7;
+        }
+        
+        .bed {
+            grid-column: 8 / 10;
             grid-row: 6 / 7;
         }
     </style>
@@ -32,8 +37,10 @@
         <section class="game-viewport --PGrid">
             <div class="player"></div>
             <div class="blanket"></div>
+            <div class="bed"></div>
         </section>
         <div class="notification " id="notification"></div>
+        <div class="notification " id="result-message"></div>
     </main>
     
     <script src="../js/jquery-3.4.1.js"></script>

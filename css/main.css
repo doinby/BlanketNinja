@@ -183,6 +183,12 @@ footer {
     display: none;
 }
 
+.--centerElement {
+    align-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
 /* reference: https://google.github.io/material-design-icons/ */
 /* Rules for sizing the icon. */
 .material-icons.md-18 { font-size: 18px; }

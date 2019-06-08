@@ -42,16 +42,35 @@
 
 .player {
     position: absolute;
+    bottom: 0;
     border-left: 40px solid transparent; 
     border-right: 40px solid transparent; 
-    border-bottom: 80px solid #64b5f6; 
+    border-bottom: 80px solid lightblue; 
+    z-index: 3;
 }
 
 .blanket {
     position: absolute;
+    bottom : 0;
     width: 96px;
-    height: 8px;
-    background-color: #ffeb3b;
+    height: 16px;
+    background-color: yellow;
+}
+
+
+.bed {
+    position: absolute;
+    bottom : 0;
+    width: 144px;
+    height: 96px;
+    background-color: gray;
+}
+
+.blanket:hover, .blanket:focus, .bed:hover, .bed:focus {
+    box-shadow: 0 0 8px rgba(81, 203, 238, 1);
+    padding: 2px;
+    margin: 2px;
+    border: 2px solid rgba(81, 203, 238, 1);
 }
 
 /* Modifier *********************************************/

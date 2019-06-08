@@ -3,10 +3,10 @@ $(document).ready(function () {
     // Declare CSS Variables ////////////////////////////
     
     var $gameViewport = $('.game-viewport');
+    var $dialogContainer = $('.dialog-container');
     var $characterPortrait = $('<img>');
     var $characterName = $('<h4>');
     var $textBubble = $('<p>');
-    var $dialogContainer = $('.dialog-container');
     
     // Declare JS Variables /////////////////////////////
     
@@ -67,14 +67,17 @@ $(document).ready(function () {
                 $textBubble.hide();
                 dialogs = "";
                 break;
+
                 case 1:
                 character = Oliver;
                 dialogs = "first";
                 break;
+                
                 case 2:
                 character = Oliver;
                 dialogs = "second";
                 break;
+                
                 case 3:
                 currentSceneBackground.fadeOut("fast");
                 currentSceneBackground.next().fadeIn("slow");
@@ -82,11 +85,13 @@ $(document).ready(function () {
                 character = Remy;
                 dialogs = "third";
                 break;
+                
                 case 4:
                 $dialogContainer.toggleClass("--dcReversed");
                 character = Oliver;
                 dialogs = "fourth";
                 break;
+                
                 case 5:
                 chapterCount++;
                 console.log(chapterCount);

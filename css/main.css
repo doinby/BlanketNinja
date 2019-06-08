@@ -63,16 +63,24 @@ footer {
 /* Element **********************************************/
 
 #menu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin: auto;
     display: none;
+    width: 16em;
+    padding: 32px;
     flex-direction: column;
     text-align: center;
+    z-index: 3;
 }
 
 #menu li {
     padding: 16px;
 }
 
-#menu li a {    
+#menu li a {
     width: 96px;
 }
 
@@ -159,7 +167,9 @@ footer {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(8, 1fr);
-    grid-gap: 16px;
+    grid-gap: 16px;    
+    align-items: center;
+    justify-items: center;
     /* padding: 32px; */
 }
 

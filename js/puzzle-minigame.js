@@ -3,158 +3,108 @@ $(document).ready(function () {
     
     // Declare CSS Variables ////////////////////////////
     
-    var title = document.getElementsByTagName("title")[0].innerHTML;
     var $gameViewport = $('.game-viewport');
-    var $notification = $('#notification').addClass('--isHidden');
-    var $notificationHeader = $('<h2>').css('text-align', 'center');
-    var $notificationText = $('<p>').css('text-align', 'left');
-    var $locationBtn;
+    var $progressBar = $('.progress-bar');
+    var $player = $('.player');
+    var $blanket = $('.blanket');
+    var $blanketUI = $('<div>');
     
     // Declare JS Variables /////////////////////////////
     
-    var sceneCounter = 0;
-    var showHintBtn = false;
+    var title = document.getElementsByTagName("title")[0].innerHTML;
+    var isGameOver = false;
     
     // Setup Scene //////////////////////////////////////
+    
     function spawnUI() {
-        $menuIcon = $('<i>')
-        .addClass('im im-menu');   
-        $menuBtn = $('<a>')
-        .addClass('button menu-btn is-primary is-invered is-outlined')
-        .append($menuIcon)
-        .appendTo($gameViewport)
-        .click(function() {
-            $('#menu').toggle();
-        });
+        // Add Progress Bar
+        $progressBar = $('<div>')
+        .addClass('progress-bar has-background-primary');
+        $progressContainer = $('<div>')
+        .addClass('progress-container has-background-light')
+        .append($progressBar)
+        .appendTo($gameViewport);
         
-        $('#muteBtn').click(function() {
-            $(this)
-            .children()
-            .toggle();
-            $(this).toggleClass('is-danger')
-        });
+        // Add Inventory UI
+        $blanketUI
+        .addClass('blanket-ui has-background-warning');
+        $inventory = $('<div>')
+        .addClass('inventory has-background-primary')
+        .append($blanketUI)
+        .appendTo($gameViewport);
         
-        if (showHintBtn) {
-            $hintBtn = $('<a>')
-            .addClass('button hint-btn is-primary is-invered is-outlined')
-            .appendTo($gameViewport)
-            // .attr('disabled', 'disabled')
-            .click(function () {
-                spawnNotifications("Hint");
-            })
-            .text("Hint");
-        }
+        // Add Winnning Message
+        
+        // Add Losing Message
     }
     
-    function spawnNotifications(notificationType) {
-        switch (notificationType) {
-            case "Menu":
-            $notification
-            .appendTo($gameViewport)
-            .toggle();            
-            break;
-            
-            case "Hint":
-            $notificationHeader.text(notificationType);
-            $notificationText.text("Here is a hint.");
-            $notification
-            .append($notificationHeader)
-            .append($notificationText)
-            .toggle();
-            break;    
-        }
-    }
+    spawnUI();
     
-    function spawnMapLocations() {        
-        for (i = 0; i < 4; i++) {
-            $locationBtn = $('<a>')
-            .addClass('button is-primary is-rounded locationBtn' + i)
-            .append($('<i>').addClass('im im-location'))
-            .appendTo($gameViewport);
-            
-            switch(i) {
-                case 0:
-                checkDisabledBtn(i);
-                $locationBtn
-                .click(function () {
-                    sessionStorage.btn0 = "disabled";
-                })
-                .css({
-                    'grid-column': '4 / 5',
-                    'grid-row' : '4 / 5'
-                });
-                break;
-                case 1:
-                checkDisabledBtn(i);
-                $locationBtn
-                .click(function () {
-                    sessionStorage.btn1 = "disabled";
-                })
-                .css({
-                    'grid-column': '6 / 7',
-                    'grid-row': '5 / 6'
-                });
-                break;
-                case 2:
-                checkDisabledBtn(i);
-                $locationBtn
-                .click(function () {
-                    sessionStorage.btn2 = "disabled";
-                })
-                .css({
-                    'grid-column': '8 / 9',
-                    'grid-row': '6 / 7'
-                });
-                break;
-                case 3:
-                checkDisabledBtn(i);
-                $locationBtn
-                .click(function () {
-                    sessionStorage.btn3 = "disabled";
-                })
-                .css({
-                    'grid-column': '3 / 4',
-                    'grid-row': '7 / 8'
-                });
-                break;
+    // Game Controller //////////////////////////////////
+    
+    var update = setInterval(function () {
+        if (isGameOver == false) {
+            $progressBar.animate({
+                width: '-=1' 
+            }, {
+                duration: 1, 
+                // complete: function () {
+                //     console.log("complete");
+                // }
+            });
+            if ($progressBar.width() < 1) {
+                gameOver();
             }
-        }
+        }   
+    }, 24);
+    
+    function gameOver() {
+        clearInterval(update);
     }
     
-    function checkDisabledBtn(x) {
-        var isDisabled = [
-            sessionStorage.btn0,
-            sessionStorage.btn1,
-            sessionStorage.btn2,
-            sessionStorage.btn3
-        ]
-        
-        if (isDisabled[x]) {
-            $locationBtn
-            .attr('disabled', 'disabled')
-            // .removeClass('is-primary')
-            .addClass('is-light');
+    // Player Controls //////////////////////////////////
+    $(document).keydown(function(e) {
+        // console.log(e.keyCode);
+        switch (e.which) {
+            case 37: // left
+            $player.animate({ left: '-=16' }, 30);
+            break;
+            case 39: // right
+            $player.animate({ left: '+=16' }, 30);
+            break;
+            case 32: // jump
+            $player.effect("bounce", 200, 50);
+            break;
+            case 69: // interact
+            if (collision($player, $blanket)) {
+                $blanket.toggle();
+                $blanketUI.toggle();
+            }
+            if (collision($player, $bed)) {
+                // console.log('collide');
+                gameOver();
+            }
+            break;
+            default: return; // exit this handler for other keys
         }
-        else {
-            $locationBtn
-            .attr('href', '../htmls/chapter2-' + x + '.html');
-        }
-    }
+    }); 
     
-    switch (title) {
-        case "Blanket Ninja - Map":
-        spawnUI();
-        spawnMapLocations();
-        break;
+    // Check collision between 2 objects ////////////////
+    function collision($div1, $div2) {
+        var x1 = $div1.offset().left;
+        var y1 = $div1.offset().top;
+        var h1 = $div1.outerHeight(true);
+        var w1 = $div1.outerWidth(true);
+        var b1 = y1 + h1;
+        var r1 = x1 + w1;
+        var x2 = $div2.offset().left;
+        var y2 = $div2.offset().top;
+        var h2 = $div2.outerHeight(true);
+        var w2 = $div2.outerWidth(true);
+        var b2 = y2 + h2;
+        var r2 = x2 + w2;
         
-        case "Blanket Ninja - Puzzle X":
-        showHintBtn = true;
-        spawnUI();
-        break;
-        
-        case "Blanket Ninja - Puzzle Y":
-        showHintBtn = true;
-        spawnUI();
-        break;
+        if (b1 < y2 || y1 > b2 || r1 < x2 || x1 > r2) return false;
+        return true;
     }
 });

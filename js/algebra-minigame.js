@@ -16,7 +16,6 @@ $(document).ready(function () {
     var target;
     var maxTurns;
     var turnCount;
-    var result;
     
     // Setup Scene //////////////////////////////////////
     
@@ -29,101 +28,100 @@ $(document).ready(function () {
     })
     .text("Hint");
     
-    function createCalculator() {
-        $calculator = $('<div>')
-        .addClass('calculator has-background-light')
-        .appendTo($gameViewport);
+    // Create Calculator
+    $calculator = $('<div>')
+    .addClass('calculator has-background-light')
+    .appendTo($gameViewport);
+    
+    $screen = $('<div>')
+    .addClass('screen has-background-light --flex')
+    .appendTo($gameViewport);
+    
+    $googlyEye = $('<div>')
+    .addClass('googly-eye has-background-light --flex --centerElement')
+    .append('<div class="irish"><div>')
+    .appendTo($gameViewport);
+    
+    // Create Buttons on Calculator
+    var calculatorBtnList = [
+        "plus",
+        "minus",
+        "multiply",
+        "divide",
+        "equal",
+        "dot",
+        "C",
+        "restart",
+        "num00"
+    ]
+    
+    for (i = 0; i < calculatorBtnList.length; i++) {
+        calculatorBtnList[i] = $('<a>')
+        .addClass('button calculator-btn operations is-dark --flex')
+        .appendTo($gameViewport)
+        .attr('id', calculatorBtnList[i])
+        .css({
+            'grid-area': calculatorBtnList[i]
+        });
         
-        $screen = $('<div>')
-        .addClass('screen has-background-light --flex')
-        .appendTo($gameViewport);
-        
-        $googlyEye = $('<div>')
-        .addClass('googly-eye has-background-light --flex --centerElement')
-        .append('<div class="irish"><div>')
-        .appendTo($gameViewport);
-        
-        // Create Buttons on Calculator
-        var calculatorBtnList = [
-            "plus",
-            "minus",
-            "multiply",
-            "divide",
-            "equal",
-            "dot",
-            "DEL",
-            "zero",
-            "doubleZero",
-            "restart"
-        ]
-        
-        for (i = 0; i < calculatorBtnList.length; i++) {
-            calculatorBtnList[i] = $('<p>')
-            .addClass('button calculator-btn is-dark --flex')
-            .appendTo($gameViewport)
-            .attr('id', calculatorBtnList[i])
-            .css({
-                'grid-area': calculatorBtnList[i]
-            });
-            
-            calculatorBtnList[i]
-            .text(function () {
-                // return calculatorBtnList[i].attr('class');
-                switch (i) {
-                    case 0: return "+";
-                    case 1: return "-";
-                    case 2: return "x";
-                    case 3: return "÷";
-                    case 4: return "=";
-                    case 5: return ".";
-                    case 6: return "DEL";
-                    case 7: return "0";
-                    case 8: return "00";
-                    case 9: return calculatorBtnList[i].attr('id');
-                }
-            })
-            
-            // Customize Button Colors
-            switch (calculatorBtnList[i].attr('id')) {
-                case "equal":
-                calculatorBtnList[i].addClass('is-primary');
-                break;
-                
-                case "restart":
-                calculatorBtnList[i].addClass('is-warning');
-                break;
-                
-                case "DEL":
-                calculatorBtnList[i].addClass('is-danger');
-                break;
+        calculatorBtnList[i]
+        .text(function () {
+            // return calculatorBtnList[i].attr('class');
+            switch (i) {
+                case 0: return "+";
+                case 1: return "-";
+                case 2: return "x";
+                case 3: return "÷";
+                case 4: return "=";
+                case 5: return ".";
+                case 6: return "C";
+                case 7: return calculatorBtnList[i].attr('id');
+                case 8: return "00";
             }
-        }
+        })
         
-        // Create Numeric Buttons on Calculator
-        for (i = 1; i < 10; i++) {
-            $numPad = $('<p>')
-            .addClass('button calculator-btn is-dark --flex')
-            .appendTo($gameViewport)
-            .attr('id', i)
-            .css({
-                'grid-area': 'num' + i
-            })
-            .click(function() {
-                $screen.append(i);
-            })
-            .text(i);
+        // Customize Button Colors
+        switch (calculatorBtnList[i].attr('id')) {
+            case "equal":
+            calculatorBtnList[i].addClass('is-primary');
+            break;
             
-            // Blocking Out Unwanted Number Buttons
-            $numPad.attr('disabled', function(){
-                // return 'disabled';
-            });
+            case "restart":
+            calculatorBtnList[i].addClass('is-warning');
+            break;
+            
+            case "C":
+            calculatorBtnList[i].addClass('is-danger');
+            break;
         }
+    }
+    
+    // Create Numeric Buttons on Calculator
+    for (i = 0; i < 10; i++) {
+        $numPad = $('<a>')
+        .addClass('button calculator-btn numbers is-dark --flex')
+        .appendTo($gameViewport)
+        .attr({
+            id: i,
+            value: i
+        })
+        .css({
+            'grid-area': 'num' + i
+        })
+        .text(i);
         
-        // Defines Challenge Parrameter
+        // Blocking Out Unwanted Number Buttons        
+        var disabledNum;
         switch (title) {
             case "Blanket Ninja - Math Challenge X":
-            target = 56;
-            maxTurns = 2;            
+            disabledNum = ["1", "3", "5", "8"];
+            for (j = 0; j <= disabledNum.length; j++) {
+                if (i == disabledNum[j]) {
+                    $numPad.attr('disabled', function () {
+                        return 'disabled';
+                    });
+                }
+            }
             break;
             
             case "Blanket Ninja - Math Challenge Y":
@@ -134,9 +132,11 @@ $(document).ready(function () {
             case "Blanket Ninja - Math Challenge Z":
             target = 0;
             maxTurns = 2;
-            break;            
-        }
-
+            break;
+        }        
+    }
+    
+    function spawnChallengeParameter() {
         // Add Target Number
         $target = $('<div>')
         .addClass('tile target has-background-primary has-text-light')
@@ -209,11 +209,19 @@ $(document).ready(function () {
             .toggleClass('has-background-danger');
             break;
         }
-    }  
+    }
     
-    function defineMathChallenges() {
-        // $screen.append("<p>01234<p>");
-        
+    function gameOver(result) {
+        clearInterval(update);
+        $('.blanket, .bed, .hint-btn').off('click');
+        switch (result) {
+            case "Win":
+            spawnNotifications(result);
+            break;
+            case "Lose":
+            spawnNotifications(result);
+            break;
+        }
     }
     
     // Googly Eye Follows Mouse
@@ -230,21 +238,43 @@ $(document).ready(function () {
             '-ms-transform': 'rotate(' + rot + 'deg)',
             'transform': 'rotate(' + rot + 'deg)'
         });
-    });
+    }); 
     
-    function gameOver(result) {
-        clearInterval(update);
-        $('.blanket, .bed, .hint-btn').off('click');
-        switch(result) {
-            case "Win":
-            spawnNotifications(result);
-            break;
-            case "Lose":
-            spawnNotifications(result);
-            break;
-        }
+    // Defines Challenge Parrameter
+    var progress = 0;
+    switch(title) {
+        case "Blanket Ninja - Math Challenge X":
+        target = 56;
+        maxTurns = 2;
+        spawnChallengeParameter();
+        $('.calculator-btn').click(function() {
+            var value = $(this).text();
+
+            switch (value) {
+                case "=":
+                break;
+
+                case "C":
+                $screen.empty();
+                break;
+                
+                default: 
+                $screen.append(value);
+                tempvalueA = $screen.text();
+                break;
+            }
+        });
+        break;
+        
+        case "Blanket Ninja - Math Challenge Y":
+        target = 1;
+        maxTurns = 3;
+        break;
+        
+        case "Blanket Ninja - Math Challenge Z":
+        target = 0;
+        maxTurns = 2;
+        break;
     }
     
-    createCalculator();
-    // defineMathChallenges();
 });

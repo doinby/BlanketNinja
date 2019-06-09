@@ -16,6 +16,10 @@ $(document).ready(function () {
     var target;
     var maxTurns;
     var turnCount;
+    var operator;
+    var tempvalueA;
+    var tempvalueB;
+    var resetCal = false;
     
     // Setup Scene //////////////////////////////////////
     
@@ -49,7 +53,6 @@ $(document).ready(function () {
         "multiply",
         "divide",
         "equal",
-        "dot",
         "C",
         "restart",
         "num00"
@@ -73,10 +76,9 @@ $(document).ready(function () {
                 case 2: return "x";
                 case 3: return "÷";
                 case 4: return "=";
-                case 5: return ".";
-                case 6: return "C";
-                case 7: return calculatorBtnList[i].attr('id');
-                case 8: return "00";
+                case 5: return "C";
+                case 6: return calculatorBtnList[i].attr('id');
+                case 7: return "00";
             }
         })
         
@@ -240,40 +242,76 @@ $(document).ready(function () {
         });
     }); 
     
-    var progress = 0;
-    var tempvalueA;
-    var tempvalueB;
-    
     $('.calculator-btn').click(function () {
         // var value = parseInt($(this).text());
-        var value = $(this).text();
-        switch (value) {
-            case "+":
-            tempvalueB = parseInt($screen.text());
+        if (resetCal) {
             $screen.empty();
-            break;
-            
-            case "=":
-            $screen.empty();
-            value = tempvalueA + tempvalueB;
-            $screen.append(value);
-            // $('.calculator-btn').click(function() {
-            //     $screen.empty();
-            // });
-            break;
-            
-            case "C":
-            $screen.empty();
-            break;
-            
-            case "restart":
-            location.reload();
-            break;
-            
-            default:
+            resetCal = false;
+            var value = parseInt($(this).text());
             $screen.append(value);
             tempvalueA = parseInt($screen.text());
-            break;
+        }
+        else {
+            var value = $(this).text();
+            function setOperation() {
+                operator = value;
+                tempvalueB = parseInt($screen.text());
+                resetCal = true;
+            }
+            switch (value) {
+                case "+":
+                setOperation();
+                break;
+                
+                case "-":
+                setOperation();
+                break;
+                
+                case "x":
+                setOperation();
+                break;
+                
+                case "÷":
+                setOperation();
+                break;
+                
+                case "=":
+                $screen.empty();
+                console.log(operator);
+                switch(operator) {
+                    case "+":
+                    value = tempvalueA + tempvalueB;
+                    break;
+                    case "-":
+                    value = tempvalueB - tempvalueA;
+                    break;
+                    case "x":
+                    value = tempvalueB * tempvalueA;
+                    break;
+                    case "÷":
+                    value = tempvalueB / tempvalueA;
+                    break;
+                }
+                $screen.append(value);
+                resetCal = true;
+                break;
+                
+                case "C":
+                $screen.empty();
+                tempvalueA = undefined;
+                tempvalueB = undefined;
+                operator = undefined;
+                break;
+                
+                case "restart":
+                location.reload();
+                break;
+                
+                default:
+                $screen.append(value);
+                tempvalueA = parseInt($screen.text());
+                break;
+            }
         }
     });
     

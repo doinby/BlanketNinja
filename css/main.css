@@ -100,10 +100,6 @@ footer {
     grid-area: menu;
 }
 
-.menu-btn, .hint-btn, .target, .turns {
-    width: 100%;
-}
-
 .scene-image {        
     display: none;
     position: absolute;

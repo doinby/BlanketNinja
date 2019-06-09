@@ -7,14 +7,14 @@ $(document).ready(function () {
     var $resulteMsg = $('#result-message').addClass('--isHidden');
     var $notificationHeader = $('<h2>').css('text-align', 'center');
     var $notificationText = $('<p>').css('text-align', 'left');
-    var $notificationBtn = $('<a>').addClass('button');
+    var $notificationBtn = $('<a>').addClass('button --flex --centerElement');
+    var $screen;
     
     // Declare JS Variables /////////////////////////////
     
     var title = document.getElementsByTagName("title")[0].innerHTML;
     var update;
     var target;
-    var maxTurns;
     var turnCount;
     var operator;
     var tempvalueA;
@@ -120,21 +120,21 @@ $(document).ready(function () {
             disabledNum = ["1", "3", "5", "8"];
             for (j = 0; j <= disabledNum.length; j++) {
                 if (i == disabledNum[j]) {
-                    $numPad.attr('disabled', function () {
+                    $numPad
+                    .attr('disabled', function () {
                         return 'disabled';
                     });
                 }
             }
+                
             break;
             
             case "Blanket Ninja - Math Challenge Y":
-            target = 1;
-            maxTurns = 3;
+            
             break;
             
             case "Blanket Ninja - Math Challenge Z":
-            target = 0;
-            maxTurns = 2;
+            
             break;
         }        
     }
@@ -151,7 +151,7 @@ $(document).ready(function () {
         $turns = $('<div>')
         .addClass('tile turns has-background-light')
         .append('<p>Turns Left:')
-        .append('<h3>' + maxTurns + '</h3>')
+        .append('<h3 class="turn-count">' + turnCount + '</h3>')
         .appendTo($gameViewport);
     }
     
@@ -204,7 +204,7 @@ $(document).ready(function () {
             .text("Try Again");
             $notificationHeader
             .text("Uh Oh!")
-            .toggleClass('has-text-light');
+                .toggleClass('has-text-light');
             $resulteMsg
             .append($notificationHeader)
             .append($notificationBtn)
@@ -213,10 +213,21 @@ $(document).ready(function () {
             break;
         }
     }
+
+    function checkResult() {
+        if ($screen.text() == target && turnCount > 0) {
+            gameOver("Win");
+        }
+        else if (turnCount <= 0) {
+            $turns.addClass('has-background-danger');
+            $target.addClass('has-background-danger');
+            gameOver("Lose");
+        }
+    }
     
     function gameOver(result) {
         clearInterval(update);
-        $('.blanket, .bed, .hint-btn').off('click');
+        $('.calculator-btn').off('click');
         switch (result) {
             case "Win":
             spawnNotifications(result);
@@ -243,91 +254,141 @@ $(document).ready(function () {
         });
     }); 
     
+    // Calculator Logic
     $('.calculator-btn').click(function () {
-            var value = $(this).text();
-            function writeInput() {
-                tempvalueB = parseInt($screen.text());
-                operator = value;
-                $screen.empty();
-            }
-            function calculate() {
-                switch (operator) {
-                    case "+":
-                    value = tempvalueA + tempvalueB;
-                    return value;
-                    case "-":
-                    value = tempvalueB - tempvalueA;
-                    return value;
-                    case "x":
-                    value = tempvalueB * tempvalueA;
-                    return value;
-                    case "÷":
-                    value = tempvalueB / tempvalueA;
-                    return value;
-                }
-            }
-            switch (value) {
+        var value = $(this).text();
+        var result = $screen.text();
+        // Reduce Turns on Each Click
+        turnCount -= 1;
+        $('.turn-count').text(turnCount);
+        // if (turnCount <= 0) {
+        //     $turns.addClass('has-background-danger');
+        //     $target.addClass('has-background-danger');
+        //     gameOver("Lose");
+        // }
+        
+        // Register Pressed Buttons
+        function writeInput() {
+            tempvalueB = parseInt($screen.text());
+            operator = value;
+            $screen.empty();
+        }
+        
+        function calculate() {
+            switch (operator) {
                 case "+":
-                writeInput();
-                calculate();
-                break;
-                
+                value = tempvalueA + tempvalueB;
+                return parseInt(value);
                 case "-":
-                writeInput();
-                calculate();
-                break;
-                
+                value = tempvalueB - tempvalueA;
+                return parseInt(value);
                 case "x":
-                writeInput();
-                calculate();
-                break;
-                
+                value = tempvalueB * tempvalueA;
+                return parseInt(value);
                 case "÷":
+                value = tempvalueB / tempvalueA;
+                return parseInt(value);
+            }
+        }
+        
+        switch (value) {
+            case "+":
+            if(tempvalueB) {
+                calculate();
+                $screen.empty();
+                $screen.append(parseInt(value));
+                tempvalueB = undefined;
+            }
+            else {
                 writeInput();
                 calculate();
-                break;
-                
-                case "=":
-                $screen.empty();
-                calculate();
-                $screen.append(value);
-                break;
-                
-                case "C":
-                $screen.empty();
-                tempvalueA = undefined;
-                tempvalueB = undefined;
-                operator = undefined;
-                break;
-                
-                case "restart":
-                location.reload();
-                break;
-                
-                default:
-                $screen.append(value);
-                tempvalueA = parseInt($screen.text());
-                break;
             }
+            break;
+            
+            case "-":
+            if (tempvalueB) {
+                calculate();
+                $screen.empty();
+                $screen.append(parseInt(value));
+                tempvalueB = undefined;
+            }
+            else {
+                writeInput();
+                calculate();
+            }
+            break;
+            
+            case "x":
+            if (tempvalueB) {
+                calculate();
+                $screen.empty();
+                $screen.append(parseInt(value));
+                tempvalueB = undefined;
+            }
+            else {
+                writeInput();
+                calculate();
+            }
+            break;
+            
+            case "÷":
+            if (tempvalueB) {
+                calculate();
+                $screen.empty();
+                $screen.append(parseInt(value));
+                tempvalueB = undefined;
+            }
+            else {
+                writeInput();
+                calculate();
+            }
+            break;
+            
+            case "=":
+            $screen.empty();
+            calculate();
+            $screen.append(parseInt(value));
+            break;
+            
+            case "C":
+            $screen.empty();
+            tempvalueA = undefined;
+            tempvalueB = undefined;
+            operator = undefined;
+            break;
+            
+            case "restart":
+            location.reload();
+            break;
+            
+            default:
+            $screen.append(parseInt(value))                
+            tempvalueA = parseInt($screen.text());
+            break;
+        }
+        checkResult();
     });
     
     // Defines Challenge Parrameter
     switch(title) {
         case "Blanket Ninja - Math Challenge X":
         target = 56;
-        maxTurns = 2;
+        turnCount = 8;
         spawnChallengeParameter();        
         break;
         
         case "Blanket Ninja - Math Challenge Y":
-        target = 1;
-        maxTurns = 3;
+        target = 1029056;
+        turnCount = 3;
+        spawnChallengeParameter();  
         break;
         
         case "Blanket Ninja - Math Challenge Z":
         target = 0;
-        maxTurns = 2;
+        turnCount = 2;
+        spawnChallengeParameter();  
         break;
     }
-    
+
+    $("[disabled]").off('click');
 });

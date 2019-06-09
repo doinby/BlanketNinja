@@ -24,16 +24,58 @@
     font-weight: 700;
 }
 
+.calculator {
+    grid-row: 3 / 9;
+    grid-column: 3 / 9;
+    position: absolute;
+    width: 110%;
+    height: 110%;
+    margin: 32px;
+    z-index: 0;
+}
+
 .screen {
     grid-area: screen;
+    flex-direction: row-reverse;
+    align-content: center;
+}
+
+.screen p {
+    padding: 0 16px;
+    font-size: 46px;
+    font-weight: 700;
+    letter-spacing: 4px;
+}
+
+.googly-eye {
+    grid-area: googly-eye;
+}
+
+.irish {    
+    position: relative;
+    width: 1px;
+    height: 1px;
+    margin: auto;
+    border-radius: 80%;
+}
+
+.irish:after { /*pupil*/
+    content: " ";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: hsl(171, 100%, 41%);
+}
+
+.screen, .googly-eye {    
     width: 100%;
     height: 100%;
     border-radius: 4px;
-    background-color: slategrey;
-}
-
-.eyes {
-    grid-area: eyes;
+    border: 16px solid hsl(0, 0%, 21%);
+    overflow: hidden;
 }
 
 .calculator-btn {
@@ -58,10 +100,10 @@ p.button {
     grid-template-areas: 
     ". target target turns turns . . . hint menu"
     ". target target turns turns . . . hint menu"
-    ". . eyes eyes screen screen screen screen . ."
-    ". . eyes eyes screen screen screen screen . ."
-    ". . plus plus num7 num8 num9 del . ."
-    ". . multiply minus num4 num5 num6 del . ."
+    ". . googly-eye googly-eye screen screen screen screen . ."
+    ". . googly-eye googly-eye screen screen screen screen . ."
+    ". . plus plus num7 num8 num9 DEL . ."
+    ". . multiply minus num4 num5 num6 DEL . ."
     ". . multiply divide num1 num2 num3 equal . ."
     ". . restart restart dot zero doubleZero equal . .";
     align-items: center;

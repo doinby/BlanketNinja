@@ -92,6 +92,10 @@ footer {
     overflow: hidden;
 }
 
+.game-viewport * {
+    z-index: 1;
+}
+
 .menu-btn {
     grid-area: menu;
 }
@@ -108,7 +112,6 @@ footer {
     top: 0;
     bottom: 0;
     margin: auto;
-    /* z-index: -1; */
 }
 
 .dialog-container {

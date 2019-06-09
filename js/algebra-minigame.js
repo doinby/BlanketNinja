@@ -240,30 +240,49 @@ $(document).ready(function () {
         });
     }); 
     
-    // Defines Challenge Parrameter
     var progress = 0;
+    var tempvalueA;
+    var tempvalueB;
+    
+    $('.calculator-btn').click(function () {
+        // var value = parseInt($(this).text());
+        var value = $(this).text();
+        switch (value) {
+            case "+":
+            tempvalueB = parseInt($screen.text());
+            $screen.empty();
+            break;
+            
+            case "=":
+            $screen.empty();
+            value = tempvalueA + tempvalueB;
+            $screen.append(value);
+            // $('.calculator-btn').click(function() {
+            //     $screen.empty();
+            // });
+            break;
+            
+            case "C":
+            $screen.empty();
+            break;
+            
+            case "restart":
+            location.reload();
+            break;
+            
+            default:
+            $screen.append(value);
+            tempvalueA = parseInt($screen.text());
+            break;
+        }
+    });
+    
+    // Defines Challenge Parrameter
     switch(title) {
         case "Blanket Ninja - Math Challenge X":
         target = 56;
         maxTurns = 2;
-        spawnChallengeParameter();
-        $('.calculator-btn').click(function() {
-            var value = $(this).text();
-
-            switch (value) {
-                case "=":
-                break;
-
-                case "C":
-                $screen.empty();
-                break;
-                
-                default: 
-                $screen.append(value);
-                tempvalueA = $screen.text();
-                break;
-            }
-        });
+        spawnChallengeParameter();        
         break;
         
         case "Blanket Ninja - Math Challenge Y":

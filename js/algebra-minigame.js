@@ -16,14 +16,49 @@ $(document).ready(function () {
     var update;
     var target;
     var turnCount;
+    var disabledNum;
     var operator;
     var tempvalueA;
     var tempvalueB;
-    var tempvalueC;
-    var resetCal = false;
+    var count;
     
     // Setup Scene //////////////////////////////////////
     
+    function applyDisabledBtn(i) {
+        for (j = 0; j <= disabledNum.length; j++) {
+            if (i == disabledNum[j]) {
+                $numPad
+                    .attr('disabled', function () {
+                        return 'disabled';
+                    });
+            }
+        }
+    };
+
+    // Defines Challenge Parrameter
+    switch (title) {
+        case "Blanket Ninja - Math Challenge X":
+            disabledNum = ["1", "3", "5", "8"];
+            target = 56;
+            turnCount = 8;
+            spawnChallengeParameter();
+            break;
+
+        case "Blanket Ninja - Math Challenge Y":
+            disabledNum = ["0", "3", "4", "6", "7", "9"];
+            target = 1029;
+            turnCount = 9;
+            spawnChallengeParameter();
+            break;
+
+        case "Blanket Ninja - Math Challenge Z":
+            disabledNum = ["2", "4", "8", "9"];
+            target = 60;
+            turnCount = 5;
+            spawnChallengeParameter();
+            break;
+    }
+
     // Add Hint Button
     $hintBtn = $('<a>')
     .addClass('button hint-btn is-primary is-invered is-outlined')
@@ -86,7 +121,7 @@ $(document).ready(function () {
         // Customize Button Colors
         switch (calculatorBtnList[i].attr('id')) {
             case "equal":
-            calculatorBtnList[i].addClass('is-primary');
+            calculatorBtnList[i].addClass('is-info');
             break;
             
             case "restart":
@@ -113,30 +148,7 @@ $(document).ready(function () {
         })
         .text(i);
         
-        // Blocking Out Unwanted Number Buttons        
-        var disabledNum;
-        switch (title) {
-            case "Blanket Ninja - Math Challenge X":
-            disabledNum = ["1", "3", "5", "8"];
-            for (j = 0; j <= disabledNum.length; j++) {
-                if (i == disabledNum[j]) {
-                    $numPad
-                    .attr('disabled', function () {
-                        return 'disabled';
-                    });
-                }
-            }
-                
-            break;
-            
-            case "Blanket Ninja - Math Challenge Y":
-            
-            break;
-            
-            case "Blanket Ninja - Math Challenge Z":
-            
-            break;
-        }        
+        applyDisabledBtn(i);    
     }
     
     function spawnChallengeParameter() {
@@ -166,17 +178,18 @@ $(document).ready(function () {
             .append($notificationText)
             .toggle();
             
+            // Hint Messages
             switch(title) {
                 case "Blanket Ninja - Math Challenge X":
                 $notificationText.text("Keep a close googly-eye on the number of turns you have left");
                 break;
                 
                 case "Blanket Ninja - Math Challenge Y":
-                $notificationText.text("");
+                $notificationText.text("Multiply an '8' with an 3-digits number to get an 4-digits number.");
                 break;
                 
                 case "Blanket Ninja - Math Challenge Z":
-                $notificationText.text("");
+                $notificationText.text("You are a math genius, you can do it!");
                 break;
             }
             break;
@@ -215,7 +228,7 @@ $(document).ready(function () {
     }
 
     function checkResult() {
-        if ($screen.text() == target && turnCount > 0) {
+        if ($screen.text() == target && turnCount >= 0) {
             gameOver("Win");
         }
         else if (turnCount <= 0) {
@@ -257,15 +270,10 @@ $(document).ready(function () {
     // Calculator Logic
     $('.calculator-btn').click(function () {
         var value = $(this).text();
-        var result = $screen.text();
+
         // Reduce Turns on Each Click
         turnCount -= 1;
         $('.turn-count').text(turnCount);
-        // if (turnCount <= 0) {
-        //     $turns.addClass('has-background-danger');
-        //     $target.addClass('has-background-danger');
-        //     gameOver("Lose");
-        // }
         
         // Register Pressed Buttons
         function writeInput() {
@@ -362,33 +370,16 @@ $(document).ready(function () {
             break;
             
             default:
-            $screen.append(parseInt(value))                
+                if(value == "00") {
+                    $screen.append(value);
+                } else {
+                    $screen.append(parseInt(value));   
+                }
             tempvalueA = parseInt($screen.text());
             break;
         }
         checkResult();
     });
-    
-    // Defines Challenge Parrameter
-    switch(title) {
-        case "Blanket Ninja - Math Challenge X":
-        target = 56;
-        turnCount = 8;
-        spawnChallengeParameter();        
-        break;
-        
-        case "Blanket Ninja - Math Challenge Y":
-        target = 1029056;
-        turnCount = 3;
-        spawnChallengeParameter();  
-        break;
-        
-        case "Blanket Ninja - Math Challenge Z":
-        target = 0;
-        turnCount = 2;
-        spawnChallengeParameter();  
-        break;
-    }
 
     $("[disabled]").off('click');
 });

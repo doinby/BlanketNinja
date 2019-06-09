@@ -19,6 +19,7 @@ $(document).ready(function () {
     var operator;
     var tempvalueA;
     var tempvalueB;
+    var tempvalueC;
     var resetCal = false;
     
     // Setup Scene //////////////////////////////////////
@@ -243,57 +244,53 @@ $(document).ready(function () {
     }); 
     
     $('.calculator-btn').click(function () {
-        // var value = parseInt($(this).text());
-        if (resetCal) {
-            $screen.empty();
-            resetCal = false;
-            var value = parseInt($(this).text());
-            $screen.append(value);
-            tempvalueA = parseInt($screen.text());
-        }
-        else {
             var value = $(this).text();
-            function setOperation() {
-                operator = value;
+            function writeInput() {
                 tempvalueB = parseInt($screen.text());
-                resetCal = true;
+                operator = value;
+                $screen.empty();
+            }
+            function calculate() {
+                switch (operator) {
+                    case "+":
+                    value = tempvalueA + tempvalueB;
+                    return value;
+                    case "-":
+                    value = tempvalueB - tempvalueA;
+                    return value;
+                    case "x":
+                    value = tempvalueB * tempvalueA;
+                    return value;
+                    case "÷":
+                    value = tempvalueB / tempvalueA;
+                    return value;
+                }
             }
             switch (value) {
                 case "+":
-                setOperation();
+                writeInput();
+                calculate();
                 break;
                 
                 case "-":
-                setOperation();
+                writeInput();
+                calculate();
                 break;
                 
                 case "x":
-                setOperation();
+                writeInput();
+                calculate();
                 break;
                 
                 case "÷":
-                setOperation();
+                writeInput();
+                calculate();
                 break;
                 
                 case "=":
                 $screen.empty();
-                console.log(operator);
-                switch(operator) {
-                    case "+":
-                    value = tempvalueA + tempvalueB;
-                    break;
-                    case "-":
-                    value = tempvalueB - tempvalueA;
-                    break;
-                    case "x":
-                    value = tempvalueB * tempvalueA;
-                    break;
-                    case "÷":
-                    value = tempvalueB / tempvalueA;
-                    break;
-                }
+                calculate();
                 $screen.append(value);
-                resetCal = true;
                 break;
                 
                 case "C":
@@ -312,7 +309,6 @@ $(document).ready(function () {
                 tempvalueA = parseInt($screen.text());
                 break;
             }
-        }
     });
     
     // Defines Challenge Parrameter

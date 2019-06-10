@@ -90,8 +90,6 @@ $(document).ready(function () {
                 break;
                 
                 case 3:
-                // currentSceneBackground.fadeOut("fast");
-                // currentSceneBackground.next().fadeIn("slow");
                 $dialogContainer.toggleClass("--dcReversed");
                 character = Remy;
                 dialogs = "Wait for me!!";
@@ -122,7 +120,7 @@ $(document).ready(function () {
                 
                 case 10:
                 chapterCount++;
-                window.location = "../htmls/chapter" + chapterCount + "-" + "0" + ".html";
+                window.location = "../htmls/map.html"
                 break;
                 
                 default:

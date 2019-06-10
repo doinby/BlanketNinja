@@ -13,6 +13,7 @@ $(document).ready(function () {
     
     var title = document.getElementsByTagName("title")[0].innerHTML;
     var showHintBtn = false;
+    var defaultNum = 1;
     
     // Setup Scene //////////////////////////////////////
     
@@ -57,12 +58,13 @@ $(document).ready(function () {
     }
     
     function spawnMapUI(max) {        
-        for (i = 0; i < 3; i++) {
+        for (i = 0; i <= max; i++) {
             $locationBtn = $('<a>')
             .addClass('button is-primary is-rounded locationBtn' + i)
             .append($('<i>').addClass('im im-location'))
             .appendTo($gameViewport);
             
+            // Allocate Location Buttons on Map
             switch(i) {
                 case 0:
                 checkDisabledBtn(i);
@@ -75,7 +77,7 @@ $(document).ready(function () {
                     'grid-row' : '4 / 5'
                 });
                 break;
-
+                
                 case 1:
                 checkDisabledBtn(i);
                 $locationBtn
@@ -87,7 +89,7 @@ $(document).ready(function () {
                     'grid-row': '5 / 6'
                 });
                 break;
-
+                
                 case 2:
                 checkDisabledBtn(i);
                 $locationBtn
@@ -99,7 +101,7 @@ $(document).ready(function () {
                     'grid-row': '6 / 7'
                 });
                 break;
-
+                
                 case 3:
                 checkDisabledBtn(i);
                 $locationBtn
@@ -111,30 +113,30 @@ $(document).ready(function () {
                     'grid-row': '7 / 8'
                 });
                 break;
-
+                
                 case 4:
-                    checkDisabledBtn(i);
-                    $locationBtn
-                        .click(function () {
-                            sessionStorage.btn3 = "disabled";
-                        })
-                        .css({
-                            'grid-column': '2 / 3',
-                            'grid-row': '5 / 6'
-                        });
-                    break;
-
+                checkDisabledBtn(i);
+                $locationBtn
+                .click(function () {
+                    sessionStorage.btn3 = "disabled";
+                })
+                .css({
+                    'grid-column': '2 / 3',
+                    'grid-row': '5 / 6'
+                });
+                break;
+                
                 case 5:
-                    checkDisabledBtn(i);
-                    $locationBtn
-                        .click(function () {
-                            sessionStorage.btn3 = "disabled";
-                        })
-                        .css({
-                            'grid-column': '7 / 8',
-                            'grid-row': '7 / 8'
-                        });
-                    break;
+                checkDisabledBtn(i);
+                $locationBtn
+                .click(function () {
+                    sessionStorage.btn3 = "disabled";
+                })
+                .css({
+                    'grid-column': '7 / 8',
+                    'grid-row': '7 / 8'
+                });
+                break;
             }
         }
         $warningText
@@ -147,7 +149,9 @@ $(document).ready(function () {
             sessionStorage.btn0,
             sessionStorage.btn1,
             sessionStorage.btn2,
-            sessionStorage.btn3
+            sessionStorage.btn3,
+            sessionStorage.btn4,
+            sessionStorage.btn5,
         ]
         
         if (isDisabled[x]) {
@@ -163,9 +167,14 @@ $(document).ready(function () {
     }
     
     switch (title) {
-        case "Blanket Ninja - Map":
-        spawnGenericUI();
-            spawnMapUI(2);
+        case "Blanket Ninja - Map":        
+        // Spawn Easy Puzzles For Beginner        
+        spawnMapUI(2);
+        break;
+        
+        case "Blanket Ninja - Map (Expert)":
+        // Spawn All Puzzles      
+        spawnMapUI(5);
         break;
         
         case "Blanket Ninja - Puzzle X":

@@ -18,41 +18,39 @@ $(document).ready(function () {
     // Declare JS Variables /////////////////////////////
     
     var title = document.getElementsByTagName("title")[0].innerHTML;
-    var isGameOver = false;
     var hasBlanket = false;
     var currentPlayerPos = $player.position();
     var currentHookPos = $hook.position();
     var currentBlanketPos = $blanket.position();
     var currentBedPos = $bed.position();
     var update;
-    var result;
     
     // Setup Scene //////////////////////////////////////
     
-        // Add Progress Bar
-        $progressBar = $('<div>')
-        .addClass('progress-bar has-background-primary');
-        $progressContainer = $('<div>')
-        .addClass('progress-container has-background-light')
-        .append($progressBar)
-        .appendTo($gameViewport);
-        
-        // Add Inventory UI
-        $blanketUI
-        .addClass('blanket-ui has-background-warning');
-        $inventory = $('<div>')
-        .addClass('inventory has-background-primary')
-        .append($blanketUI)
-        .appendTo($gameViewport);
-        
-        // Add Hint Button
-        $hintBtn = $('<a>')
-        .addClass('button hint-btn is-primary is-invered is-outlined')
-        .appendTo($gameViewport)
-        .click(function () {
-            spawnNotifications("Hint");
-        })
-        .text("Hint");
+    // Add Progress Bar
+    $progressBar = $('<div>')
+    .addClass('progress-bar has-background-primary');
+    $progressContainer = $('<div>')
+    .addClass('progress-container has-background-light')
+    .append($progressBar)
+    .appendTo($gameViewport);
+    
+    // Add Inventory UI
+    $blanketUI
+    .addClass('blanket-ui has-background-warning');
+    $inventory = $('<div>')
+    .addClass('inventory has-background-primary')
+    .append($blanketUI)
+    .appendTo($gameViewport);
+    
+    // Add Hint Button
+    $hintBtn = $('<a>')
+    .addClass('button hint-btn is-primary is-invered is-outlined')
+    .appendTo($gameViewport)
+    .click(function () {
+        spawnNotifications("Hint");
+    })
+    .text("Hint");
     
     // Game Controller //////////////////////////////////
     
@@ -65,11 +63,11 @@ $(document).ready(function () {
                 break;
                 
                 case "Blanket Ninja - Puzzle Y":
-                    $notificationText.text("Where could the blanket possibly be...? Oh, I know! It's hang on the hook up there!'");
+                $notificationText.text("Where could the blanket possibly be...? Oh, I know! It's hang on the hook up there!'");
                 break;
                 
                 case "Blanket Ninja - Puzzle Z":
-                    $notificationText.text("You are doing great. Just signal me and I will distract the dog for you!");
+                $notificationText.text("You are doing great. Just signal me and I will distract the dog for you!");
                 break;
             }
             $notificationHeader.text(notificationType);
@@ -81,9 +79,6 @@ $(document).ready(function () {
             
             case "Win":
             $notificationBtn
-            .click(function () {
-                window.location = "../htmls/chapter1-0.html";
-            })
             .text("Next")
             .toggleClass('is-primary');
             $notificationHeader
@@ -92,6 +87,21 @@ $(document).ready(function () {
             .append($notificationHeader)
             .append($notificationBtn)
             .toggle();
+            
+            switch(title) {
+                case "Blanket Ninja - Puzzle X":
+                    $notificationBtn.click(function () {
+                        window.location = "../htmls/map.html";
+                    });
+                break;
+
+                default:
+                $notificationBtn.click(function () {
+                    window.location = "../htmls/map-expert.html";
+                });
+                break;
+            }
+            
             break;
             
             case "Lose":

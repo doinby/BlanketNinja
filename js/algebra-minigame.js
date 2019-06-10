@@ -197,7 +197,7 @@ $(document).ready(function () {
             case "Win":
             $notificationBtn
             .click(function () {
-                window.location = "../htmls/chapter1.html";
+                window.location = "../htmls/map-expert.html";
             })
             .text("Next")
             .toggleClass('is-primary');

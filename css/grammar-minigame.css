@@ -1,0 +1,107 @@
+/* Element **********************************************/
+
+.hint-btn {
+    grid-area: hint;    
+    text-align: center;
+}
+
+.question-contaner {
+    grid-row: 3 / 7;
+    grid-column: 2 / 10;
+    padding: 64px;
+    line-height: 32px;
+}
+
+blockquote {
+    position: relative;
+    color: #383838;
+}
+
+blockquote:before {
+    content: "\201C";
+    position: absolute;
+    left: -60px;
+    top: -10px;
+    display: block;
+    font-size: 128px;
+    color: lightgrey;
+}
+
+blockquote:after {
+    content: "\201E";
+    position: absolute;
+    right: -60px;
+    bottom: -10px;
+    display: block;
+    font-size: 128px;
+    color: lightgrey;
+}
+
+blockquote cite {
+    color: #999999;
+}
+
+blockquote cite:before {
+    content: "\2014 \2009";
+}
+
+.answer-container {
+    grid-row: 7 / 9;
+    grid-column: 2 / 10;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.answer-container div {    
+    margin: 8px;
+    width: 128px;
+    height: 24px;
+    background: hsl(0, 0%, 96%);
+    text-align: center;
+    font-weight: 700;
+}
+
+.blocked-out {
+    display: inline-flex;    
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-width: 96px;
+    width: auto;
+    height: 24px;
+    margin-bottom: -7px;
+    padding: 8px;
+    background: hsl(48, 100%, 67%);
+    border-radius: 2px;
+    font-weight: 700;
+}
+
+.hook:hover, .hook:focus {
+    box-shadow: 0 0 8px rgba(81, 203, 238, 1);
+    padding: 2px;
+    margin: 2px;
+    border: 2px solid rgba(81, 203, 238, 1);
+}
+
+/* Modifier *********************************************/
+
+.--PGrid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-areas: 
+    ". stat stat stat stat . . . hint menu"
+    ". stat stat stat stat . . . hint menu";
+    align-items: center;
+}
+
+.--correct {
+    background: lime;
+}
+
+.--incorrect {
+    background: tomato;
+}

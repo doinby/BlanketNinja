@@ -32,6 +32,10 @@ $(document).ready(function () {
         name: "Maru",
         portrait: "../images/Maru.png",
     }
+    var Emily = {
+        name: "Emily",
+        portrait: "../images/Emily.png",
+    }
     var Mom = {
         name: "Mom",
         portrait: "../images/Mom.png",
@@ -453,22 +457,169 @@ $(document).ready(function () {
                 character = Dad;
                 dialogs = "Okay. But you need to finish your homework first, alright kids?"
                 break;
-
+                
                 case 10:
-                    $dialogContainer.toggleClass("--dcReversed");
-                    character = Remy;
-                    dialogs = "Yes!!!"
-                    break;
-
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Remy;
+                dialogs = "Yes!!!"
+                break;
+                
                 case 11:
-                    $dialogContainer.toggleClass("--dcReversed");
-                    character = Oliver;
-                    dialogs = "Okay, dad."
-                    break;
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Oliver;
+                dialogs = "Okay, dad."
+                break;
                 
                 case 13:
                 $currentSceneBackground.fadeOut("slow", function () {
                     window.location = "../htmls/challenge2.html";
+                });
+                break;
+                
+                default:
+                $currentSceneBackground.fadeOut("fast");
+                $currentSceneBackground.next().fadeIn("slow");
+                break;
+            }
+            sceneCount++;
+            spawnDialogs(character, dialogs);
+            break;
+            
+            case "Blanket Ninja - Urban Myth":
+            chapterCount = 4;
+            spawmAllImages(0);
+            switch (sceneCount) {
+                case 0:
+                $currentSceneBackground = $('.scene' + chapterCount + '-' + sceneCount).fadeIn("slow");
+                dialogs = "";
+                $textBubble.toggle();
+                break;
+                
+                case 1:
+                $textBubble.toggle();
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Kent;
+                dialogs = "I brought Em some soup my mom made.";
+                break;
+                
+                case 2:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Maru;
+                dialogs = "That's so nice of you, Kent.";
+                break;
+                
+                case 3:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Remy;
+                dialogs = "I'm bring her the monopoly cards I borrowed last week.";
+                break;
+                
+                case 4:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Oliver;
+                dialogs = "You mean, <i><strong>last month?";
+                break;
+                
+                case 5:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Remy;
+                dialogs = "Oh come on, Ol! I was making a new board game and needed them.";
+                break;
+                
+                case 6:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Kent;
+                dialogs = "Looks like we are ready. Maru, lead the way.";
+                break;
+                
+                case 7:
+                $currentSceneBackground.fadeOut("slow", function () {
+                    window.location = "../htmls/challenge6.html";
+                });
+                break;
+                
+                default:
+                $currentSceneBackground.fadeOut("fast");
+                $currentSceneBackground.next().fadeIn("slow");
+                break;
+            }
+            sceneCount++;
+            spawnDialogs(character, dialogs);
+            break;
+            
+            case "Blanket Ninja - Cookies":
+            chapterCount = 5;
+            spawmAllImages(0);
+            switch (sceneCount) {
+                case 0:
+                $currentSceneBackground = $('.scene' + chapterCount + '-' + sceneCount).fadeIn("slow");
+                dialogs = "";
+                $textBubble.toggle();
+                break;
+                
+                case 1:
+                $textBubble.toggle();
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Remy;
+                dialogs = "Emmmm!!! You're not going to believe this!";
+                break;
+                
+                case 2:
+                character = Remy;
+                dialogs = "We know the thing that causes everyone to get sick!!!";
+                break;
+                
+                case 3:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Kent;
+                dialogs = "There are strange bugs that drop dust all over the town.";
+                break;
+                
+                case 4:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Kent;
+                dialogs = "Maybe they are the agent that carry flu bateria to the town";
+                break;
+                
+                case 5:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Maru;
+                dialogs = "Oh no! I'm starting to feel a bit dizzy. Did I catch the flu from those weird bugs?";
+                break;
+                
+                case 6:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Emily;
+                dialogs = "I had a similar theory as well. I passed by the hive on my way to school. Instantly got sick";
+                break;
+                
+                case 7:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Oliver;
+                dialogs = "You should stay home.";
+                break;
+                
+                case 8:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Maru;
+                dialogs = "Yeah, just stay put. We will talk to the adults and figure something out";
+                break;
+                
+                case 9:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Emily;
+                dialogs = "I'm staying, silly. I couldn't go even if I wanted to.";
+                break;
+                
+                case 10:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Emily;
+                dialogs = "I'm staying, silly. I couldn't go even if I wanted to.";
+                break;
+                
+                case 15:
+                $currentSceneBackground.fadeOut("slow", function () {
+                    window.location = "../htmls/chapter6.html";
                 });
                 break;
                 

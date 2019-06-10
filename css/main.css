@@ -212,6 +212,7 @@ footer {
     align-content: center;
     align-items: center;
     justify-items: center;
+    justify-content: center;
 }
 
 /* reference: https://google.github.io/material-design-icons/ */

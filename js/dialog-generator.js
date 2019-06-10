@@ -390,7 +390,7 @@ $(document).ready(function () {
             spawnDialogs(character, dialogs);
             break;
             
-            case "Blanket Ninja - Dinner Time":
+            case "Blanket Ninja - We Miss Him":
             chapterCount = 3;
             spawmAllImages(0);
             switch (sceneCount) {

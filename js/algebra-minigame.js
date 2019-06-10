@@ -196,9 +196,6 @@ $(document).ready(function () {
             
             case "Win":
             $notificationBtn
-            .click(function () {
-                window.location = "../htmls/map-expert.html";
-            })
             .text("Next")
             .toggleClass('is-primary');
             $notificationHeader
@@ -207,6 +204,26 @@ $(document).ready(function () {
             .append($notificationHeader)
             .append($notificationBtn)
             .toggle();
+
+            switch (title) {
+                case "Blanket Ninja - Math Challenge X":
+                $notificationBtn.click(function () {
+                    window.location = "../htmls/chapter1.html";
+                });
+                break;
+
+                case "Blanket Ninja - Math Challenge Z":
+                    $notificationBtn.click(function () {
+                        window.location = "../htmls/chapter3.html";
+                    });
+                    break;
+                
+                default:
+                $notificationBtn.click(function () {
+                    window.location = "../htmls/map-expert.html";
+                });
+                break;
+            }
             break;
             
             case "Lose":
@@ -356,7 +373,7 @@ $(document).ready(function () {
             $screen.empty();
             calculate();
             $screen.append('<p>' + parseInt(value) + '</p>'); 
-                tempvalueB = undefined;
+            tempvalueB = undefined;
             break;
             
             case "C":

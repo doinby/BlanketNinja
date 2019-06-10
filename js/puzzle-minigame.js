@@ -90,18 +90,29 @@ $(document).ready(function () {
             
             switch(title) {
                 case "Blanket Ninja - Puzzle X":
-                    $notificationBtn.click(function () {
-                        window.location = "../htmls/map.html";
-                    });
+                $notificationBtn.click(function () {
+                    window.location = "../htmls/map.html";
+                });
+                break;
+                
+                case "Blanket Ninja - Puzzle Y":
+                $notificationBtn.click(function () {
+                    window.location = "../htmls/chapter2.html";
+                });
                 break;
 
+                case "Blanket Ninja - Puzzle Z":
+                    $notificationBtn.click(function () {
+                        window.location = "../htmls/chapter4.html";
+                    });
+                    break;
+                
                 default:
                 $notificationBtn.click(function () {
                     window.location = "../htmls/map-expert.html";
                 });
                 break;
-            }
-            
+            }            
             break;
             
             case "Lose":

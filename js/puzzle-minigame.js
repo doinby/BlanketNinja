@@ -82,7 +82,7 @@ $(document).ready(function () {
             case "Win":
             $notificationBtn
             .click(function () {
-                window.location = "../htmls/chapter1.html";
+                window.location = "../htmls/chapter1-0.html";
             })
             .text("Next")
             .toggleClass('is-primary');
@@ -144,8 +144,8 @@ $(document).ready(function () {
         }
     }
     
-    $hook
-    .click(function () {
+    // Puzzle Logic
+    $hook.click(function () {
         $(this).animate({
             top: currentPlayerPos.top - currentHookPos.top - $hook.height()
         }, 1000);
@@ -154,8 +154,7 @@ $(document).ready(function () {
         },1000);
     });
     
-    $blanket
-    .click(function () {
+    $blanket.click(function () {
         $player.animate({
             left: currentBlanketPos.left - currentPlayerPos.left
         }, 1000, "swing", function () {
@@ -167,8 +166,7 @@ $(document).ready(function () {
         });
     });
     
-    $bed
-    .click(function () {
+    $bed.click(function () {
         $player.animate({
             left: currentBedPos.left - currentPlayerPos.left
         }, 1000, "swing", function () {
@@ -178,6 +176,7 @@ $(document).ready(function () {
         });
     });
     
+    // Animate Progress Bar
     update = setInterval(function () {
         $progressBar.animate({
             width: '-=1'

@@ -1,13 +1,12 @@
-
 $(document).ready(function () {
     
     // Declare CSS Variables ////////////////////////////
     
     var $gameViewport = $('.game-viewport');
     var $notification = $('#notification').addClass('--isHidden');
-    var $notificationHeader = $('<h2>').css('text-align', 'center');
+    var $notificationHeader = $('<p>').css('text-align', 'center');
     var $notificationText = $('<p>').css('text-align', 'left');
-    var $warningText = $('<h3>').addClass('has-text-warning');
+    var $warningText = $('<h3>').addClass('warning-text');
     var $locationBtn;
     
     // Declare JS Variables /////////////////////////////
@@ -17,7 +16,7 @@ $(document).ready(function () {
     
     // Setup Scene //////////////////////////////////////
     
-    function spawnUI() {
+    function spawnGenericUI() {
         // Add Menu Button
         $menuIcon = $('<i>')
         .addClass('im im-menu');   
@@ -57,8 +56,8 @@ $(document).ready(function () {
         .attr('id', 'menu');
     }
     
-    function spawnMapLocations() {        
-        for (i = 0; i < 4; i++) {
+    function spawnMapUI(max) {        
+        for (i = 0; i < 3; i++) {
             $locationBtn = $('<a>')
             .addClass('button is-primary is-rounded locationBtn' + i)
             .append($('<i>').addClass('im im-location'))
@@ -76,6 +75,7 @@ $(document).ready(function () {
                     'grid-row' : '4 / 5'
                 });
                 break;
+
                 case 1:
                 checkDisabledBtn(i);
                 $locationBtn
@@ -87,6 +87,7 @@ $(document).ready(function () {
                     'grid-row': '5 / 6'
                 });
                 break;
+
                 case 2:
                 checkDisabledBtn(i);
                 $locationBtn
@@ -98,6 +99,7 @@ $(document).ready(function () {
                     'grid-row': '6 / 7'
                 });
                 break;
+
                 case 3:
                 checkDisabledBtn(i);
                 $locationBtn
@@ -109,8 +111,35 @@ $(document).ready(function () {
                     'grid-row': '7 / 8'
                 });
                 break;
+
+                case 4:
+                    checkDisabledBtn(i);
+                    $locationBtn
+                        .click(function () {
+                            sessionStorage.btn3 = "disabled";
+                        })
+                        .css({
+                            'grid-column': '2 / 3',
+                            'grid-row': '5 / 6'
+                        });
+                    break;
+
+                case 5:
+                    checkDisabledBtn(i);
+                    $locationBtn
+                        .click(function () {
+                            sessionStorage.btn3 = "disabled";
+                        })
+                        .css({
+                            'grid-column': '7 / 8',
+                            'grid-row': '7 / 8'
+                        });
+                    break;
             }
         }
+        $warningText
+        .appendTo($gameViewport)
+        .text("Choose A Location on the Map");
     }
     
     function checkDisabledBtn(x) {
@@ -129,31 +158,28 @@ $(document).ready(function () {
         }
         else {
             $locationBtn
-            .attr('href', '../htmls/chapter2-' + x + '.html');
+            .attr('href', '../htmls/challenge' + x + '.html');
         }
     }
     
     switch (title) {
         case "Blanket Ninja - Map":
-        spawnUI();
-        spawnMapLocations();
-        $warningText
-        .appendTo($gameViewport)
-        .text("Choose A Location on the Map");
+        spawnGenericUI();
+            spawnMapUI(2);
         break;
         
         case "Blanket Ninja - Puzzle X":
         showHintBtn = true;
-        spawnUI();
+        spawnGenericUI();
         break;
         
         case "Blanket Ninja - Puzzle Y":
         showHintBtn = true;
-        spawnUI();
+        spawnGenericUI();
         break;
         
         default: 
-        spawnUI();
+        spawnGenericUI();
         break;
     }
 });

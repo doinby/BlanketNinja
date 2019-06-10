@@ -122,7 +122,7 @@ $(document).ready(function () {
                 
                 case 10:
                 chapterCount++;
-                window.location = "../htmls/chapter" + chapterCount + ".html";
+                window.location = "../htmls/chapter" + chapterCount + "-" + "0" + ".html";
                 break;
                 
                 default:

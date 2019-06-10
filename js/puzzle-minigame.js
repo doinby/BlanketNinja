@@ -29,7 +29,6 @@ $(document).ready(function () {
     
     // Setup Scene //////////////////////////////////////
     
-    function spawnUI() {
         // Add Progress Bar
         $progressBar = $('<div>')
         .addClass('progress-bar has-background-primary');
@@ -54,9 +53,6 @@ $(document).ready(function () {
             spawnNotifications("Hint");
         })
         .text("Hint");
-    }
-    
-    spawnUI();
     
     // Game Controller //////////////////////////////////
     
@@ -69,11 +65,11 @@ $(document).ready(function () {
                 break;
                 
                 case "Blanket Ninja - Puzzle Y":
-                $notidicationText.text("Where could the blanket possibly be...? Oh, I know! It's hang on the hook up there!'");
+                    $notificationText.text("Where could the blanket possibly be...? Oh, I know! It's hang on the hook up there!'");
                 break;
                 
                 case "Blanket Ninja - Puzzle Z":
-                $notificationText.text("You are doing great. Just signal me and I will distract the dog for you!");
+                    $notificationText.text("You are doing great. Just signal me and I will distract the dog for you!");
                 break;
             }
             $notificationHeader.text(notificationType);

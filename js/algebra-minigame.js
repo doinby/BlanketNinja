@@ -28,37 +28,37 @@ $(document).ready(function () {
         for (j = 0; j <= disabledNum.length; j++) {
             if (i == disabledNum[j]) {
                 $numPad
-                    .attr('disabled', function () {
-                        return 'disabled';
-                    });
+                .attr('disabled', function () {
+                    return 'disabled';
+                });
             }
         }
     };
-
+    
     // Defines Challenge Parrameter
     switch (title) {
         case "Blanket Ninja - Math Challenge X":
-            disabledNum = ["1", "3", "5", "8"];
-            target = 56;
-            turnCount = 8;
-            spawnChallengeParameter();
-            break;
-
+        disabledNum = ["1", "3", "5", "8"];
+        target = 56;
+        turnCount = 8;
+        spawnChallengeParameter();
+        break;
+        
         case "Blanket Ninja - Math Challenge Y":
-            disabledNum = ["0", "3", "4", "6", "7", "9"];
-            target = 1029;
-            turnCount = 9;
-            spawnChallengeParameter();
-            break;
-
+        disabledNum = ["0", "3", "4", "6", "7", "9"];
+        target = 1029;
+        turnCount = 9;
+        spawnChallengeParameter();
+        break;
+        
         case "Blanket Ninja - Math Challenge Z":
-            disabledNum = ["2", "4", "8", "9"];
-            target = 60;
-            turnCount = 5;
-            spawnChallengeParameter();
-            break;
+        disabledNum = ["2", "4", "8", "9"];
+        target = 60;
+        turnCount = 5;
+        spawnChallengeParameter();
+        break;
     }
-
+    
     // Add Hint Button
     $hintBtn = $('<a>')
     .addClass('button hint-btn is-primary is-invered is-outlined')
@@ -217,7 +217,7 @@ $(document).ready(function () {
             .text("Try Again");
             $notificationHeader
             .text("Uh Oh!")
-                .toggleClass('has-text-light');
+            .toggleClass('has-text-light');
             $resulteMsg
             .append($notificationHeader)
             .append($notificationBtn)
@@ -226,7 +226,7 @@ $(document).ready(function () {
             break;
         }
     }
-
+    
     function checkResult() {
         if ($screen.text() == target && turnCount >= 0) {
             gameOver("Win");
@@ -269,8 +269,8 @@ $(document).ready(function () {
     
     // Calculator Logic
     $('.calculator-btn').click(function () {
-        var value = $(this).text();
-
+        var value = $(this).text(); //
+        
         // Reduce Turns on Each Click
         turnCount -= 1;
         $('.turn-count').text(turnCount);
@@ -304,7 +304,7 @@ $(document).ready(function () {
             if(tempvalueB) {
                 calculate();
                 $screen.empty();
-                $screen.append(parseInt(value));
+                $screen.append('<p>' + parseInt(value) + '</p>'); 
                 tempvalueB = undefined;
             }
             else {
@@ -317,7 +317,7 @@ $(document).ready(function () {
             if (tempvalueB) {
                 calculate();
                 $screen.empty();
-                $screen.append(parseInt(value));
+                $screen.append('<p>' + parseInt(value) + '</p>'); 
                 tempvalueB = undefined;
             }
             else {
@@ -330,7 +330,7 @@ $(document).ready(function () {
             if (tempvalueB) {
                 calculate();
                 $screen.empty();
-                $screen.append(parseInt(value));
+                $screen.append('<p>' + parseInt(value) + '</p>'); 
                 tempvalueB = undefined;
             }
             else {
@@ -343,7 +343,7 @@ $(document).ready(function () {
             if (tempvalueB) {
                 calculate();
                 $screen.empty();
-                $screen.append(parseInt(value));
+                $screen.append('<p>' + parseInt(value) + '</p>'); 
                 tempvalueB = undefined;
             }
             else {
@@ -355,11 +355,13 @@ $(document).ready(function () {
             case "=":
             $screen.empty();
             calculate();
-            $screen.append(parseInt(value));
+            $screen.append('<p>' + parseInt(value) + '</p>'); 
+                tempvalueB = undefined;
             break;
             
             case "C":
             $screen.empty();
+            // $('.screen > p').next().remove();
             tempvalueA = undefined;
             tempvalueB = undefined;
             operator = undefined;
@@ -370,16 +372,16 @@ $(document).ready(function () {
             break;
             
             default:
-                if(value == "00") {
-                    $screen.append(value);
-                } else {
-                    $screen.append(parseInt(value));   
-                }
+            if(value == "00") {
+                $screen.append('<p>' + value + '</p>'); 
+            } else {
+                $screen.append('<p>' + parseInt(value) + '</p>');   
+            }
             tempvalueA = parseInt($screen.text());
             break;
         }
         checkResult();
     });
-
+    
     $("[disabled]").off('click');
 });

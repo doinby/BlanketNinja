@@ -10,10 +10,12 @@ $(document).ready(function () {
     
     // Declare JS Variables /////////////////////////////
     
+    var title = document.getElementsByTagName("title")[0].innerHTML;
     var currentSceneBackground;
     var chapterCount = 0;
     var sceneCount = 0;
     var character = 0;
+    var dialogs;
     var Oliver = {
         name: "Oliver",
         portrait: "../images/Oliver.png",
@@ -22,8 +24,17 @@ $(document).ready(function () {
         name: "Remy",
         portrait: "../images/Remy.png",
     }
+    var Blank = {
+        name: "",
+        portrait: "../images/Blank.png",
+    }
     
     // Setup Scene //////////////////////////////////////
+    
+    // Add Dialog Container
+    $dialogContainer = $('<section>')
+    .addClass('dialog-container')
+    .appendTo($('main'));
     
     function spawmAllImages(maxCount) {
         for (i = 0; i <= maxCount; i++) {
@@ -33,8 +44,6 @@ $(document).ready(function () {
             .appendTo($gameViewport);
         }
     }
-    
-    spawmAllImages(3);
     
     function spawnDialogs(character, dialogs) {
         $characterPortrait
@@ -46,7 +55,6 @@ $(document).ready(function () {
         .html(character["name"]);
         
         $textBubble
-        .show()
         .addClass('text-bubble')
         .html(dialogs);
         
@@ -57,59 +65,91 @@ $(document).ready(function () {
         // .toggleClass("--dcReversed");
     }
     
-    function dialogList() {
-        console.log(chapterCount);
-        switch (chapterCount) {
-            case 0:
+    // Create Dialogs For Each Scenes
+    function dialogData() {
+        switch (title) {
+            case "Blanket Ninja - Intro":
+            chapterCount = 0;
+            spawmAllImages(4);
             switch (sceneCount) {
                 case 0:
                 currentSceneBackground = $('.scene' + chapterCount + '-' + sceneCount).fadeIn("slow");
-                $textBubble.hide();
                 dialogs = "";
+                $textBubble.toggle();
                 break;
-
+                
                 case 1:
+                $textBubble.toggle();
                 character = Oliver;
-                dialogs = "first";
+                dialogs = "<i>*pant* *pant*";
                 break;
                 
                 case 2:
                 character = Oliver;
-                dialogs = "second";
+                dialogs = "Remy! This way!";
                 break;
                 
                 case 3:
-                currentSceneBackground.fadeOut("fast");
-                currentSceneBackground.next().fadeIn("slow");
+                // currentSceneBackground.fadeOut("fast");
+                // currentSceneBackground.next().fadeIn("slow");
                 $dialogContainer.toggleClass("--dcReversed");
                 character = Remy;
-                dialogs = "third";
+                dialogs = "Wait for me!!";
                 break;
                 
-                case 4:
+                case 6:
+                character = Remy;
+                dialogs = "Woa! That was so close. <i>*pant* *pant*";
+                break;
+                
+                case 7:
                 $dialogContainer.toggleClass("--dcReversed");
                 character = Oliver;
-                dialogs = "fourth";
+                dialogs = "Yeah. <i>*pant* *pant*";
                 break;
                 
-                case 5:
+                case 8:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Remy;
+                dialogs = "Good thing we are ninjas! Haha.";
+                break;
+                
+                case 9:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Oliver;
+                dialogs = "We've got a lot of work to do. Let's go.";
+                break;
+                
+                case 10:
                 chapterCount++;
-                console.log(chapterCount);
-                    window.location = "../htmls/chapter" + chapterCount + ".html";
+                window.location = "../htmls/chapter" + chapterCount + ".html";
+                break;
+                
+                default:
+                currentSceneBackground.fadeOut("fast");
+                currentSceneBackground.next().fadeIn("slow");
                 break;
             }
             sceneCount++;
-            spawnDialogs(character, dialogs);            
+            spawnDialogs(character, dialogs);
             break;
-            case 1:
+            
+            case "Blanket Ninja - Map":
+            chapterCount = 1;
+            character = Oliver;
+            dialogs = "Where should we go now, Remy?";
+            spawnDialogs(character, dialogs);
+            sceneCount++;
+            break;
+            
+            case "Blanket Ninja - Chapter 3":
+            chapterCount = 3;
+            
             break;
         }
     }
     
-    function spawnCurrentDialogs() {
-        dialogList();
-    }
-    
-    $(document).mousedown(dialogList);
+    $(document).mousedown(dialogData);
     
 });
+

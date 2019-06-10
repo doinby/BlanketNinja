@@ -37,10 +37,14 @@
 .screen {
     position: relative;
     grid-area: screen;
-    flex-direction: row-reverse;
+    flex-direction: row;
     align-content: center;
+   justify-content: right;
     padding: 0 16px;
     border: 16px solid hsl(0, 0%, 21%);
+}
+
+.screen p {    
     font-size: 46px;
     font-weight: 700;
     letter-spacing: 4px;
@@ -49,7 +53,8 @@
 .googly-eye {
     grid-area: googly-eye;
     /* border: 16px solid hsl(171, 100%, 41%); */
-    border: 16px solid hsl(204, 86%, 53%);
+    /* border: 16px solid hsl(204, 86%, 53%); */
+    border: 16px solid hsl(171, 100%, 41%);
 }
 
 .irish {    

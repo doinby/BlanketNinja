@@ -7,6 +7,7 @@ $(document).ready(function () {
     var $notification = $('#notification').addClass('--isHidden');
     var $notificationHeader = $('<h2>').css('text-align', 'center');
     var $notificationText = $('<p>').css('text-align', 'left');
+    var $warningText = $('<h3>').addClass('has-text-warning');
     var $locationBtn;
     
     // Declare JS Variables /////////////////////////////
@@ -35,6 +36,7 @@ $(document).ready(function () {
         .append('<p>or</p>')
         .append('<h3>DRAG</h3>')
         .append('<p>on items</p>');
+        
         $muteBtn = $('<li>')
         .addClass('button is-primary')
         .append('<i class="im im-volume"></i>')
@@ -46,22 +48,13 @@ $(document).ready(function () {
             .toggle();
             $(this).toggleClass('is-danger')
         });;
+        
         $menuContainer = $('<ul>')
         .addClass('has-background-light --flex')
         .append($instruction)
         .append($muteBtn)
         .appendTo($gameViewport)
         .attr('id', 'menu');
-    }
-    
-    function spawnNotifications(notificationType) {
-        switch (notificationType) {
-            case "Menu":
-            $notification
-            .appendTo($gameViewport)
-            .toggle();            
-            break;
-        }
     }
     
     function spawnMapLocations() {        
@@ -131,7 +124,7 @@ $(document).ready(function () {
         if (isDisabled[x]) {
             $locationBtn
             .attr('disabled', 'disabled')
-            // .removeClass('is-primary')
+            .toggleClass('is-primary is-dark')
             .addClass('is-light');
         }
         else {
@@ -140,28 +133,27 @@ $(document).ready(function () {
         }
     }
     
-    if (title == "Blanket Ninja - Map") {
+    switch (title) {
+        case "Blanket Ninja - Map":
         spawnUI();
         spawnMapLocations();
-    }    
-    else {
+        $warningText
+        .appendTo($gameViewport)
+        .text("Choose A Location on the Map");
+        break;
+        
+        case "Blanket Ninja - Puzzle X":
+        showHintBtn = true;
         spawnUI();
+        break;
+        
+        case "Blanket Ninja - Puzzle Y":
+        showHintBtn = true;
+        spawnUI();
+        break;
+        
+        default: 
+        spawnUI();
+        break;
     }
-    
-    // switch (title) {
-    //     case "Blanket Ninja - Map":
-    //     spawnUI();
-    //     spawnMapLocations();
-    //     break;
-    
-    //     case "Blanket Ninja - Puzzle X":
-    //     showHintBtn = true;
-    //     spawnUI();
-    //     break;
-    
-    //     case "Blanket Ninja - Puzzle Y":
-    //     showHintBtn = true;
-    //     spawnUI();
-    //     break;
-    // }
 });

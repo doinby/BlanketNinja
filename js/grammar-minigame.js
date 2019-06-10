@@ -16,28 +16,36 @@ $(document).ready(function () {
     
     var value;
     var title = document.getElementsByTagName("title")[0].innerHTML;
-    var quote = 'We choose to go to the moon. We <div></div> to the moon in this decade and do the other things, <div></div> because they are easy, <div></div> because they are hard, because that goal will serve to organize and measure the best of our <div></div> and skills, because that challenge is one that we are willing to accept, one we <div></div> to postpone, and one which we intend to win, and the others, too.'
-    var author = "hiii";
+    var quote
+    var author
     var myAnswer;
     var isFilled = 0;
     
     // Setup Scene //////////////////////////////////////
     
     // Game Parameters
-    var possibilities = ["willing", "choosen", " energize", "choose", "not", "though", "energies", "are unwilling", "but"];
-    var correctAnswers = ["choose", "not", "but", "energies", "are unwilling"]
+    var possibilities;
+    var correctAnswers;
     
     switch (title) {
-        case "Blanket Ninja - Math Challenge X":
-        $notificationText.text("Keep a close googly-eye on the number of turns you have left");
+        case "Blanket Ninja - Grammar Challenge X":
+        $notificationText.text("Fill out the missing word by drag and drop answers to their correct place");
+        quote = "We choose to go to the moon. We <div></div> to the moon in this decade and do the other things, <div></div> because they are easy, <div></div> because they are hard, because that goal will serve to organize and measure the best of our <div></div> and skills, because that challenge is one that we are willing to accept, one we <div></div> to postpone, and one which we intend to win, and the others, too."
+        author = "John F. Kennedy, 'The Decision to Go to the Moon'"
+        possibilities = ["willing", "choosen", " energize", "choose", "not", "though", "energies", "are unwilling", "but"];
+        correctAnswers = ["choose", "not", "but", "energies", "are unwilling"]
         break;
         
-        case "Blanket Ninja - Math Challenge Y":
-        $notificationText.text("Multiply an '8' with an 3-digits number to get an 4-digits number.");
+        case "Blanket Ninja - Grammar Challenge Y":
+        $notificationText.text("");
+        quote = "The knowledge that you have emerged wiser and stronger from setbacks means that you <div></div>, ever after, secure in your ability to survive. You will never truly know yourself, or the strength of your relationships, until both <div></div> tested by adversity. Such knowledge <div></div> a true gift, for all that it <div></div> painfully won, and it <div></div> worth more than any qualification I ever earned.";
+        author = "J.K. Rowling, 'The Fringe Benefits of Failure'";
+        possibilities = ["are", "has been", "will not", "aren't", "not","being", "that", "is", "have been"];
+        correctAnswers = ["are", "have been", "is", "is", "have been"];
         break;
         
-        case "Blanket Ninja - Math Challenge Z":
-        $notificationText.text("You are a math genius, you can do it!");
+        case "Blanket Ninja - Grammar Challenge Z":
+        $notificationText.text("");
         break;
     }
     
@@ -55,15 +63,20 @@ $(document).ready(function () {
     })
     .text("Hint");
     
-    // Add Grammar CHallenge
+    // Create UI Container
     $questionContainer = $('<div>')
     .addClass('tile question-contaner has-background-light --flex')
     .append('<blockquote>' + quote, '<cite>' + author)
     .appendTo($gameViewport);
     
-    // $('blockquote').append(text);
+    $aswerContainer = $('<div>')
+    .addClass('answer-container --flex')
+    .appendTo($gameViewport);
+    
+    // Define Missing Block
     $('blockquote > div').addClass('blocked-out');
     
+    // Spawn Possible Answers
     for (i = 0; i < possibilities.length; i++) {
         $answer = $('<div>')
         .addClass('possibilities --flex --centerElement')
@@ -80,30 +93,6 @@ $(document).ready(function () {
         .text(possibilities[i]);
     }
     
-    $('.blocked-out').droppable({
-        accept: $('*'),
-        drop: function (event, ui) {
-            $(this)
-            .addClass('--incorrect')
-            .text(value);   
-            myAnswer = $(this).text();
-            if (checkAnwer($(this).index())) {
-                $(this)
-                .addClass('--correct')
-                .toggleClass('--incorrect');
-            }  
-            if (isFilled == correctAnswers.length) {
-                gameOver("Win");
-            }
-        }
-    });
-    
-    $('.blocked-out').draggable({
-        helper: "clone",
-        // snap: $('.blocked-out'),
-        revert: "invalid"
-    });
-    
     // Game Controller //////////////////////////////////
     
     function spawnNotifications(notificationType) {
@@ -116,19 +105,7 @@ $(document).ready(function () {
             .toggle();
             
             // Hint Messages
-            switch (title) {
-                case "Blanket Ninja - Math Challenge X":
-                $notificationText.text("Keep a close googly-eye on the number of turns you have left");
-                break;
-                
-                case "Blanket Ninja - Math Challenge Y":
-                $notificationText.text("Multiply an '8' with an 3-digits number to get an 4-digits number.");
-                break;
-                
-                case "Blanket Ninja - Math Challenge Z":
-                $notificationText.text("You are a math genius, you can do it!");
-                break;
-            }
+            $notificationText.text("To fill out missing words, drag and drop the answer to the correct block");
             break;
             
             case "Win":
@@ -142,24 +119,25 @@ $(document).ready(function () {
             .append($notificationBtn)
             .toggle();
             
+            // Redirect
             switch (title) {
-                case "Blanket Ninja - Math Challenge X":
+                case "Blanket Ninja - Grammar Challenge X":
                 $notificationBtn.click(function () {
-                    window.location = "../htmls/chapter1.html";
+                    window.location = "../htmls/challenge7.html";
                 });
                 break;
                 
-                case "Blanket Ninja - Math Challenge Z":
+                case "Blanket Ninja - Grammar Challenge Y":
                 $notificationBtn.click(function () {
-                    window.location = "../htmls/chapter3.html";
+                    // window.location = "../htmls/chapter3.html";
                 });
                 break;
                 
-                default:
-                $notificationBtn.click(function () {
-                    window.location = "../htmls/map-expert.html";
-                });
-                break;
+                // default:
+                // $notificationBtn.click(function () {
+                //     window.location = "../htmls/map-expert.html";
+                // });
+                // break;
             }
             break;
             
@@ -193,7 +171,9 @@ $(document).ready(function () {
     
     function gameOver(result) {
         $('.hint-btn').off('click');
-        $('.possibilities, .blocked-out').draggable("destroy");
+        
+        // Draggable disable function not working as intended
+        // $('.possibilities, .blocked-out').draggable("destroy");
         switch (result) {
             case "Win":
             spawnNotifications(result);
@@ -203,4 +183,29 @@ $(document).ready(function () {
             break;
         }
     }
+    
+    // Drag & Drop Mechanics
+    $('.blocked-out').droppable({
+        accept: $('*'),
+        drop: function (event, ui) {
+            $(this)
+            .addClass('--incorrect')
+            .text(value);
+            myAnswer = $(this).text();
+            if (checkAnwer($(this).index())) {
+                $(this)
+                .addClass('--correct')
+                .toggleClass('--incorrect');
+            }
+            if (isFilled == correctAnswers.length) {
+                gameOver("Win");
+            }
+        }
+    });
+    
+    $('.blocked-out').draggable({
+        helper: "clone",
+        // snap: $('.blocked-out'),
+        revert: "invalid"
+    });
 });

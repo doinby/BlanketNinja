@@ -88,6 +88,7 @@ $(document).ready(function () {
             .append($notificationBtn)
             .toggle();
             
+            // Redirect
             switch(title) {
                 case "Blanket Ninja - Puzzle X":
                 $notificationBtn.click(function () {

@@ -94,10 +94,9 @@ $(document).ready(function () {
         .append($characterPortrait)
         .append($characterName)
         .append($textBubble);
-        // .toggleClass("--dcReversed");
     }
     
-    // Create Dialogs For Each Scenes
+    // Create Dialogs For Each Chapter
     function dialogData() {
         switch (title) {
             case "Blanket Ninja - Map":
@@ -485,7 +484,7 @@ $(document).ready(function () {
             spawnDialogs(character, dialogs);
             break;
             
-            case "Blanket Ninja - Urban Myth":
+            case "Blanket Ninja - Gifts":
             chapterCount = 4;
             spawmAllImages(0);
             switch (sceneCount) {
@@ -534,7 +533,7 @@ $(document).ready(function () {
                 
                 case 7:
                 $currentSceneBackground.fadeOut("slow", function () {
-                    window.location = "../htmls/challenge6.html";
+                    window.location = "../htmls/chapter5.html";
                 });
                 break;
                 
@@ -547,7 +546,7 @@ $(document).ready(function () {
             spawnDialogs(character, dialogs);
             break;
             
-            case "Blanket Ninja - Cookies":
+            case "Blanket Ninja - Suspect":
             chapterCount = 5;
             spawmAllImages(0);
             switch (sceneCount) {
@@ -576,7 +575,6 @@ $(document).ready(function () {
                 break;
                 
                 case 4:
-                $dialogContainer.toggleClass("--dcReversed");
                 character = Kent;
                 dialogs = "Maybe they are the agent that carry flu bateria to the town";
                 break;
@@ -608,18 +606,106 @@ $(document).ready(function () {
                 case 9:
                 $dialogContainer.toggleClass("--dcReversed");
                 character = Emily;
-                dialogs = "I'm staying, silly. I couldn't go even if I wanted to.";
+                dialogs = "I couldn't go even if I wanted to.";
                 break;
                 
                 case 10:
                 $dialogContainer.toggleClass("--dcReversed");
-                character = Emily;
-                dialogs = "I'm staying, silly. I couldn't go even if I wanted to.";
+                character = Oliver;
+                dialogs = "Don't worry, we will update you on the findings.";
                 break;
                 
-                case 15:
+                case 11:
+                character = Oliver;
+                dialogs = "My Grandpa is sick, too. We'd really like to help.";
+                break;
+                
+                case 12:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Emily;
+                dialogs = "Thank you for coming, everyone.";
+                break;
+                
+                case 13:
                 $currentSceneBackground.fadeOut("slow", function () {
-                    window.location = "../htmls/chapter6.html";
+                    window.location = "../htmls/map-expert.html";
+                });
+                break;
+                
+                default:
+                $currentSceneBackground.fadeOut("fast");
+                $currentSceneBackground.next().fadeIn("slow");
+                break;
+            }
+            sceneCount++;
+            spawnDialogs(character, dialogs);
+            break;
+            
+            case "Blanket Ninja - Template":
+            chapterCount = 6;
+            spawmAllImages(0);
+            switch (sceneCount) {
+                case 0:
+                $currentSceneBackground = $('.scene' + chapterCount + '-' + sceneCount).fadeIn("slow");
+                dialogs = "";
+                $textBubble.toggle();
+                break;
+                
+                case 1:
+                $textBubble.toggle();
+                character = Mom;
+                dialogs = "What have you boys been up to at night?";
+                break;
+                
+                case 2:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Remy;
+                dialogs = "N... Nothing. We stayed up to watch streamed videos";
+                break;
+                
+                case 3:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Mom;
+                dialogs = "Ms. Haley called me today. She said she'd caught you boys sleeping in class sometimes";
+                break;
+                
+                case 4:
+                character = Mom;
+                dialogs = "Tell me the truth. Why are you up so late at night?";
+                break;
+                
+                case 5:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Oliver;
+                dialogs = "Sorry, mom. There were a couple of American streamers who stream late. We forgot it was bed time and then...";
+                break;
+                
+                case 6:
+                character = Oliver;
+                dialogs = "It... it won't happend again, I promise!";
+                break;
+                
+                case 7:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Mom;
+                dialogs = "Remember your bed time is at 10:30. I will check up on you boys tonight";
+                break;
+
+                case 8:
+                    $dialogContainer.toggleClass("--dcReversed");
+                    character = Remy;
+                    dialogs = "Yes, mom!";
+                    break;
+
+                case 9:
+                    $dialogContainer.toggleClass("--dcReversed");
+                    character = Mom;
+                    dialogs = "You are grounded until next month. No wandering about after school.";
+                    break;
+                
+                case 10:
+                $currentSceneBackground.fadeOut("slow", function () {
+                    window.location = "../htmls/map.html";
                 });
                 break;
                 

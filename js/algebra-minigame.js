@@ -205,16 +205,17 @@ $(document).ready(function () {
             .append($notificationBtn)
             .toggle();
 
+            // Redirect
             switch (title) {
                 case "Blanket Ninja - Math Challenge X":
                 $notificationBtn.click(function () {
-                    window.location = "../htmls/chapter1.html";
+                    window.location = "../htmls/challenge4.html";
                 });
                 break;
 
-                case "Blanket Ninja - Math Challenge Z":
+                case "Blanket Ninja - Math Challenge Y":
                     $notificationBtn.click(function () {
-                        window.location = "../htmls/chapter3.html";
+                        window.location = "../htmls/challenge5.html";
                     });
                     break;
                 

@@ -8,8 +8,10 @@
 .question-contaner {
     grid-row: 3 / 7;
     grid-column: 2 / 10;
-    padding: 64px;
+    flex-direction: row-reverse;
+    padding: 48px;
     line-height: 32px;
+    z-index: 0;
 }
 
 blockquote {
@@ -20,28 +22,29 @@ blockquote {
 blockquote:before {
     content: "\201C";
     position: absolute;
-    left: -60px;
-    top: -10px;
+    left: -30px;
     display: block;
-    font-size: 128px;
+    font-size: 64px;
     color: lightgrey;
 }
 
 blockquote:after {
     content: "\201E";
     position: absolute;
-    right: -60px;
-    bottom: -10px;
+    top: 80%;
+    right: -20px;
     display: block;
-    font-size: 128px;
+    font-size: 64px;
     color: lightgrey;
 }
 
-blockquote cite {
+cite {
+    padding: 32px 48px 0 0;
+    text-align: right;
     color: #999999;
 }
 
-blockquote cite:before {
+cite:before {
     content: "\2014 \2009";
 }
 

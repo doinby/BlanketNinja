@@ -11,7 +11,7 @@ $(document).ready(function () {
     // Declare JS Variables /////////////////////////////
     
     var title = document.getElementsByTagName("title")[0].innerHTML;
-    var currentSceneBackground;
+    var $currentSceneBackground;
     var chapterCount = 0;
     var sceneCount = 0;
     var character = 0;
@@ -31,6 +31,18 @@ $(document).ready(function () {
     var Maru = {
         name: "Maru",
         portrait: "../images/Maru.png",
+    }
+    var Mom = {
+        name: "Mom",
+        portrait: "../images/Mom.png",
+    }
+    var Dad = {
+        name: "Dad",
+        portrait: "../images/Dad.png",
+    }
+    var Grandpa = {
+        name: "Grandpa",
+        portrait: "../images/Grandpa.png",
     }
     var SchoolKid1 = {
         name: "School Kid 1",
@@ -96,7 +108,7 @@ $(document).ready(function () {
             spawmAllImages(0);
             switch (sceneCount) {
                 case 0:
-                currentSceneBackground = $('.scene' + chapterCount + '-' + sceneCount).fadeIn("slow");
+                $currentSceneBackground = $('.scene' + chapterCount + '-' + sceneCount).fadeIn("slow");
                 dialogs = "";
                 $textBubble.toggle();
                 break;
@@ -109,12 +121,14 @@ $(document).ready(function () {
                 break;
                 
                 case 10:
-                window.location = "../htmls/map.html"
+                $currentSceneBackground.fadeOut("slow", function() {
+                    window.location = "../htmls/map.html";
+                });
                 break;
                 
                 default:
-                currentSceneBackground.fadeOut("fast");
-                currentSceneBackground.next().fadeIn("slow");
+                $currentSceneBackground.fadeOut("fast");
+                $currentSceneBackground.next().fadeIn("slow");
                 break;
             }
             sceneCount++;
@@ -126,7 +140,7 @@ $(document).ready(function () {
             spawmAllImages(4);
             switch (sceneCount) {
                 case 0:
-                currentSceneBackground = $('.scene' + chapterCount + '-' + sceneCount).fadeIn("slow");
+                $currentSceneBackground = $('.scene' + chapterCount + '-' + sceneCount).fadeIn("slow");
                 dialogs = "";
                 $textBubble.toggle();
                 break;
@@ -172,12 +186,14 @@ $(document).ready(function () {
                 break;
                 
                 case 10:
-                window.location = "../htmls/map.html"
+                $currentSceneBackground.fadeOut("slow", function () {
+                    window.location = "../htmls/map.html";
+                });
                 break;
                 
                 default:
-                currentSceneBackground.fadeOut("fast");
-                currentSceneBackground.next().fadeIn("slow");
+                $currentSceneBackground.fadeOut("fast");
+                $currentSceneBackground.next().fadeIn("slow");
                 break;
             }
             sceneCount++;
@@ -189,7 +205,7 @@ $(document).ready(function () {
             spawmAllImages(4);
             switch (sceneCount) {
                 case 0:
-                currentSceneBackground = $('.scene' + chapterCount + '-' + sceneCount).fadeIn("slow");
+                $currentSceneBackground = $('.scene' + chapterCount + '-' + sceneCount).fadeIn("slow");
                 $textBubble.toggle();
                 break;
                 
@@ -252,12 +268,14 @@ $(document).ready(function () {
                 break;
                 
                 case 12:
-                window.location = "../htmls/map.html"
+                $currentSceneBackground.fadeOut("slow", function() {
+                    window.location = "../htmls/map.html";
+                });
                 break;
                 
                 default:
-                currentSceneBackground.fadeOut("fast");
-                currentSceneBackground.next().fadeIn("slow");
+                $currentSceneBackground.fadeOut("fast");
+                $currentSceneBackground.next().fadeIn("slow");
                 break;
             }
             sceneCount++;
@@ -269,7 +287,7 @@ $(document).ready(function () {
             spawmAllImages(0);
             switch (sceneCount) {
                 case 0:
-                currentSceneBackground = $('.scene' + chapterCount + '-' + sceneCount).fadeIn("slow");
+                $currentSceneBackground = $('.scene' + chapterCount + '-' + sceneCount).fadeIn("slow");
                 dialogs = "";
                 $textBubble.toggle();
                 break;
@@ -328,37 +346,135 @@ $(document).ready(function () {
                 break;
                 
                 case 10:
+                $dialogContainer.toggleClass("--dcReversed");
                 character = Oliver;
                 dialogs = "You are right. Plus we have English the day after.";
                 break;
                 
                 case 11:
+                $dialogContainer.toggleClass("--dcReversed");
                 character = Kent;
                 dialogs = "Let's go on Thursday afternoon then, since we get out early";
                 break;
                 
                 case 12:
+                $dialogContainer.toggleClass("--dcReversed");
                 character = Remy;
                 dialogs = "Ok.";
                 break;
                 
                 case 13:
+                $dialogContainer.toggleClass("--dcReversed");
                 character = Oliver;
                 dialogs = "Sounds good.";
                 break;
                 
                 case 14:
+                $dialogContainer.toggleClass("--dcReversed");
                 character = Maru;
                 dialogs = "Ok. We will meet at the school gate";
                 break;
                 
                 case 15:
-                window.location = "../htmls/chapter3.html"
+                $currentSceneBackground.fadeOut("slow", function () {
+                    window.location = "../htmls/chapter3.html";
+                });
                 break;
                 
                 default:
-                currentSceneBackground.fadeOut("fast");
-                currentSceneBackground.next().fadeIn("slow");
+                $currentSceneBackground.fadeOut("fast");
+                $currentSceneBackground.next().fadeIn("slow");
+                break;
+            }
+            sceneCount++;
+            spawnDialogs(character, dialogs);
+            break;
+            
+            case "Blanket Ninja - Dinner Time":
+            chapterCount = 3;
+            spawmAllImages(0);
+            switch (sceneCount) {
+                case 0:
+                $currentSceneBackground = $('.scene' + chapterCount + '-' + sceneCount).fadeIn("slow");
+                dialogs = "";
+                $textBubble.toggle();
+                break;
+                
+                case 1:
+                $textBubble.toggle();
+                character = Mom;
+                dialogs = "Kids, remember to wash the dishes when you finish eating.";
+                break;
+                
+                case 2:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Dad;
+                dialogs = "Oliver, what did I tell you about leaving your veggies?";
+                break;
+                
+                case 3:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Oliver;
+                dialogs = "But I really don't like roasted pumkin. Can I put away for later?";
+                break;
+                
+                case 4:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Mom;
+                dialogs = "Remy ate all of them so you can, too. Now, I don't want to see any leftovers when I get back.";
+                break;
+                
+                case 5:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Dad;
+                dialogs = "Bye kids!";
+                break;
+                
+                case 6:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Remy;
+                dialogs = "Mom! Dad! When can we go see Grandpa?";
+                break;
+                
+                case 7:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Dad;
+                dialogs = "Oh, you will, soon. Don't worry. Right now Grandpa is a little ill. He needs time to recover.";
+                break;
+                
+                case 8:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Remy;
+                dialogs = "Please tell Grandpa we miss him a lot. And we wish him a speeeeeeeedy recovery. And, and, can we visit him this weekend?";
+                break;
+                
+                case 9:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Dad;
+                dialogs = "Okay. But you need to finish your homework first, alright kids?"
+                break;
+
+                case 10:
+                    $dialogContainer.toggleClass("--dcReversed");
+                    character = Remy;
+                    dialogs = "Yes!!!"
+                    break;
+
+                case 11:
+                    $dialogContainer.toggleClass("--dcReversed");
+                    character = Oliver;
+                    dialogs = "Okay, dad."
+                    break;
+                
+                case 13:
+                $currentSceneBackground.fadeOut("slow", function () {
+                    window.location = "../htmls/challenge2.html";
+                });
+                break;
+                
+                default:
+                $currentSceneBackground.fadeOut("fast");
+                $currentSceneBackground.next().fadeIn("slow");
                 break;
             }
             sceneCount++;

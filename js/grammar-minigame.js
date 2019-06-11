@@ -123,13 +123,13 @@
             switch (title) {
                 case "Blanket Ninja - Grammar Challenge X":
                 $notificationBtn.click(function () {
-                    window.location = "../htmls/challenge7.html";
+                    window.location = "../htmls/challenge9.html";
                 });
                 break;
                 
                 case "Blanket Ninja - Grammar Challenge Y":
                 $notificationBtn.click(function () {
-                    // window.location = "../htmls/chapter3.html";
+                    window.location = "../htmls/chapter7.html";
                 });
                 break;
                 

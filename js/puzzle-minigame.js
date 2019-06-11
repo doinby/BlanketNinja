@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    
     // Declare CSS Variables ////////////////////////////
     
     var $gameViewport = $('.game-viewport');
@@ -24,6 +23,10 @@ $(document).ready(function () {
     var currentBlanketPos = $blanket.position();
     var currentBedPos = $bed.position();
     var update;
+    var nextLink = $notificationBtn.click(function() {
+        window.location = "../htmls/map.html"
+    });
+    
     
     // Setup Scene //////////////////////////////////////
     
@@ -89,10 +92,11 @@ $(document).ready(function () {
             .toggle();
             
             // Redirect
-            switch(title) {
+            
+            switch(title) {   
                 case "Blanket Ninja - Puzzle X":
                 $notificationBtn.click(function () {
-                    window.location = "../htmls/map.html";
+                    window.location = "../htmls/chapter1.html";
                 });
                 break;
                 
@@ -100,20 +104,20 @@ $(document).ready(function () {
                 $notificationBtn.click(function () {
                     window.location = "../htmls/chapter2.html";
                 });
-                break;
+                break;       
 
                 case "Blanket Ninja - Puzzle Z":
-                    $notificationBtn.click(function () {
-                        window.location = "../htmls/chapter4.html";
-                    });
-                    break;
-                
-                default:
                 $notificationBtn.click(function () {
-                    window.location = "../htmls/map-expert.html";
+                    window.location = "../htmls/chapter3.html";
                 });
                 break;
-            }            
+                
+                case "Blanket Ninja - Puzzle Boss Fight":
+                $notificationBtn.click(function () {
+                    window.location = "../htmls/chapter3-1.html";
+                });
+                break;
+            }          
             break;
             
             case "Lose":

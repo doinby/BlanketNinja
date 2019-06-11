@@ -118,23 +118,11 @@ $(document).ready(function () {
                 checkDisabledBtn(i);
                 $locationBtn
                 .click(function () {
-                    sessionStorage.btn3 = "disabled";
+                    sessionStorage.btn4 = "disabled";
                 })
                 .css({
                     'grid-column': '2 / 3',
                     'grid-row': '5 / 6'
-                });
-                break;
-                
-                case 5:
-                checkDisabledBtn(i);
-                $locationBtn
-                .click(function () {
-                    sessionStorage.btn3 = "disabled";
-                })
-                .css({
-                    'grid-column': '7 / 8',
-                    'grid-row': '7 / 8'
                 });
                 break;
             }
@@ -151,7 +139,6 @@ $(document).ready(function () {
             sessionStorage.btn2,
             sessionStorage.btn3,
             sessionStorage.btn4,
-            sessionStorage.btn5,
         ]
         
         if (isDisabled[x]) {
@@ -169,12 +156,12 @@ $(document).ready(function () {
     switch (title) {
         case "Blanket Ninja - Map":        
         // Spawn Easy Puzzles For Beginner        
-        spawnMapUI(2);
+        spawnMapUI(0);
         break;
         
         case "Blanket Ninja - Map (Expert)":
         // Spawn All Puzzles      
-        spawnMapUI(5);
+        spawnMapUI(4);
         break;
         
         case "Blanket Ninja - Puzzle X":

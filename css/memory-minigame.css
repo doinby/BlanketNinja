@@ -39,15 +39,6 @@
     padding: 0 32px;
 }
 
-.instruction {
-    top: 12%;
-    width: 100%;
-    background: transparent;
-    font-weight: 700;
-    text-align: center;
-    animation: pulse 2.5s ease-in infinite;
-}
-
 .correct-sequence {
     width: 50%;
     align-items: center;

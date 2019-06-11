@@ -208,19 +208,19 @@ $(document).ready(function () {
             switch (title) {
                 case "Blanket Ninja - Math Challenge X":
                 $notificationBtn.click(function () {
-                    window.location = "../htmls/challenge4.html";
+                    window.location = "../htmls/chapter3.html";
                 });
                 break;
 
                 case "Blanket Ninja - Math Challenge Y":
                     $notificationBtn.click(function () {
-                        window.location = "../htmls/challenge5.html";
+                        window.location = "../htmls/chapter4.html";
                     });
                     break;
                 
                 default:
                 $notificationBtn.click(function () {
-                    window.location = "../htmls/map-expert.html";
+                    window.location = "../htmls/chapter4.html";
                 });
                 break;
             }

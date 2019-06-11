@@ -155,20 +155,19 @@ footer {
     grid-column: 1 / 11;
     position: absolute;
     width: 100%;
+    background: transparent;
     text-align: center;
     font-weight: 700;
     animation: pulse 2s infinite;
 }
 
-@keyframes pulse {
-  0%, 100% {
-    /* color: #001F3F; */
-    color: rgba(255, 221, 87, 1);
-  }
-  50% {
-    /* color: #FF4136; */
-    color: rgba(255, 221, 87, 0);
-  }
+.instruction {
+    top: 12%;
+    width: 100%;
+    background: transparent;
+    font-weight: 700;
+    text-align: center;
+    animation: pulse 2.5s ease-in infinite;
 }
 
 .copyright {
@@ -213,6 +212,16 @@ footer {
     align-items: center;
     justify-items: center;
     justify-content: center;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        color: #2979ff;
+    }
+    50% {
+        color: #2979ff;
+        opacity: 0;
+    }
 }
 
 /* reference: https://google.github.io/material-design-icons/ */

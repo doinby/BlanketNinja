@@ -272,8 +272,8 @@ $(document).ready(function () {
                 
                 case 12:
                 $currentSceneBackground.fadeOut("slow", function() {
-                    window.location = "../htmls/map.html";
                 });
+                window.location = "../htmls/map-expert.html";
                 break;
                 
                 default:
@@ -380,8 +380,8 @@ $(document).ready(function () {
                 
                 case 15:
                 $currentSceneBackground.fadeOut("slow", function () {
-                    window.location = "../htmls/chapter3.html";
                 });
+                window.location = "../htmls/challenge5.html";
                 break;
                 
                 default:
@@ -471,8 +471,8 @@ $(document).ready(function () {
                 
                 case 13:
                 $currentSceneBackground.fadeOut("slow", function () {
-                    window.location = "../htmls/challenge2.html";
                 });
+                window.location = "../htmls/challenge6.html";
                 break;
                 
                 default:
@@ -533,8 +533,8 @@ $(document).ready(function () {
                 
                 case 7:
                 $currentSceneBackground.fadeOut("slow", function () {
-                    window.location = "../htmls/chapter5.html";
                 });
+                window.location = "../htmls/map-expert.html";
                 break;
                 
                 default:
@@ -546,7 +546,7 @@ $(document).ready(function () {
             spawnDialogs(character, dialogs);
             break;
             
-            case "Blanket Ninja - Suspect":
+            case "Blanket Ninja - Found the Suspect":
             chapterCount = 5;
             spawmAllImages(0);
             switch (sceneCount) {
@@ -628,8 +628,8 @@ $(document).ready(function () {
                 
                 case 13:
                 $currentSceneBackground.fadeOut("slow", function () {
-                    window.location = "../htmls/map-expert.html";
                 });
+                window.location = "../htmls/map-expert.html";
                 break;
                 
                 default:
@@ -641,7 +641,7 @@ $(document).ready(function () {
             spawnDialogs(character, dialogs);
             break;
             
-            case "Blanket Ninja - Template":
+            case "Blanket Ninja - Grounded":
             chapterCount = 6;
             spawmAllImages(0);
             switch (sceneCount) {
@@ -690,22 +690,54 @@ $(document).ready(function () {
                 character = Mom;
                 dialogs = "Remember your bed time is at 10:30. I will check up on you boys tonight";
                 break;
-
+                
                 case 8:
-                    $dialogContainer.toggleClass("--dcReversed");
-                    character = Remy;
-                    dialogs = "Yes, mom!";
-                    break;
-
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Remy;
+                dialogs = "Yes, mom!";
+                break;
+                
                 case 9:
-                    $dialogContainer.toggleClass("--dcReversed");
-                    character = Mom;
-                    dialogs = "You are grounded until next month. No wandering about after school.";
-                    break;
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Mom;
+                dialogs = "You are grounded until next month. No wandering about after school.";
+                break;
                 
                 case 10:
                 $currentSceneBackground.fadeOut("slow", function () {
-                    window.location = "../htmls/map.html";
+                });
+                window.location = "../htmls/challenge8.html";
+                break;
+                
+                default:
+                $currentSceneBackground.fadeOut("fast");
+                $currentSceneBackground.next().fadeIn("slow");
+                break;
+            }
+            sceneCount++;
+            spawnDialogs(character, dialogs);
+            break;
+            
+            case "Blanket Ninja - Template":
+            chapterCount = 7;
+            spawmAllImages(0);
+            switch (sceneCount) {
+                case 0:
+                $currentSceneBackground = $('.scene' + chapterCount + '-' + sceneCount).fadeIn("slow");
+                dialogs = "";
+                $textBubble.toggle();
+                break;
+                
+                case 1:
+                $textBubble.toggle();
+                $dialogContainer.toggleClass("--dcReversed");
+                character = "";
+                dialogs = "";
+                break;
+                
+                case 10:
+                $currentSceneBackground.fadeOut("slow", function () {
+                    window.location = "../htmls/challenge9.html";
                 });
                 break;
                 

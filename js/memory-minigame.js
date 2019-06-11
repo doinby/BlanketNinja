@@ -70,7 +70,7 @@ $(document).ready(function () {
             break;
             
             case "Instruction":
-            $instruction = $('<div>')
+            $instruction = $('<h4>')
             .addClass('instruction notification')
             .text("Press any key to start")
             .appendTo($gameViewport);
@@ -96,15 +96,9 @@ $(document).ready(function () {
             
             // Redirect
             switch (title) {
-                case "Blanket Ninja - Grammar Challenge X":
+                case "Blanket Ninja - Direction Memory Challenge X":
                 $notificationBtn.click(function () {
-                    window.location = "../htmls/challenge7.html";
-                });
-                break;
-                
-                case "Blanket Ninja - Grammar Challenge Y":
-                $notificationBtn.click(function () {
-                    // window.location = "../htmls/chapter3.html";
+                    window.location = "../htmls/map-expert.html";
                 });
                 break;
                 

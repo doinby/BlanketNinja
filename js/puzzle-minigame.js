@@ -209,6 +209,7 @@ $(document).ready(function () {
             //     console.log("complete");
             // }
         });
+        
         if ($progressBar.width() < 1) {
             gameOver("Lose");
         }

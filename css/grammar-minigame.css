@@ -48,6 +48,21 @@ cite:before {
     content: "\2014 \2009";
 }
 
+.blocked-out {
+    display: inline-flex;    
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    min-width: 96px;
+    width: auto;
+    height: 24px;
+    margin-bottom: -7px;
+    padding: 8px;
+    background: hsl(48, 100%, 67%);
+    border-radius: 2px;
+    font-weight: 700;
+}
+
 .answer-container {
     grid-row: 7 / 9;
     grid-column: 2 / 10;
@@ -65,26 +80,6 @@ cite:before {
     background: hsl(0, 0%, 96%);
     text-align: center;
     font-weight: 700;
-}
-
-.blocked-out {
-    display: inline-flex;    
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    min-width: 96px;
-    width: auto;
-    height: 24px;
-    margin-bottom: -7px;
-    padding: 8px;
-    background: hsl(48, 100%, 67%);
-    border-radius: 2px;
-    font-weight: 700;
-}
-
-.possibilities:hover, .possibilities:focus, .blocked-out:hover, .blocked-out:focus{
-    box-shadow: 0 0 8px rgba(81, 203, 238, 1);
-    border: 1px solid rgba(81, 203, 238, 1);
 }
 
 /* Modifier *********************************************/
@@ -105,4 +100,12 @@ cite:before {
 
 .--incorrect {
     background: tomato;
+}
+
+.possibilities:hover, 
+.possibilities:focus, 
+.blocked-out:hover, 
+.blocked-out:focus {
+    box-shadow: 0 0 8px rgba(81, 203, 238, 1);
+    border: 1px solid rgba(81, 203, 238, 1);
 }

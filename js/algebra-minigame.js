@@ -103,9 +103,8 @@ $(document).ready(function () {
             'grid-area': calculatorBtnList[i]
         });
         
-        calculatorBtnList[i]
-        .text(function () {
-            // return calculatorBtnList[i].attr('class');
+        // Bind Non-Numeric Keys to Its Values
+        calculatorBtnList[i].text(function () {
             switch (i) {
                 case 0: return "+";
                 case 1: return "-";

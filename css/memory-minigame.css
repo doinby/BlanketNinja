@@ -1,0 +1,97 @@
+/* Element **********************************************/
+
+.hint-btn {
+    grid-area: hint;    
+    text-align: center;
+}
+
+.screen {
+    grid-column: 2 / 10;
+    grid-row: 3 / 8;   
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    /* border: 16px solid hsl(0, 0%, 21%); */
+}
+
+.screen > div {
+    margin: 16px; 
+}
+
+.last-pressed {
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+}
+
+.your-sequence {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 8px;
+    align-items: center;
+    justify-items: center;
+    width: 70%;
+    padding: 0 32px;
+}
+
+.instruction {
+    top: 12%;
+    width: 100%;
+    background: transparent;
+    font-weight: 700;
+    text-align: center;
+    animation: pulse 2.5s ease-in infinite;
+}
+
+.correct-sequence {
+    width: 50%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+/* .correct-sequence * {
+    margin: 8px;
+} */
+
+/* Modifier *********************************************/
+
+.--PGrid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-areas: 
+    ". stat stat stat stat . . . hint menu"
+    ". stat stat stat stat . . . hint menu";
+    align-items: center;
+}
+
+.--correct {
+    background: lime;
+}
+
+.--incorrect {
+    background: tomato;
+}
+
+.possibilities:hover, 
+.possibilities:focus, 
+.blocked-out:hover, 
+.blocked-out:focus {
+    box-shadow: 0 0 8px rgba(81, 203, 238, 1);
+    border: 1px solid rgba(81, 203, 238, 1);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        color: #2979ff;
+    }
+    50% {
+        color: #2979ff;
+        opacity: 0;
+    }
+}

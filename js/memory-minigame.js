@@ -48,16 +48,17 @@ $(document).ready(function () {
     // Game Parameters        
     switch (title) {
         case "Blanket Ninja - Direction Memory Challenge X":
-        correctSequence = ["37", "38", "39", "40"];
+        maxCount = 5;
         break;
     }
-    
-    // Shuffle Array
-    correctSequence.sort(function() {
-        return 0.5 - Math.random(); 
-    });
+
+    correctSequence = new Array(maxCount);
     
     // Game Controller //////////////////////////////////
+
+    function getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
     
     function spawnNotifications(notificationType) {
         switch (notificationType) {
@@ -187,8 +188,10 @@ $(document).ready(function () {
     spawnNotifications("Instruction");
     
     // Show correct sequence which disappears in 1000 interval
+
     spawnNotifications("Correct Sequence");
     for (i = 0; i < correctSequence.length; i++) {
+        correctSequence[i] = getRandomNumber(37, 40);
         var keyIndex = parseInt(correctSequence[i]);
         $correctSequence.append(findKeySymbol(keyIndex));
     }

@@ -161,7 +161,7 @@ $(document).ready(function () {
         
         case "Blanket Ninja - Map (Expert)":
         // Spawn All Puzzles      
-        spawnMapUI(4);
+        spawnMapUI(3);
         break;
         
         case "Blanket Ninja - Puzzle X":

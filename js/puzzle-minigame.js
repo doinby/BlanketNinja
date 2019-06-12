@@ -8,11 +8,11 @@ $(document).ready(function () {
     var $notificationHeader = $('<h2>').css('text-align', 'center');
     var $notificationText = $('<p>').css('text-align', 'left');
     var $notificationBtn = $('<a>').addClass('button --flex --centerElement');
-    var $blanketUI = $('<div>');
-    var $player = $('.player');
+    var $blanketUI = $('<div>').append('<img src="../images/blanket.png" alt="">');
+    var $player = $('.player').append('<img src="../images/player.png" alt="">');
     var $hook = $('.hook');
-    var $blanket = $('.blanket');
-    var $bed = $('.bed');
+    var $blanket = $('.blanket').append('<img src="../images/blanket.png" alt="">');
+    var $bed = $('.bed').append('<img src="../images/bed.png" alt="">');
     
     // Declare JS Variables /////////////////////////////
     
@@ -40,9 +40,9 @@ $(document).ready(function () {
     
     // Add Inventory UI
     $blanketUI
-    .addClass('blanket-ui has-background-warning');
+    .addClass('blanket-ui');
     $inventory = $('<div>')
-    .addClass('inventory has-background-primary')
+    .addClass('inventory')
     .append($blanketUI)
     .appendTo($gameViewport);
     
@@ -108,13 +108,7 @@ $(document).ready(function () {
 
                 case "Blanket Ninja - Puzzle Z":
                 $notificationBtn.click(function () {
-                    window.location = "../htmls/chapter3.html";
-                });
-                break;
-                
-                case "Blanket Ninja - Puzzle Boss Fight":
-                $notificationBtn.click(function () {
-                    window.location = "../htmls/chapter3-1.html";
+                    window.location = "../htmls/chapter6.html";
                 });
                 break;
             }          
@@ -173,10 +167,10 @@ $(document).ready(function () {
     // Puzzle Logic
     $hook.click(function () {
         $(this).animate({
-            top: currentPlayerPos.top - currentHookPos.top - $hook.height()
+            top: currentPlayerPos.top - currentHookPos.top - $hook.height() -50
         }, 1000);
         $blanket.animate({
-            top: currentPlayerPos.top - currentBlanketPos.top + $hook.height() - $blanket.height()
+            top: currentPlayerPos.top - currentBlanketPos.top + $hook.height() - $blanket.height() - 50
         },1000);
     });
     

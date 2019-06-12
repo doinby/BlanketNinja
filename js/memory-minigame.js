@@ -98,7 +98,7 @@ $(document).ready(function () {
             switch (title) {
                 case "Blanket Ninja - Direction Memory Challenge X":
                 $notificationBtn.click(function () {
-                    window.location = "../htmls/map-expert.html";
+                    window.location = "../htmls/chapter5.html";
                 });
                 break;
                 
@@ -191,7 +191,7 @@ $(document).ready(function () {
     }
     $correctSequence
     .find("i")
-    .addClass('button --flex --centerElement')
+    .addClass('button is-primary --flex --centerElement')
     
     // Record Key Pressed Sequence
     mySequence = new Array();

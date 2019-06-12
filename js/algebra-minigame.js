@@ -153,14 +153,14 @@ $(document).ready(function () {
     function spawnChallengeParameter() {
         // Add Target Number
         $target = $('<div>')
-        .addClass('tile target has-background-primary has-text-light')
+        .addClass('tile target has-background-primary has-text-light --flex')
         .append('<p>Target Value:')
         .append('<h3>' + target + '</h3>')
         .appendTo($gameViewport);
         
         // Add Number of Turns
         $turns = $('<div>')
-        .addClass('tile turns has-background-light')
+        .addClass('tile turns has-background-light --flex')
         .append('<p>Turns Left:')
         .append('<h3 class="turn-count">' + turnCount + '</h3>')
         .appendTo($gameViewport);
@@ -203,7 +203,7 @@ $(document).ready(function () {
             .append($notificationHeader)
             .append($notificationBtn)
             .toggle();
-
+            
             // Redirect
             switch (title) {
                 case "Blanket Ninja - Math Challenge X":
@@ -211,12 +211,18 @@ $(document).ready(function () {
                     window.location = "../htmls/chapter3.html";
                 });
                 break;
-
+                
                 case "Blanket Ninja - Math Challenge Y":
-                    $notificationBtn.click(function () {
-                        window.location = "../htmls/chapter4.html";
-                    });
-                    break;
+                $notificationBtn.click(function () {
+                    window.location = "../htmls/challenge7.html";
+                });
+                break;
+                
+                case "Blanket Ninja - Math Challenge Z":
+                $notificationBtn.click(function () {
+                    window.location = "../htmls/chapter4.html";
+                });
+                break;
                 
                 default:
                 $notificationBtn.click(function () {

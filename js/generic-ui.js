@@ -153,19 +153,22 @@ $(document).ready(function () {
     }
     
     switch (title) {
-        case "Blanket Ninja - Map":      
-        
+        case "Blanket Ninja - Map":    
+        // Spawn Easy Puzzles For Beginner        
         if (sessionStorage.btn0) {
             spawnMapUI(1);
         } else {
-            // Spawn Easy Puzzles For Beginner        
             spawnMapUI(0);            
         }
         break;
         
         case "Blanket Ninja - Map (Expert)":
-        // Spawn All Puzzles      
-        spawnMapUI(3);
+        // If all the puzzles were solved, spawn boss puzzle
+        if (sessionStorage.btn2 && sessionStorage.btn3) {
+            spawnMapUI(4);
+        } else {  // Spawn all puzzles                  
+            spawnMapUI(3);
+        }
         break;
     }
 });

@@ -8,14 +8,18 @@
 .question-contaner {
     grid-row: 3 / 7;
     grid-column: 2 / 10;
-    flex-direction: row-reverse;
-    padding: 48px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 16px;
     line-height: 32px;
     z-index: 0;
 }
 
 blockquote {
     position: relative;
+    width: 90%;
+    /* margin: 16px 32px 0 32px; */
     color: #383838;
 }
 
@@ -39,7 +43,8 @@ blockquote:after {
 }
 
 cite {
-    padding: 32px 48px 0 0;
+    width: 100%;
+    padding: 16px 48px 0 0;
     text-align: right;
     color: #999999;
 }

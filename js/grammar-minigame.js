@@ -65,7 +65,7 @@
     
     // Create UI Container
     $questionContainer = $('<div>')
-    .addClass('tile question-contaner has-background-light --flex')
+    .addClass('tile question-contaner has-background-light --flex --centerElement')
     .append('<blockquote>' + quote, '<cite>' + author)
     .appendTo($gameViewport);
     

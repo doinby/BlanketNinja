@@ -51,11 +51,11 @@ $(document).ready(function () {
         maxCount = 5;
         break;
     }
-
+    
     correctSequence = new Array(maxCount);
     
     // Game Controller //////////////////////////////////
-
+    
     function getRandomNumber(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
@@ -94,21 +94,10 @@ $(document).ready(function () {
             .append($notificationBtn)
             .toggle();
             
-            // Redirect
-            switch (title) {
-                case "Blanket Ninja - Direction Memory Challenge X":
-                $notificationBtn.click(function () {
-                    window.location = "../htmls/chapter5.html";
-                });
-                break;
-                
-                // default:
-                // $notificationBtn.click(function () {
-                //     window.location = "../htmls/map-expert.html";
-                // });
-                // break;
-            }
-            break;
+            // Redirect            
+            $notificationBtn.click(function () {
+                window.location = "../htmls/map-expert.html";
+            });
             
             case "Lose":
             $notificationBtn
@@ -127,23 +116,23 @@ $(document).ready(function () {
             break;
         }
     }
-
+    
     function findKeySymbol(x) {
         switch (x) {
             case 37: // left         
-                return '<i class="im im-arrow-left"></i>'
-                break;
+            return '<i class="im im-arrow-left"></i>'
+            break;
             case 38: // up
-                return '<i class="im im-arrow-up"></i>'
-                break;
+            return '<i class="im im-arrow-up"></i>'
+            break;
             case 39: // right
-                return '<i class="im im-arrow-right"></i>'
-                break;
+            return '<i class="im im-arrow-right"></i>'
+            break;
             case 40: // down
-                return '<i class="im im-arrow-down"></i>'
-                break;
+            return '<i class="im im-arrow-down"></i>'
+            break;
             default:
-                return;
+            return;
         }
     }
     
@@ -182,7 +171,7 @@ $(document).ready(function () {
     spawnNotifications("Instruction");
     
     // Show correct sequence which disappears in 1000 interval
-
+    
     spawnNotifications("Correct Sequence");
     for (i = 0; i < correctSequence.length; i++) {
         correctSequence[i] = getRandomNumber(37, 40);

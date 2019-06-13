@@ -34,12 +34,11 @@
 }
 
 .screen {
-    position: relative;
     grid-area: screen;
     flex-direction: row;
     align-content: center;
-    justify-content: right;
-    margin: 8px;
+    justify-content: flex-end;
+    padding: -16px;
     background: #EEEEEE;
 }
 

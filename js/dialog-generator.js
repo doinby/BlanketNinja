@@ -117,6 +117,11 @@ $(document).ready(function () {
             sceneCount++;
             break;
             
+            case "Blanket Ninka - Memory Challenge X":
+            character = Remy;
+            
+            break;
+            
             case "Blanket Ninja - Template": 
             chapterCount = 1;
             switch (sceneCount) {
@@ -438,19 +443,19 @@ $(document).ready(function () {
                 case 6:
                 $dialogContainer.toggleClass("--dcReversed");
                 character = Remy;
-                dialogs = "Mom! Dad! When can we go see Grandpa?";
+                dialogs = "Mom! Dad! When can we go see grandpa?";
                 break;
                 
                 case 7:
                 $dialogContainer.toggleClass("--dcReversed");
                 character = Dad;
-                dialogs = "Oh, you will, soon. Don't worry. Right now Grandpa is a little ill. He needs time to recover.";
+                dialogs = "Oh, you will, soon. Don't worry. Right now grandpa is a little ill. He needs time to recover.";
                 break;
                 
                 case 8:
                 $dialogContainer.toggleClass("--dcReversed");
                 character = Remy;
-                dialogs = "Please tell Grandpa we miss him a lot. And we wish him a speeeeeeeedy recovery. And, and, can we visit him this weekend?";
+                dialogs = "Please tell grandpa we miss him a lot. And we wish him a speeeeeeeedy recovery. And, and, can we visit him this weekend?";
                 break;
                 
                 case 9:
@@ -554,7 +559,7 @@ $(document).ready(function () {
                 
                 case 11:
                 character = Oliver;
-                dialogs = "My Grandpa is sick, too. We'd really like to help.";
+                dialogs = "My grandpa is sick, too. We'd really like to help.";
                 break;
                 
                 case 12:
@@ -660,7 +665,7 @@ $(document).ready(function () {
                 case 15:
                 $dialogContainer.toggleClass("--dcReversed");
                 character = Oliver;
-                dialogs = "We can get out through the roof. I know the way."
+                dialogs = "We can get out through the roof. I know the way.";
                 
                 case 16:
                 $('.scene-image').fadeOut(2000, function () {
@@ -688,14 +693,37 @@ $(document).ready(function () {
                 case 1:
                 $textBubble.toggle();
                 character = Granpa;
-                dialogs = "I'm fine, I'm fine, there is nothing to worry about.";
+                dialogs = "I'm fine, my dear child. There is nothing to worry about.";
                 break;
-
+                
                 case 2:
-                    $textBubble.toggle();
-                    character = Granpa;
-                    dialogs = "I'm fine, I'm fine, there is nothing to worry about.";
-                    break;
+                character = Granpa;
+                dialogs = "<strong>COUGH COUGH COUGH";
+                break;
+                
+                case 3:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Remy;
+                dialogs = "No!!! Grandpa!!!"
+                break;
+                
+                case 4:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Dad;
+                dialogs = "Alright, we should let him get some rest.";
+                break;
+                
+                case 5:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Oliver;
+                dialogs = "I hope you'll get better soon to come home with us.";
+                break;
+                
+                case 6:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Granpa;
+                dialogs = ""
+                break;
                 
                 case 20:
                 $('.scene-image').fadeOut(2000, function () {

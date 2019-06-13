@@ -3,9 +3,9 @@ $(document).ready(function () {
     // Declare CSS Variables ////////////////////////////
     
     var $gameViewport = $('.game-viewport');
-    var $notification = $('#notification').addClass('--isHidden');
-    var $notificationHeader = $('<p>').css('text-align', 'center');
-    var $notificationText = $('<p>').css('text-align', 'left');
+    // var $notification = $('#notification').addClass('--isHidden');
+    // var $notificationHeader = $('<p>').css('text-align', 'center');
+    // var $notificationText = $('<p>').css('text-align', 'left');
     var $warningText = $('<h3>').addClass('warning-text');
     var $locationBtn;
     

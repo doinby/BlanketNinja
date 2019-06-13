@@ -63,6 +63,11 @@ $(document).ready(function () {
         portrait: "../images/Blank.png",
     }
     
+    var MysteriousMan = {
+        name: "Mysterious Man",
+        portrait: "../images/MysteriousMan.png"
+    }
+    
     // Setup Scene //////////////////////////////////////
     
     // Add Dialog Container
@@ -114,11 +119,26 @@ $(document).ready(function () {
             character = Oliver;
             dialogs = "Where should we go now, Remy?";
             spawnDialogs(character, dialogs);
+            break;
+            
+            case "Blanket Ninja - Map (Expert)":
+            switch (sceneCount) { 
+                case 0:
+                // If 4 of the puzzles were completed
+                if (sessionStorage.btn2 && sessionStorage.btn3) {
+                    
+                } else { // If 3 of the puzzles were completed                
+                    character = Oliver;
+                    dialogs = "Look! Remy, it's those strange flying bugs that makes the local sick.";
+                }
+                break;
+            }
+            
+            spawnDialogs(character, dialogs);
             sceneCount++;
             break;
             
             case "Blanket Ninka - Memory Challenge X":
-            character = Remy;
             
             break;
             
@@ -147,6 +167,41 @@ $(document).ready(function () {
                 
                 default:
                 spawnNextImage();
+                break;
+            }
+            sceneCount++;
+            spawnDialogs(character, dialogs);
+            break;
+            
+            case "Blanket Ninja":
+            switch (sceneCount) {
+                case 0:
+                character = "";
+                dialogs = "In an unknown town of an unknown civilization, a pair of twin ninjas have decided to become a night-time blanket hero.";
+                break;
+                
+                case 1:
+                character = "";
+                dialogs = "Their mission: to keep the townies warm in their deep slumber.";
+                break;
+                
+                case 2:
+                character = "";
+                dialogs = "At night, the twins will go to visit each house, retrieve the discarded blanket, and put it back on for them."
+                break;
+                
+                case 3:
+                character = "";
+                dialogs = "Are you ready to start the journal?"
+                $('.notification')
+                .append('<a href="htmls/chapter0.html" class="button is-primary">Yes</a>')
+                .toggle();
+                break;
+                
+                case 5:
+                $('.scene-image').fadeOut(2000, function () {
+                    window.location = "htmls/chapter0.html";
+                });
                 break;
             }
             sceneCount++;
@@ -692,19 +747,19 @@ $(document).ready(function () {
                 
                 case 1:
                 $textBubble.toggle();
-                character = Granpa;
-                dialogs = "I'm fine, my dear child. There is nothing to worry about.";
+                character = Grandpa;
+                dialogs = "There is nothing to worry about, children. They take care of me very well. Too well.";
                 break;
                 
                 case 2:
-                character = Granpa;
-                dialogs = "<strong>COUGH COUGH COUGH";
+                character = Grandpa;
+                dialogs = "<strong>*COUGH* *COUGH* *COUGH*";
                 break;
                 
                 case 3:
                 $dialogContainer.toggleClass("--dcReversed");
                 character = Remy;
-                dialogs = "No!!! Grandpa!!!"
+                dialogs = "Oh no! Grandpa is still very sick."
                 break;
                 
                 case 4:
@@ -716,16 +771,34 @@ $(document).ready(function () {
                 case 5:
                 $dialogContainer.toggleClass("--dcReversed");
                 character = Oliver;
-                dialogs = "I hope you'll get better soon to come home with us.";
+                dialogs = "I hope you'll get better soon and come home with us.";
                 break;
                 
                 case 6:
                 $dialogContainer.toggleClass("--dcReversed");
-                character = Granpa;
-                dialogs = ""
+                character = Grandpa;
+                dialogs = "I will, Oliver. Then you two can tell your old man all about those school activities you did when we get home."
                 break;
                 
-                case 20:
+                case 7:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Remy;
+                dialogs = "We've got lots of stories to tell. The other day we saw..."
+                break;
+                
+                case 8:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Oliver;
+                dialogs = "Remy, Dad said we need to go."
+                break;
+                
+                case 9:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Dad;
+                dialogs = "Say goodbye to papa, kids. Your mom is waiting at the car.";
+                break;
+                
+                case 10:
                 $('.scene-image').fadeOut(2000, function () {
                     window.location = "../htmls/map-expert.html";
                 });
@@ -749,14 +822,85 @@ $(document).ready(function () {
                 break;
                 
                 case 1:
-                $textBubble.toggle();
-                spawnNextImage();
+                $textBubble.toggle();                
+                character = MysteriousMan;
+                dialogs = "Hello, Little Ninjas. We meet at last.";
+                break;
+                
+                case 2:
                 $dialogContainer.toggleClass("--dcReversed");
-                character = "";
-                dialogs = "";
+                character = Remy;
+                dialogs = "You can't have these bugs";
+                break;
+                
+                case 3:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = MysteriousMan;
+                dialogs = "Why not?";
+                break;
+                
+                case 4:
+                character = MysteriousMan;
+                dialogs = "They're my greatest invention. Behold, urban mutant honey bee that can produce x3 the honey.";
+                break;
+                
+                case 5:
+                character = MysteriousMan;
+                dialogs = "People will never run out of honey again. Isn't it great?";
+                break;
+                
+                case 6:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Remy;
+                dialogs = "WOW! That's great, I love honey!";
+                break;
+                
+                case 7:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Oliver;
+                dialogs = "That's not the point!";
+                break;
+                
+                case 7:
+                character = Oliver;
+                dialogs = "Look, sir, we come here to let you know that the bee are spreading flu and make people really sick.";
+                break;
+                
+                case 8:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Remy;
+                dialogs = "Our grandpa caught the flu, too. Our parents have to put him in the hosipital";
+                break;
+                
+                case 9:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = MysteriousMan;
+                dialogs = "Oh... My... That's terrible. I had no idea!";
                 break;
                 
                 case 10:
+                character = MysteriousMan;
+                dialogs = "Oh, my my my MY!";
+                break;
+                
+                case 11:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Oliver;
+                dialogs = "Sir, could you take your bee farm elsewhere? Somewhere that does not bother a lot of people?";
+                break;
+                
+                case 12:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = MysteriousMan;
+                dialogs = "Hm... Let's see. I could move this to Honeyville where my siblings are. Yes, yes. We could farm the bees together!";
+                break;
+                
+                case 13:
+                character = MysteriousMan;
+                dialogs = "Great idea, kids! And thanks for letting me know.";
+                break;
+                
+                case 15:
                 $('.scene-image').fadeOut(2000, function () {
                     window.location = "../htmls/chapter8.html";
                 });
@@ -781,13 +925,57 @@ $(document).ready(function () {
                 
                 case 1:
                 $textBubble.toggle();
-                spawnNextImage();
                 $dialogContainer.toggleClass("--dcReversed");
-                character = "";
-                dialogs = "";
+                character = Mom;
+                dialogs = "Oliver! Remy! Didn't I tell you come home immediately after school?";
                 break;
                 
-                case 10:
+                case 2:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Oliver;
+                dialogs = "...";
+                break;
+                
+                case 3:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Remy;
+                dialogs = "We can explain, mom.";
+                break;
+                
+                case 4:
+                spawnNextImage();
+                break;
+                
+                case 5:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Mom;
+                dialogs = "I can see you are doing all of these things out of goodwill.";
+                break;
+                
+                case 6:
+                character = Mom;
+                dialogs = "But I'm still upset that you did not telll me about any of this.";
+                break;
+
+                case 7:
+                    $dialogContainer.toggleClass("--dcReversed");
+                    character = Oliver;
+                    dialogs = "I'm sorry, mom.";
+                    break;
+
+                case 8:
+                    $dialogContainer.toggleClass("--dcReversed");
+                    character = Remy;
+                    dialogs = "We won't do this again. I promise";
+                    break;
+
+                case 9:
+                    $dialogContainer.toggleClass("--dcReversed");
+                    character = Mom;
+                    dialogs = "I'm glad you ";
+                    break;
+                
+                case 20:
                 $('.scene-image').fadeOut(2000, function () {
                     window.location = "../htmls/chapter9.html";
                 });

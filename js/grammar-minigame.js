@@ -7,7 +7,7 @@
     var $resulteMsg = $('#result-message').addClass('--isHidden');
     var $notificationHeader = $('<h2>').css('text-align', 'center');
     var $notificationText = $('<p>').css('text-align', 'left');
-    var $notificationBtn = $('<a>').addClass('button --flex --centerElement');
+    var $notificationBtn = $('<a>').addClass('button');
     var $blockedOut = $('.blocked-out');
     var $answer = $('.answer');
     var $wasDragged;

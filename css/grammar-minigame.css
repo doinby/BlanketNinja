@@ -62,10 +62,14 @@ cite:before {
     width: auto;
     height: 24px;
     margin-bottom: -7px;
-    padding: 8px;
+    /* padding: 8px; */
     background: hsl(48, 100%, 67%);
     border-radius: 2px;
     font-weight: 700;
+}
+
+.possibilities, .blocked-out {
+    border: 1px solid rgba(81, 203, 238, 0);
 }
 
 .answer-container {

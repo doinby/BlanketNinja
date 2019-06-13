@@ -131,7 +131,7 @@ footer {
 .button {
     display: flex;
     flex-direction: column;
-    align-content: center;
+    align-items: center;
     justify-content: center;
     padding: 16px;
     margin: 8px;
@@ -142,15 +142,6 @@ footer {
 .button:disabled,
 .button[disabled] {
     background: #9E9E9E;
-}
-
-.notification {
-    background: #FAFAFA;
-    border-radius: 4px;
-}
-
-.tile {
-
 }
 
 .has-background-light {
@@ -258,11 +249,13 @@ footer {
 }
 
 .notification {
-    /* display: none; */
+    display: none;
     position: absolute;
     width: 30%;
     padding: 32px;
     z-index: 3;
+    background: #FAFAFA;
+    border-radius: 4px;
 }
 
 .warning-text {

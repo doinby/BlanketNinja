@@ -50,6 +50,7 @@ h4 {
 
 p {
     font-size: 14px;
+    line-height: 24px;
 }
 
 /* Block ************************************************/
@@ -128,6 +129,11 @@ footer {
     z-index: 1;
 }
 
+.mutant-bees {
+    position: absolute;
+    right: 0;
+}
+
 .button {
     display: flex;
     flex-direction: column;
@@ -144,66 +150,14 @@ footer {
     background: #9E9E9E;
 }
 
-.has-background-light {
-    background: #FAFAFA;
-}
-
-.has-background-primary {
-    background: #1DE9B6;
-}
-
-.has-background-warning {
-    background: #FFEA00;
-}
-
-.has-background-danger {
-    background: #ff1744;
-}
-
-.has-text-light {
-    color: #FAFAFA;
-    fill: #FAFAFA;
-}
-
-.has-text-dark {
-    color: #212121;
-    fill: #212121;
-}
-
-.is-dark {
-    background: #424242;
-    color: #FAFAFA;
-    fill: #FAFAFA;
-}
-
-.is-primary {
-    background: #1DE9B6;
-    color: #FAFAFA;
-    fill: #FAFAFA;
-}
-
-.is-primary * {
-    color: #FAFAFA;
-    fill: #FAFAFA;
-}
-
-.is-danger {
-    background: #ff1744;
-    color: #FAFAFA;
-    fill: #FAFAFA;
-}
-
-.is-danger * {
-    color: #FAFAFA;
-    fill: #FAFAFA;
-}
-
-.is-rounded {
-    border-radius: 30px;
-}
-
 .menu-btn {
     grid-area: menu;
+}
+
+.the-end {
+    grid-row: 1 / 9;
+    grid-column: 1 / 11;
+    z-index: 3;
 }
 
 .scene-image {        
@@ -335,21 +289,73 @@ footer {
     }
 }
 
-/* reference: https://google.github.io/material-design-icons/ */
-/* Rules for sizing the icon. */
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
+.has-background-light {
+    background: #FAFAFA;
+}
 
-/* Rules for using icons as black on a light background. */
-.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
-.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+.has-background-primary {
+    background: #1DE9B6;
+}
 
-/* Rules for using icons as white on a dark background. */
-.material-icons.md-light { color: rgba(255, 255, 255, 1); }
-.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+.has-background-warning {
+    background: #FFEA00;
+}
 
-/* Responsive Layout ************************************/
+.has-background-danger {
+    background: #ff1744;
+}
+
+.has-text-light {
+    color: #FAFAFA;
+    fill: #FAFAFA;
+}
+
+.has-text-dark {
+    color: #212121;
+    fill: #212121;
+}
+
+.is-dark {
+    background: #424242;
+    color: #FAFAFA;
+    fill: #FAFAFA;
+}
+
+.is-primary {
+    background: #1DE9B6;
+    color: #FAFAFA;
+    fill: #FAFAFA;
+}
+
+.is-primary * {
+    color: #FAFAFA;
+    fill: #FAFAFA;
+}
+
+.is-danger {
+    background: #ff1744;
+    color: #FAFAFA;
+    fill: #FAFAFA;
+}
+
+.is-danger * {
+    color: #FAFAFA;
+    fill: #FAFAFA;
+}
+
+.is-warning {
+    background: #FFEA00;
+    color: #FAFAFA;
+    fill: #FAFAFA;
+}
+
+.is-warning * {
+    color: #FAFAFA;
+    fill: #FAFAFA;
+}
+
+.is-rounded {
+    border-radius: 30px;
+}
 
 @media (max-width: 800px) {}

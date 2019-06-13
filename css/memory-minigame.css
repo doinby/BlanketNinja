@@ -57,22 +57,6 @@
     align-items: center;
 }
 
-.--correct {
-    background: lime;
-}
-
-.--incorrect {
-    background: tomato;
-}
-
-.possibilities:hover, 
-.possibilities:focus, 
-.blocked-out:hover, 
-.blocked-out:focus {
-    box-shadow: 0 0 8px rgba(81, 203, 238, 1);
-    border: 1px solid rgba(81, 203, 238, 1);
-}
-
 @keyframes pulse {
     0%, 100% {
         color: #2979ff;

@@ -3,7 +3,7 @@ $(document).ready(function () {
     // Declare CSS Variables ////////////////////////////
     
     var $gameViewport = $('.game-viewport');
-    var $notification = $('#notification').addClass('--isHidden');
+    var $notification = $('#notification');
     var $resulteMsg = $('#result-message').addClass('--isHidden');
     var $notificationHeader = $('<h2>').css('text-align', 'center');
     var $notificationText = $('<p>').css('text-align', 'left');
@@ -73,13 +73,14 @@ $(document).ready(function () {
             $instruction = $('<h4>')
             .addClass('instruction notification')
             .text("Press any key to start")
-            .appendTo($gameViewport);
+            .appendTo($gameViewport)
+            .toggle();
             break;
             
             case "Correct Sequence":
             $correctSequence = $('<div>')
             .addClass('correct-sequence notification is-primary --flex')
-            .delay(1000)
+            .delay(1500)
             .toggle("fold")
             .appendTo($gameViewport);
             break;
@@ -98,6 +99,7 @@ $(document).ready(function () {
             $notificationBtn.click(function () {
                 window.location = "../htmls/map-expert.html";
             });
+            break;
             
             case "Lose":
             $notificationBtn
@@ -111,7 +113,7 @@ $(document).ready(function () {
             $resulteMsg
             .append($notificationHeader)
             .append($notificationBtn)
-            .toggle()
+            .show()
             .toggleClass('has-background-warning');
             break;
         }
@@ -184,13 +186,13 @@ $(document).ready(function () {
     
     // Record Key Pressed Sequence
     mySequence = new Array();
-    $(document).keydown(function (e) {
-        var keySymbol;      
+    $(document).keydown(function (e) {   
         if (isPaused) {
             // Prevent Arrow Keys Pressed at the Start
             if (e.which < 37 || e.which > 40) {
                 start();
-                $instruction.text("Recreate the sequence with 'Arrow Keys'");
+                $instruction
+                .text("Recreate the sequence with 'Arrow Keys'");
             }
         } else {
             // Limit Number of Keys
@@ -206,9 +208,11 @@ $(document).ready(function () {
                 // Increase matching pairs when found
                 if (correctSequence[progress] == mySequence[progress] && mySequence != false) {
                     matchCount++;
-                    if (matchCount == correctSequence.length) {
-                        gameOver("Win");
-                    }
+                    console.log(matchCount);
+                    console.log(correctSequence.length)
+                }
+                if (matchCount == correctSequence.length) {
+                    gameOver("Win");
                 }
                 progress++;
             } else {

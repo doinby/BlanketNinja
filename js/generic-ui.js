@@ -17,44 +17,46 @@ $(document).ready(function () {
     
     // Setup Scene //////////////////////////////////////
     
-    function spawnGenericUI() {
-        // Add Menu Button
-        $menuIcon = $('<i>')
-        .addClass('im im-menu');   
-        $menuBtn = $('<a>')
-        .addClass('button menu-btn is-primary is-invered is-outlined')
-        .append($menuIcon)
-        .appendTo($gameViewport)
-        .click(function() {
-            $('#menu').toggle();
-        });
-        
-        // Add Menu Popup
-        $instruction = $('<li>')
-        .append('<p>To solve puzzle:</p>')
-        .append('<h3>CLICK</h3>')
-        .append('<p>or</p>')
-        .append('<h3>DRAG</h3>')
-        .append('<p>on items</p>');
-        
-        $muteBtn = $('<li>')
-        .addClass('button is-primary')
-        .append('<i class="im im-volume"></i>')
-        .append('<i class="im im-volume-off" style="display: none;"></i>')
-        .attr('id', 'mute-button')
-        .click(function () {
-            $(this)
-            .children()
-            .toggle();
-            $(this).toggleClass('is-danger')
-        });;
-        
-        $menuContainer = $('<ul>')
-        .addClass('has-background-light --flex')
-        .append($instruction)
-        .append($muteBtn)
-        .appendTo($gameViewport)
-        .attr('id', 'menu');
+    // Add Menu Button
+    $menuIcon = $('<i>')
+    .addClass('im im-menu');   
+    $menuBtn = $('<a>')
+    .addClass('button menu-btn is-primary is-invered is-outlined')
+    .append($menuIcon)
+    .appendTo($gameViewport)
+    .click(function() {
+        $('#menu').toggle();
+    });
+    
+    // Add Menu Popup
+    $instruction = $('<li>')
+    .append('<p>To solve puzzle:</p>')
+    .append('<h3>CLICK</h3>')
+    .append('<p>or</p>')
+    .append('<h3>DRAG</h3>')
+    .append('<p>on items</p>');
+    
+    $muteBtn = $('<li>')
+    .addClass('button is-primary')
+    .append('<i class="im im-volume"></i>')
+    .append('<i class="im im-volume-off" style="display: none;"></i>')
+    .attr('id', 'mute-button')
+    .click(function () {
+        $(this)
+        .children()
+        .toggle();
+        $(this).toggleClass('is-danger')
+    });;
+    
+    $menuContainer = $('<ul>')
+    .addClass('has-background-light --flex')
+    .append($instruction)
+    .append($muteBtn)
+    .appendTo($gameViewport)
+    .attr('id', 'menu');
+
+    function getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
     
     function spawnMapUI(max) {        
@@ -132,6 +134,24 @@ $(document).ready(function () {
         .text("Choose A Location on the Map");
     }
     
+    function spawnMutantBees() {
+        for(i = 0; i < 8; i++) {
+
+            $mutantBee = $('<img>')
+            .addClass('mutant-bees')
+            .attr('src', '../images/mutantBees.png')
+            .appendTo($gameViewport)
+            .css({
+                top: getRandomNumber(50, 550),
+                right: getRandomNumber(-500, 50)
+            })
+            .animate({
+                top: getRandomNumber(50, 550),
+                right: getRandomNumber(1024, 1500)
+            },5000, "linear");
+        }
+    }
+    
     function checkDisabledBtn(x) {
         var isDisabled = [
             sessionStorage.btn0,
@@ -166,8 +186,10 @@ $(document).ready(function () {
         // If all the puzzles were solved, spawn boss puzzle
         if (sessionStorage.btn2 && sessionStorage.btn3) {
             spawnMapUI(4);
+            spawnMutantBees()
         } else {  // Spawn all puzzles                  
             spawnMapUI(3);
+            spawnMutantBees()
         }
         break;
     }

@@ -56,11 +56,11 @@ $(document).ready(function () {
     }
     var SchoolKid2 = {
         name: "School Kid 2",
-        portrait: "../images/SchoolKid2.png",
+        portrait: "../images/SchoolKid1.png",
     }
-    var Blank = {
-        name: "",
-        portrait: "../images/Blank.png",
+    var Narrator = {
+        name: "Narrator",
+        portrait: "../images/Narrator.png",
     }
     
     var MysteriousMan = {
@@ -126,7 +126,8 @@ $(document).ready(function () {
                 case 0:
                 // If 4 of the puzzles were completed
                 if (sessionStorage.btn2 && sessionStorage.btn3) {
-                    
+                    character = Remy;
+                    dialogs = "There're so many of them!";
                 } else { // If 3 of the puzzles were completed                
                     character = Oliver;
                     dialogs = "Look! Remy, it's those strange flying bugs that makes the local sick.";
@@ -176,22 +177,22 @@ $(document).ready(function () {
             case "Blanket Ninja":
             switch (sceneCount) {
                 case 0:
-                character = "";
+                character = "Narrator";
                 dialogs = "In an unknown town of an unknown civilization, a pair of twin ninjas have decided to become a night-time blanket hero.";
                 break;
                 
                 case 1:
-                character = "";
+                character = "Narrator";
                 dialogs = "Their mission: to keep the townies warm in their deep slumber.";
                 break;
                 
                 case 2:
-                character = "";
+                character = "Narrator";
                 dialogs = "At night, the twins will go to visit each house, retrieve the discarded blanket, and put it back on for them."
                 break;
                 
                 case 3:
-                character = "";
+                character = "Narrator";
                 dialogs = "Are you ready to start the journal?"
                 $('.notification')
                 .append('<a href="htmls/chapter0.html" class="button is-primary">Yes</a>')
@@ -954,28 +955,40 @@ $(document).ready(function () {
                 
                 case 6:
                 character = Mom;
-                dialogs = "But I'm still upset that you did not telll me about any of this.";
+                dialogs = "But I'm still upset that you did not tell me about any of this.";
                 break;
-
-                case 7:
-                    $dialogContainer.toggleClass("--dcReversed");
-                    character = Oliver;
-                    dialogs = "I'm sorry, mom.";
-                    break;
-
-                case 8:
-                    $dialogContainer.toggleClass("--dcReversed");
-                    character = Remy;
-                    dialogs = "We won't do this again. I promise";
-                    break;
-
-                case 9:
-                    $dialogContainer.toggleClass("--dcReversed");
-                    character = Mom;
-                    dialogs = "I'm glad you ";
-                    break;
                 
-                case 20:
+                case 7:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Oliver;
+                dialogs = "I'm sorry, mom.";
+                break;
+                
+                case 8:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Remy;
+                dialogs = "We won't do this again. I promise";
+                break;
+                
+                case 9:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Mom;
+                dialogs = "I'm glad you are ok. And you did something wonderful to the community. I'm sure dad would agree to lift your purnishment this time.";
+                break;
+                
+                case 10:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Oliver;
+                dialogs = "Thank you, mom!!!";
+                break;
+                
+                case 11:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Remy;
+                dialogs = "Yay!!!";
+                break;
+                
+                case 12:
                 $('.scene-image').fadeOut(2000, function () {
                     window.location = "../htmls/chapter9.html";
                 });
@@ -993,21 +1006,45 @@ $(document).ready(function () {
             chapterCount = 9;
             switch (sceneCount) {
                 case 0:
-                spawmAllImages(3);
+                spawmAllImages(1);
                 dialogs = "";
                 $textBubble.toggle();
                 break;
                 
                 case 1:
                 $textBubble.toggle();
-                spawnNextImage();
-                $dialogContainer.toggleClass("--dcReversed");
-                character = "";
-                dialogs = "";
+                character = Narrator;
+                dialogs = "And thus, no one in town has ever heard of the Blanket Ninjas again.";
                 break;
                 
-                case 10:
-                spawnNextImage();
+                case 2:
+                character = Narrator;
+                dialogs = "Celebrations are held for the sudden lift of a terrible flu.";
+                break;
+                
+                case 3:
+                character = Narrator;
+                dialogs = "Everyone is happy and healthy.";
+                break;
+                
+                case 4:
+                character = Narrator;
+                dialogs = "Granpa regains his health and returns to his beloved grandchildren";
+                break;
+                
+                case 5:
+                character = Narrator;
+                dialogs = "The Bee Man keeps his promise to move to Beevile. His honey product has become a hit in the market.";
+                break;
+                
+                case 5:
+                character = Narrator;
+                dialogs = "The little twin ninjas enjoys every moments they spent with their family and friend, knowing that they have done something good to the town. ";
+                break;
+                
+                default:
+                    $gameViewport.append('<h1 class="the-end has-text-dark --isHidden">THE END</h1>');
+                    $('.the-end').fadeIn("slow");
                 break;
             }
             sceneCount++;

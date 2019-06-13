@@ -104,11 +104,11 @@ cite:before {
 }
 
 .--correct {
-    background: lime;
+    background: #00E676;
 }
 
 .--incorrect {
-    background: tomato;
+    background: #ff1744;
 }
 
 .possibilities:hover, 

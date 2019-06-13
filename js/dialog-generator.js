@@ -118,7 +118,7 @@ $(document).ready(function () {
             break;
             
             case "Blanket Ninja - Template": 
-            chapterCount = 0;
+            chapterCount = 1;
             switch (sceneCount) {
                 case 0:
                 spawmAllImages(3);
@@ -148,8 +148,7 @@ $(document).ready(function () {
             spawnDialogs(character, dialogs);
             break;
             
-            case "Blanket Ninja - Intro":
-            chapterCount = 0; // Chapter 0 
+            case "Blanket Ninja - Intro": //chapter 0
             switch (sceneCount) {
                 case 0:
                 spawmAllImages(3);
@@ -281,7 +280,7 @@ $(document).ready(function () {
                 
                 case 12:
                 $('.scene-image').fadeOut(2000, function() {
-                    window.location = "../htmls/map-expert.html";
+                    window.location = "../htmls/map.html";
                 });
                 break;
                 
@@ -402,9 +401,9 @@ $(document).ready(function () {
             chapterCount = 3;
             switch (sceneCount) {
                 case 0:
-                    spawmAllImages(0);
-                    $textBubble.toggle();
-                    break;
+                spawmAllImages(0);
+                $textBubble.toggle();
+                break;
                 
                 case 1:
                 $textBubble.toggle();
@@ -474,66 +473,7 @@ $(document).ready(function () {
                 
                 case 13:
                 $('.scene-image').fadeOut(2000, function () {
-                    window.location = "../htmls/challenge6.html";
-                });
-                break;
-                
-                default:
-                spawnNextImage();
-                break;
-            }
-            sceneCount++;
-            spawnDialogs(character, dialogs);
-            break;
-            
-            case "Blanket Ninja - Gifts":
-            chapterCount = 4;
-            switch (sceneCount) {
-                case 0:
-                    spawmAllImages(0);
-                    $textBubble.toggle();
-                    break;
-                
-                case 1:
-                $textBubble.toggle();
-                $dialogContainer.toggleClass("--dcReversed");
-                character = Kent;
-                dialogs = "I brought Em some soup my mom made.";
-                break;
-                
-                case 2:
-                $dialogContainer.toggleClass("--dcReversed");
-                character = Maru;
-                dialogs = "That's so nice of you, Kent.";
-                break;
-                
-                case 3:
-                $dialogContainer.toggleClass("--dcReversed");
-                character = Remy;
-                dialogs = "I'm bring her the monopoly cards I borrowed last week.";
-                break;
-                
-                case 4:
-                $dialogContainer.toggleClass("--dcReversed");
-                character = Oliver;
-                dialogs = "You mean, <i><strong>last month?";
-                break;
-                
-                case 5:
-                $dialogContainer.toggleClass("--dcReversed");
-                character = Remy;
-                dialogs = "Oh come on, Ol! I was making a new board game and needed them.";
-                break;
-                
-                case 6:
-                $dialogContainer.toggleClass("--dcReversed");
-                character = Kent;
-                dialogs = "Looks like we are ready. Maru, lead the way.";
-                break;
-                
-                case 7:
-                $('.scene-image').fadeOut(2000, function () {
-                    window.location = "../htmls/challenge10.html";
+                    window.location = "../htmls/challenge8.html";
                 });
                 break;
                 
@@ -546,12 +486,12 @@ $(document).ready(function () {
             break;
             
             case "Blanket Ninja - Found the Suspect":
-            chapterCount = 5;
+            chapterCount = 4;
             switch (sceneCount) {
                 case 0:
-                    spawmAllImages(3);
-                    $textBubble.toggle();
-                    break;
+                spawmAllImages(3);
+                $textBubble.toggle();
+                break;
                 
                 case 1:
                 $textBubble.toggle();
@@ -638,12 +578,12 @@ $(document).ready(function () {
             break;
             
             case "Blanket Ninja - Grounded":
-            chapterCount = 6;
+            chapterCount = 5;
             switch (sceneCount) {
                 case 0:
-                    spawmAllImages(3);
-                    $textBubble.toggle();
-                    break;
+                spawmAllImages(3);
+                $textBubble.toggle();
+                break;
                 
                 case 1:
                 $textBubble.toggle();
@@ -697,10 +637,35 @@ $(document).ready(function () {
                 dialogs = "You are grounded until next month. No wandering about after school.";
                 break;
                 
-                case 10:
-                    $('.scene-image').fadeOut(2000, function () {
-                        window.location = "../htmls/challenge8.html";
-                    });
+                case 11:
+                character = Oliver;
+                dialogs = "Remy, wake up.";
+                break;
+                
+                case 12:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Remy;
+                dialogs = "Hmm...?";
+                
+                case 13:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Oliver;
+                dialogs = "Keep it down. Let's go";
+                
+                case 14:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Remy;
+                dialogs = "But mom and dad would hear us.";
+                
+                case 15:
+                $dialogContainer.toggleClass("--dcReversed");
+                character = Oliver;
+                dialogs = "We can get out through the roof. I know the way."
+                
+                case 16:
+                $('.scene-image').fadeOut(2000, function () {
+                    window.location = "../htmls/challenge10.html";
+                });
                 break;
                 
                 default:
@@ -712,6 +677,41 @@ $(document).ready(function () {
             break;            
             
             case "Blanket Ninja - Hospital Visit":
+            chapterCount = 6;
+            switch (sceneCount) {
+                case 0:
+                spawmAllImages(3);
+                dialogs = "";
+                $textBubble.toggle();
+                break;
+                
+                case 1:
+                $textBubble.toggle();
+                character = Granpa;
+                dialogs = "I'm fine, I'm fine, there is nothing to worry about.";
+                break;
+
+                case 2:
+                    $textBubble.toggle();
+                    character = Granpa;
+                    dialogs = "I'm fine, I'm fine, there is nothing to worry about.";
+                    break;
+                
+                case 20:
+                $('.scene-image').fadeOut(2000, function () {
+                    window.location = "../htmls/map-expert.html";
+                });
+                break;
+                
+                default:
+                spawnNextImage();
+                break;
+            }
+            sceneCount++;
+            spawnDialogs(character, dialogs);
+            break;
+            
+            case "Blanket Ninja - Message":
             chapterCount = 7;
             switch (sceneCount) {
                 case 0:
@@ -729,9 +729,9 @@ $(document).ready(function () {
                 break;
                 
                 case 10:
-                    $('.scene-image').fadeOut(2000, function () {
-                        window.location = "../htmls/map-expert.html";
-                    });
+                $('.scene-image').fadeOut(2000, function () {
+                    window.location = "../htmls/chapter8.html";
+                });
                 break;
                 
                 default:
@@ -741,72 +741,65 @@ $(document).ready(function () {
             sceneCount++;
             spawnDialogs(character, dialogs);
             break;
-
-            case "Blanket Ninja - Message":
-                chapterCount = 8;
-                switch (sceneCount) {
-                    case 0:
-                        spawmAllImages(3);
-                        dialogs = "";
-                        $textBubble.toggle();
-                        break;
-
-                    case 1:
-                        $textBubble.toggle();
-                        spawnNextImage();
-                        $dialogContainer.toggleClass("--dcReversed");
-                        character = "";
-                        dialogs = "";
-                        break;
-
-                    case 10:
-                        $('.scene-image').fadeOut(2000, function () {
-                            window.location = "../htmls/chapter9.html";
-                        });
-                        break;
-
-                    default:
-                        spawnNextImage();
-                        break;
-                }
-                sceneCount++;
-                spawnDialogs(character, dialogs);
-                break;
-
+            
             case "Blanket Ninja - Confession":
-                chapterCount = 9;
-                switch (sceneCount) {
-                    case 0:
-                        spawmAllImages(3);
-                        dialogs = "";
-                        $textBubble.toggle();
-                        break;
-
-                    case 1:
-                        $textBubble.toggle();
-                        spawnNextImage();
-                        $dialogContainer.toggleClass("--dcReversed");
-                        character = "";
-                        dialogs = "";
-                        break;
-
-                    case 10:
-                        $('.scene-image').fadeOut(2000, function () {
-                            window.location = "../htmls/chapter10.html";
-                        });
-                        break;
-
-                    default:
-                        spawnNextImage();
-                        break;
-                }
-                sceneCount++;
-                spawnDialogs(character, dialogs);
+            chapterCount = 8;
+            switch (sceneCount) {
+                case 0:
+                spawmAllImages(3);
+                dialogs = "";
+                $textBubble.toggle();
                 break;
+                
+                case 1:
+                $textBubble.toggle();
+                spawnNextImage();
+                $dialogContainer.toggleClass("--dcReversed");
+                character = "";
+                dialogs = "";
+                break;
+                
+                case 10:
+                $('.scene-image').fadeOut(2000, function () {
+                    window.location = "../htmls/chapter9.html";
+                });
+                break;
+                
+                default:
+                spawnNextImage();
+                break;
+            }
+            sceneCount++;
+            spawnDialogs(character, dialogs);
+            break;
+            
+            case "Blanket Ninja - Epilouge":
+            chapterCount = 9;
+            switch (sceneCount) {
+                case 0:
+                spawmAllImages(3);
+                dialogs = "";
+                $textBubble.toggle();
+                break;
+                
+                case 1:
+                $textBubble.toggle();
+                spawnNextImage();
+                $dialogContainer.toggleClass("--dcReversed");
+                character = "";
+                dialogs = "";
+                break;
+                
+                case 10:
+                spawnNextImage();
+                break;
+            }
+            sceneCount++;
+            spawnDialogs(character, dialogs);
+            break;
         }
     }
     
-    $(document).mousedown(dialogData);
-    
+    $(document).mousedown(dialogData);    
 });
 

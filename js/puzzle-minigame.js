@@ -91,8 +91,7 @@ $(document).ready(function () {
             .append($notificationBtn)
             .toggle();
             
-            // Redirect
-            
+            // Redirect            
             switch(title) {   
                 case "Blanket Ninja - Puzzle X":
                 $notificationBtn.click(function () {
@@ -105,11 +104,24 @@ $(document).ready(function () {
                     window.location = "../htmls/chapter2.html";
                 });
                 break;       
-
-                case "Blanket Ninja - Puzzle Z":
+                
+                case "Blanket Ninja - Puzzle Boss":
                 $notificationBtn.click(function () {
-                    window.location = "../htmls/chapter6.html";
+                    window.location = "../htmls/chapter7.html";
                 });
+                break;
+                
+                default:
+                // If 4 of the puzzles were completed
+                if (sessionStorage.btn2 && sessionStorage.btn3) {
+                    $notificationBtn.click(function () {
+                        window.location = "../htmls/chapter6.html";
+                    });
+                } else { // If 3 of the puzzles were completed
+                    $notificationBtn.click(function () {
+                        window.location = "../htmls/chapter5.html";
+                    });
+                }
                 break;
             }          
             break;

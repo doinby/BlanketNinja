@@ -137,8 +137,7 @@ $(document).ready(function () {
             sessionStorage.btn0,
             sessionStorage.btn1,
             sessionStorage.btn2,
-            sessionStorage.btn3,
-            sessionStorage.btn4,
+            sessionStorage.btn3
         ]
         
         if (isDisabled[x]) {
@@ -154,28 +153,19 @@ $(document).ready(function () {
     }
     
     switch (title) {
-        case "Blanket Ninja - Map":        
-        // Spawn Easy Puzzles For Beginner        
-        spawnMapUI(0);
+        case "Blanket Ninja - Map":      
+        
+        if (sessionStorage.btn0) {
+            spawnMapUI(1);
+        } else {
+            // Spawn Easy Puzzles For Beginner        
+            spawnMapUI(0);            
+        }
         break;
         
         case "Blanket Ninja - Map (Expert)":
         // Spawn All Puzzles      
         spawnMapUI(3);
-        break;
-        
-        case "Blanket Ninja - Puzzle X":
-        showHintBtn = true;
-        spawnGenericUI();
-        break;
-        
-        case "Blanket Ninja - Puzzle Y":
-        showHintBtn = true;
-        spawnGenericUI();
-        break;
-        
-        default: 
-        spawnGenericUI();
         break;
     }
 });

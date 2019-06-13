@@ -127,17 +127,11 @@
                 });
                 break;
                 
-                case "Blanket Ninja - Grammar Challenge Y":
+                default:
                 $notificationBtn.click(function () {
-                    window.location = "../htmls/chapter7.html";
+                    window.location = "../htmls/chapter4.html";
                 });
                 break;
-                
-                // default:
-                // $notificationBtn.click(function () {
-                //     window.location = "../htmls/map-expert.html";
-                // });
-                // break;
             }
             break;
             

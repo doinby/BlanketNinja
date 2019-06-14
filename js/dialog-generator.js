@@ -143,37 +143,6 @@ $(document).ready(function () {
             
             break;
             
-            case "Blanket Ninja - Template": 
-            chapterCount = 1;
-            switch (sceneCount) {
-                case 0:
-                spawmAllImages(3);
-                dialogs = "";
-                $textBubble.toggle();
-                break;
-                
-                case 1:
-                $textBubble.toggle();
-                spawnNextImage();
-                $dialogContainer.toggleClass("--dcReversed");
-                character = "";
-                dialogs = "";
-                break;
-                
-                case 10:
-                $('.scene-image').fadeOut(2000, function () {
-                    window.location = "../htmls/map.html";
-                });
-                break;
-                
-                default:
-                spawnNextImage();
-                break;
-            }
-            sceneCount++;
-            spawnDialogs(character, dialogs);
-            break;
-            
             case "Blanket Ninja":
             switch (sceneCount) {
                 case 0:
@@ -741,7 +710,7 @@ $(document).ready(function () {
             chapterCount = 6;
             switch (sceneCount) {
                 case 0:
-                spawmAllImages(3);
+                spawmAllImages(0);
                 dialogs = "";
                 $textBubble.toggle();
                 break;
@@ -919,7 +888,7 @@ $(document).ready(function () {
             chapterCount = 8;
             switch (sceneCount) {
                 case 0:
-                spawmAllImages(3);
+                spawmAllImages(0);
                 dialogs = "";
                 $textBubble.toggle();
                 break;

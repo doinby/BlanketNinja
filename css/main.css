@@ -109,13 +109,13 @@ footer {
     z-index: 3;
 }
 
-#menu li {
-    padding: 16px;
+#menu li p {
+    padding: 8px;
 }
 
-#menu li a {
+/* #menu li a {
     width: 96px;
-}
+} */
 
 .game-viewport {
     position: relative;
@@ -185,6 +185,7 @@ footer {
 
 .character-portrait {
     grid-area: portrait;
+    border-radius: 4px;
 }
 
 .character-name {
@@ -198,7 +199,7 @@ footer {
     max-height: 100%;
     padding: 32px;
     border-radius: 4px;
-    background: hsl(0, 0%, 96%);
+    background: #FAFAFA;
     /* display: none; */
 }
 

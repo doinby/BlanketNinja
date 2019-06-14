@@ -54,7 +54,7 @@ $(document).ready(function () {
     .append($muteBtn)
     .appendTo($gameViewport)
     .attr('id', 'menu');
-
+    
     function getRandomNumber(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
@@ -134,9 +134,9 @@ $(document).ready(function () {
         .text("Choose A Location on the Map");
     }
     
-    function spawnMutantBees() {
-        for(i = 0; i < 8; i++) {
-
+    function spawnMutantBees(x) {
+        for(i = 0; i < x; i++) {
+            
             $mutantBee = $('<img>')
             .addClass('mutant-bees')
             .attr('src', '../images/mutantBees.png')
@@ -185,12 +185,14 @@ $(document).ready(function () {
         case "Blanket Ninja - Map (Expert)":
         // If all the puzzles were solved, spawn boss puzzle
         if (sessionStorage.btn2 && sessionStorage.btn3) {
-            spawnMapUI(4);
-            spawnMutantBees()
+            spawnMapUI(4)
         } else {  // Spawn all puzzles                  
             spawnMapUI(3);
-            spawnMutantBees()
-        }
+            } 
+            spawnMutantBees(getRandomNumber(3, 7));
+        update = setInterval(function() {
+            spawnMutantBees(getRandomNumber(1, 5));
+        }, 4000);
         break;
     }
 });

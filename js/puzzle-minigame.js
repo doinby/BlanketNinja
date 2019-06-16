@@ -10,8 +10,8 @@ $(document).ready(function () {
     var $notificationBtn = $('<a>').addClass('button --flex --centerElement');
     var $blanketUI = $('<div>').append('<img src="../images/blanket.png" alt="">');
     var $player = $('.player').append('<img src="../images/player.png" alt="">');
-    var $dog = $('.dog');
-    var $helper = $('.helper');
+    var $dog = $('.dog').append('<img src="../images/dog-sit.png" alt="">');
+    var $helper = $('.helper').append('<img src="../images/helper.png" alt="">');
     var $hook = $('.hook');
     var $blanket = $('.blanket').append('<img src="../images/blanket.png" alt="">');
     var $bed = $('.bed').append('<img src="../images/bed.png" alt="">');
@@ -27,10 +27,7 @@ $(document).ready(function () {
     var currentBlanketPos = $blanket.position();
     var currentBedPos = $bed.position();
     var update;
-    var nextLink = $notificationBtn.click(function() {
-        window.location = "../htmls/map.html"
-    });
-    
+    var noDog = true;
     
     // Setup Scene //////////////////////////////////////
     
@@ -77,6 +74,7 @@ $(document).ready(function () {
                 $notificationText.text("You are doing great. Just signal me and I will distract the dog for you!");
                 break;
             }
+            
             $notificationHeader.text(notificationType);
             $notification
             .append($notificationHeader)
@@ -183,11 +181,43 @@ $(document).ready(function () {
     // Puzzle Logic    
     $hook.click(function () {
         $(this).animate({
-            top: currentPlayerPos.top - currentHookPos.top - $hook.height() -50
+            top: currentPlayerPos.top - currentHookPos.top - $hook.height() - $blanket.height()
         }, 1000);
         $blanket.animate({
-            top: currentPlayerPos.top - currentBlanketPos.top + $hook.height() - $blanket.height() - 50
+            top: currentPlayerPos.top - currentBlanketPos.top + $hook.height() - ($blanket.height() * 2)
         },1000);
+    });
+    
+    $helper.click(function () {
+        $(this).animate({
+            top: currentHelperPos.top - $helper.height()
+        }, {
+            duration: 500,
+            easing: "swing",
+            complete: function () {
+                $helper.children().attr('src', '../images/helper-withBait.png');
+                $helper
+                .css({
+                    'grid-column': '1 / 2',
+                    'grid-row': '6 / 7',
+                    left: -$helper.width(),
+                    transform: 'rotate(200deg)'
+                })
+                .animate({
+                    left: $helper.position().left + $helper.width()
+                }, 1000, "swing")
+                .delay(800)
+                .animate({
+                    left: $helper.position().left - $helper.width()
+                }, 1000, "swing", function () {
+                    $dog.children().attr('src', '../images/dog-run.png');
+                    $dog.animate({
+                        left: $helper.position().left - currentDogPos.left
+                    }, 1000, "swing");
+                    noDog = true;
+                });
+            }
+        });
     });
     
     $blanket.click(function () {
@@ -198,50 +228,16 @@ $(document).ready(function () {
             easing: "swing",
             step: function() {
                 if(collision($player, $dog)) {
+                    noDog = false;
+                    $dog.children().attr('src', '../images/dog-growl.png');
                     $player.animate({
-                        left: currentDogPos.left - currentPlayerPos.left + ($dog.width() * 4)
+                        left: currentDogPos.left - currentPlayerPos.left - ($dog.width() * 4)
                     }, 100, "swing");
-                } else if (collision($player, $blanket)) {
+                } else if (collision($player, $blanket) && noDog) {
                     $blanket.toggle();
                     $blanketUI.toggle();
                     hasBlanket = true;                    
                 }
-            }
-        });
-    });
-    
-    $helper.click(function () {
-        $(this).animate({
-            top: currentHelperPos.top - $helper.height()
-        }, {
-            duration: 500,
-            easing: "swing",
-            // step: function () {
-            //     if (collision($player, $dog)) {
-            //         $player.animate({
-            //             left: currentDogPos.left - currentPlayerPos.left + ($dog.width() * 4)
-            //         }, 100, "swing");
-            //     } else if (collision($player, $blanket)) {
-            //         $blanket.toggle();
-            //         $blanketUI.toggle();
-            //         hasBlanket = true;
-            //     }
-            // }
-            complete: function() {
-                // console.log('complete')
-                $helper
-                .css({
-                    'grid-column': '1 / 2',
-                    'grid-row': '6 / 7',
-                    left: -$helper.width()
-                })
-                .animate({
-                    left: $helper.position().left + $helper.width()
-                }, 1000, "swing", function() {
-                    $helper.animate({
-                        left: $helper.position().left - $helper.width()
-                    }, 1000, "swing")
-                });
             }
         });
     });
@@ -253,34 +249,26 @@ $(document).ready(function () {
             duration: 1000,
             easing: "swing",
             step: function () {
-                if (collision($player, $bed) && hasBlanket) {
+                if (collision($player, $dog)) {
+                    noDog = false;
+                    $player.animate({
+                        left: currentDogPos.left - currentPlayerPos.left + ($dog.width() * 4)
+                    }, 100, "swing");
+                }
+            },
+            complete: function () {
+                if (collision($player, $bed) && hasBlanket && noDog) {
                     gameOver("Win");
                 }
             }
         });
     });
     
-    // $bed.click(function () {
-    //     $player.animate({
-    //         left: currentBedPos.left - currentPlayerPos.left
-    //     }, 1000, "swing", function () {
-    //         if (collision($player, $bed) && hasBlanket) {
-    //             gameOver("Win");
-    //         }
-    //     });
-    // });
-    
     // Animate Progress Bar
     update = setInterval(function () {
         $progressBar.animate({
             width: '-=1'
-        }, {
-            duration: 100,
-            // duration: 1,
-            // complete: function () {
-            //     console.log("complete");
-            // }
-        });
+        }, 100);
         
         if ($progressBar.width() < 1) {
             gameOver("Lose");

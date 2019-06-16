@@ -58,19 +58,13 @@
 
 .dog {
     position: absolute;
-    bottom : 0;
-    width: 64px;
-    height: 64px;
-    background-color: #ff5252;
+    bottom : -16px;
     z-index: 2;
 }
 
 .helper {
     position: absolute;
-    top : 0;
-    width: 32px;
-    height: 96px;
-    background-color: #ff5252;
+    top : -30px;
 }
 
 .blanket {
@@ -83,9 +77,6 @@
     position: absolute;
     bottom : -16px;
 }
-
-.dog:hover, 
-.dog:focus,
 .helper:hover, 
 .helper:focus,
 .hook:hover, 
@@ -97,9 +88,15 @@
     box-shadow: 0 0 8px #00E5FF;
     padding: 2px;
     margin: 2px;
-    border: 2px solid #00E5FF;
-    /* fill: #00E5FF; */
-    
+    border: 2px solid #00E5FF;    
+}
+
+.dog:hover, 
+.dog:focus {
+    box-shadow: 0 0 8px #ff1744;
+    padding: 2px;
+    margin: 2px;
+    border: 2px solid #ff1744;    
 }
 
 /* Modifier *********************************************/

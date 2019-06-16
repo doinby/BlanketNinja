@@ -56,6 +56,23 @@
     background-color: #ff5252;
 }
 
+.dog {
+    position: absolute;
+    bottom : 0;
+    width: 64px;
+    height: 64px;
+    background-color: #ff5252;
+    z-index: 2;
+}
+
+.helper {
+    position: absolute;
+    top : 0;
+    width: 32px;
+    height: 96px;
+    background-color: #ff5252;
+}
+
 .blanket {
     position: absolute;
     bottom : 0;
@@ -67,6 +84,10 @@
     bottom : -16px;
 }
 
+.dog:hover, 
+.dog:focus,
+.helper:hover, 
+.helper:focus,
 .hook:hover, 
 .hook:focus, 
 .blanket > *:hover, 

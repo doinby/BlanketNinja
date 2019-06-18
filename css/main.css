@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
 /* This stylesheet is organized using BEM methology *****/
-/* Basic Theme ******************************************/
 /* Basic Theme ********************************************/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -22,6 +21,14 @@ time, mark, audio, video {
   vertical-align: baseline;
   list-style: none;
   font-family: 'Montserrat', sans-serif;
+}
+
+header, footer, main {
+    background: #E0E0E0;
+}
+
+header {    
+    color: #2979ff;
 }
 
 a, a:link, a:active, a:hover, a:visited, a:disabled {
@@ -53,6 +60,17 @@ p {
     line-height: 24px;
 }
 
+.button,
+.text-bubble,
+.notification {    
+    background: #FAFAFA;
+}
+
+.button:disabled,
+.button[disabled] {
+    background: #9E9E9E;
+}
+
 /* Block ************************************************/
 
 /* html {
@@ -65,9 +83,12 @@ html, body {
     height: 100%;
 }
 
-header, footer, main {
-    font-family: 'Montserrat', sans-serif;
-    background: #e0e0e0;
+header {
+    align-content: center;
+    height: 96px;
+    padding-left: 64px;
+    font-size: 22px;
+    font-weight: 700;
 }
 
 body {
@@ -91,6 +112,7 @@ main {
 
 footer {
     flex-shrink: 0;
+    height: 96px;
 }
 
 /* Element **********************************************/
@@ -112,10 +134,6 @@ footer {
 #menu li p {
     padding: 8px;
 }
-
-/* #menu li a {
-    width: 96px;
-} */
 
 .game-viewport {
     position: relative;
@@ -142,12 +160,6 @@ footer {
     padding: 16px;
     margin: 8px;
     border-radius: 4px;
-    background: #FAFAFA;
-}
-
-.button:disabled,
-.button[disabled] {
-    background: #9E9E9E;
 }
 
 .menu-btn {
@@ -180,7 +192,6 @@ footer {
     align-items: center;
     justify-items: center;
     width: 960px;
-    /* padding: 32px; */
 }
 
 .character-portrait {
@@ -199,8 +210,6 @@ footer {
     max-height: 100%;
     padding: 32px;
     border-radius: 4px;
-    background: #FAFAFA;
-    /* display: none; */
 }
 
 .notification {
@@ -209,7 +218,6 @@ footer {
     width: 30%;
     padding: 32px;
     z-index: 3;
-    background: #FAFAFA;
     border-radius: 4px;
 }
 

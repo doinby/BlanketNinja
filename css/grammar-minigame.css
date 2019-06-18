@@ -63,7 +63,7 @@ cite:before {
     height: 24px;
     margin-bottom: -7px;
     /* padding: 8px; */
-    background: hsl(48, 100%, 67%);
+    background: #FFEA00;
     border-radius: 2px;
     font-weight: 700;
 }
@@ -86,7 +86,7 @@ cite:before {
     margin: 8px;
     width: 128px;
     height: 24px;
-    background: hsl(0, 0%, 96%);
+    background: #FAFAFA;
     text-align: center;
     font-weight: 700;
 }
@@ -105,10 +105,12 @@ cite:before {
 
 .--correct {
     background: #00E676;
+    color: #FAFAFA;
 }
 
 .--incorrect {
     background: #ff1744;
+    color: #FAFAFA;
 }
 
 .possibilities:hover, 
@@ -117,4 +119,14 @@ cite:before {
 .blocked-out:focus {
     box-shadow: 0 0 8px rgba(81, 203, 238, 1);
     border: 1px solid rgba(81, 203, 238, 1);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        color: #2979ff;
+    }
+    50% {
+        color: #2979ff;
+        opacity: 0;
+    }
 }

@@ -139,11 +139,10 @@ $(document).ready(function () {
             sceneCount++;
             break;
             
-            case "Blanket Ninka - Memory Challenge X":
-            
-            break;
-            
             case "Blanket Ninja":
+                $gameViewport.css({
+                    'background': '#212121'
+                });
             switch (sceneCount) {
                 case 0:
                 character = "Narrator";
@@ -611,7 +610,7 @@ $(document).ready(function () {
             chapterCount = 5;
             switch (sceneCount) {
                 case 0:
-                spawmAllImages(3);
+                spawmAllImages(0);
                 $textBubble.toggle();
                 break;
                 
@@ -1012,8 +1011,8 @@ $(document).ready(function () {
                 break;
                 
                 default:
-                    $gameViewport.append('<h1 class="the-end has-text-dark --isHidden">THE END</h1>');
-                    $('.the-end').fadeIn("slow");
+                $gameViewport.append('<h1 class="the-end has-text-dark --isHidden">THE END</h1>');
+                $('.the-end').fadeIn("slow");
                 break;
             }
             sceneCount++;

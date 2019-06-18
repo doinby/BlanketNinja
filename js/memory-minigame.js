@@ -208,8 +208,6 @@ $(document).ready(function () {
                 // Increase matching pairs when found
                 if (correctSequence[progress] == mySequence[progress] && mySequence != false) {
                     matchCount++;
-                    console.log(matchCount);
-                    console.log(correctSequence.length)
                 }
                 if (matchCount == correctSequence.length) {
                     gameOver("Win");

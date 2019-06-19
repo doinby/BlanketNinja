@@ -80,7 +80,7 @@ p {
 
 html, body {
     width: 100%;
-    height: 100%;
+    height: 100%;    
 }
 
 header {
@@ -108,6 +108,10 @@ main {
     flex: 1 0 auto;
     align-items: center;
     justify-content: center;
+    background: 
+    url(../images/mutantBees-background.png) no-repeat top left, 
+    url(../images/mutantBees-background.png) no-repeat bottom right;
+    /* background-repeat: no-repeat; */
 }
 
 footer {
